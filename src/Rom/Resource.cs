@@ -75,6 +75,28 @@ namespace BinarySerializer.Onyx.Gba
             return obj;
         }
 
+        public T[] SerializeDependencyArray<T>(SerializerObject s, T[] obj, byte[] indexes, int count = -1, Action<T> onPreSerialize = null, string name = null)
+            where T : Resource, new()
+        {
+            if (count == -1)
+                count = indexes.Length;
+
+            if (obj != null)
+            {
+                if (obj.Length != count)
+                    Array.Resize(ref obj, count);
+            }
+            else
+            {
+                obj = new T[count];
+            }
+
+            for (int i = 0; i < count; i++)
+                obj[i] = SerializeDependency<T>(s, obj[i], indexes[i], onPreSerialize: onPreSerialize, name: s.IsSerializerLoggerEnabled ? $"{name ?? "Dependencies"}[{i}]" : null);
+
+            return obj;
+        }
+
         public abstract void SerializeResource(SerializerObject s);
         public virtual void SerializeDependencies(SerializerObject s) { }
     }

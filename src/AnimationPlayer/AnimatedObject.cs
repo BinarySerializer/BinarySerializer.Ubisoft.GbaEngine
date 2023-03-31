@@ -41,10 +41,7 @@
             }, name: nameof(Palettes));
             SpriteTable = SerializeDependency<SpriteTable>(s, SpriteTable, Idx_SpriteTable, name: nameof(SpriteTable));
 
-            Animations ??= new Animation[AnimationsCount];
-
-            for (int i = 0; i < Animations.Length; i++)
-                Animations[i] = SerializeDependency<Animation>(s, Animations[i], Idx_Animations[i], name: $"{nameof(Animations)}[{i}]");
+            Animations = SerializeDependencyArray<Animation>(s, Animations, Idx_Animations, name: nameof(Animations));
 
             foreach (Animation animation in Animations)
             {
