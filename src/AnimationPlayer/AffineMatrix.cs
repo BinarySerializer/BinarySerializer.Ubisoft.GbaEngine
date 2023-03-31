@@ -1,6 +1,6 @@
 ﻿namespace BinarySerializer.Onyx.Gba
 {
-    public class AffineMatrix : BinarySerializable
+    public class AffineMatrix : BinarySerializable, ISerializerShortLog
     {
         public short Pa { get; set; }
         public short Pb { get; set; }
@@ -14,5 +14,8 @@
             Pc = s.Serialize<short>(Pc, name: nameof(Pc));
             Pd = s.Serialize<short>(Pd, name: nameof(Pd));
         }
+
+        public string ShortLog => ToString();
+        public override string ToString() => $"AffineMatrix({Pa}, {Pb}, {Pc}, {Pd})";
     }
 }
