@@ -21,8 +21,8 @@ namespace BinarySerializer.Onyx.Gba
         // Sound
         public ushort SoundId { get; set; }
 
-        // Unknown
-        public Vector2 Unknown { get; set; }
+        // Displacement vector
+        public Vector2 DisplacementVector { get; set; }
 
         // Box
         public ChannelBox Box { get; set; }
@@ -71,9 +71,9 @@ namespace BinarySerializer.Onyx.Gba
                 SoundId = s.Serialize<ushort>(SoundId, name: nameof(SoundId));
                 s.SerializePadding(2, logIfNotNull: true);
             }
-            else if (ChannelType == AnimationChannelType.Unknown)
+            else if (ChannelType == AnimationChannelType.DisplacementVector)
             {
-                Unknown = s.SerializeObject<Vector2>(Unknown, name: nameof(Unknown));
+                DisplacementVector = s.SerializeObject<Vector2>(DisplacementVector, name: nameof(DisplacementVector));
             }
             else if (ChannelType is AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox)
             {
