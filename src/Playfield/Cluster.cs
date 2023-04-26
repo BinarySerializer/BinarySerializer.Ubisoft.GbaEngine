@@ -2,21 +2,21 @@
 {
     public class Cluster : Resource
     {
-        public FixedPointVector2 Scroll { get; set; }
+        public FixedPointVector2 ScrollFactor { get; set; }
 
         public ushort SizeX { get; set; }
         public ushort SizeY { get; set; }
 
         public byte Byte_0C { get; set; } // Probably a bool - determines how it moves?
-        public bool CanMove { get; set; }
+        public bool Stationary { get; set; }
 
         public override void SerializeResource(SerializerObject s)
         {
-            Scroll = s.SerializeObject<FixedPointVector2>(Scroll, name: nameof(Scroll));
+            ScrollFactor = s.SerializeObject<FixedPointVector2>(ScrollFactor, name: nameof(ScrollFactor));
             SizeX = s.Serialize<ushort>(SizeX, name: nameof(SizeX));
             SizeY = s.Serialize<ushort>(SizeY, name: nameof(SizeY));
             Byte_0C = s.Serialize<byte>(Byte_0C, name: nameof(Byte_0C));
-            CanMove = s.Serialize<bool>(CanMove, name: nameof(CanMove));
+            Stationary = s.Serialize<bool>(Stationary, name: nameof(Stationary));
 
             s.SerializePadding(2, logIfNotNull: true);
         }

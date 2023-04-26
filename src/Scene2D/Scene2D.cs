@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BinarySerializer.Onyx.Gba
+﻿namespace BinarySerializer.Onyx.Gba
 {
     public class Scene2D : Resource
     {
@@ -17,6 +15,9 @@ namespace BinarySerializer.Onyx.Gba
         public Actor[] AlwaysActors { get; set; }
         public Actor[] Actors { get; set; }
 
+        // Dependencies
+        public Playfield Playfield { get; set; }
+
         public override void SerializeResource(SerializerObject s)
         {
             Idx_PlayField = s.Serialize<byte>(Idx_PlayField, name: nameof(Idx_PlayField));
@@ -32,12 +33,13 @@ namespace BinarySerializer.Onyx.Gba
 
             AlwaysActors = s.SerializeObjectArray<Actor>(AlwaysActors, AlwaysActorsCount, name: nameof(AlwaysActors));
             Actors = s.SerializeObjectArray<Actor>(Actors, ActorsCount, name: nameof(Actors));
-            throw new NotImplementedException("Not implemented serializing captors and knots");
+            // TODO: Serialize captors and knots
         }
 
         public override void SerializeDependencies(SerializerObject s)
         {
-            throw new NotImplementedException("Not implemented serializing scene dependencies");
+            Playfield = SerializeDependency<Playfield>(s, Playfield, Idx_PlayField, name: nameof(Playfield));
+            // TODO: Serialize remaining dependencies
         }
     }
 }
