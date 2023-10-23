@@ -37,51 +37,56 @@ namespace BinarySerializer.Onyx.Gba
                 SpriteShape = b.SerializeBits<byte>(SpriteShape, 2, name: nameof(SpriteShape));
             });
 
-            if (ChannelType == AnimationChannelType.Sprite)
+            switch (ChannelType)
             {
-                if (ObjectMode == OBJ_ATTR_ObjectMode.HIDE)
-                    throw new BinarySerializableException(this, "Invalid object mode");
+                case AnimationChannelType.None:
+                    s.SerializePadding(4, logIfNotNull: true);
+                    break;
 
-                s.DoBits<ushort>(b =>
-                {
-                    XPosition = b.SerializeBits<short>(XPosition, 9, sign: SignedNumberRepresentation.TwosComplement, name: nameof(XPosition));
+                case AnimationChannelType.Sprite:
+                    if (ObjectMode == OBJ_ATTR_ObjectMode.HIDE)
+                        throw new BinarySerializableException(this, "Invalid object mode");
 
-                    if (ObjectMode == OBJ_ATTR_ObjectMode.REG)
+                    s.DoBits<ushort>(b =>
                     {
-                        b.SerializePadding(3, logIfNotNull: true);
-                        FlipX = b.SerializeBits<bool>(FlipX, 1, name: nameof(FlipX));
-                        FlipY = b.SerializeBits<bool>(FlipY, 1, name: nameof(FlipY));
-                    }
-                    else
-                    {
-                        AffineMatrixIndex = b.SerializeBits<ushort>(AffineMatrixIndex, 5, name: nameof(AffineMatrixIndex));
-                    }
+                        XPosition = b.SerializeBits<short>(XPosition, 9, sign: SignedNumberRepresentation.TwosComplement, name: nameof(XPosition));
 
-                    SpriteSize = b.SerializeBits<byte>(SpriteSize, 2, name: nameof(SpriteSize));
-                });
-                s.DoBits<ushort>(b =>
-                {
-                    TileIndex = b.SerializeBits<ushort>(TileIndex, 12, name: nameof(TileIndex));
-                    PalIndex = b.SerializeBits<byte>(PalIndex, 3, name: nameof(PalIndex));
-                    b.SerializePadding(1, logIfNotNull: true);
-                });
-            }
-            else if (ChannelType == AnimationChannelType.Sound)
-            {
-                SoundId = s.Serialize<ushort>(SoundId, name: nameof(SoundId));
-                s.SerializePadding(2, logIfNotNull: true);
-            }
-            else if (ChannelType == AnimationChannelType.DisplacementVector)
-            {
-                DisplacementVector = s.SerializeObject<Vector2>(DisplacementVector, name: nameof(DisplacementVector));
-            }
-            else if (ChannelType is AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox)
-            {
-                Box = s.SerializeObject<ChannelBox>(Box, name: nameof(Box));
-            }
-            else
-            {
-                throw new BinarySerializableException(this, $"Unsupported channel type {ChannelType}");
+                        if (ObjectMode == OBJ_ATTR_ObjectMode.REG)
+                        {
+                            b.SerializePadding(3, logIfNotNull: true);
+                            FlipX = b.SerializeBits<bool>(FlipX, 1, name: nameof(FlipX));
+                            FlipY = b.SerializeBits<bool>(FlipY, 1, name: nameof(FlipY));
+                        }
+                        else
+                        {
+                            AffineMatrixIndex = b.SerializeBits<ushort>(AffineMatrixIndex, 5, name: nameof(AffineMatrixIndex));
+                        }
+
+                        SpriteSize = b.SerializeBits<byte>(SpriteSize, 2, name: nameof(SpriteSize));
+                    });
+                    s.DoBits<ushort>(b =>
+                    {
+                        TileIndex = b.SerializeBits<ushort>(TileIndex, 12, name: nameof(TileIndex));
+                        PalIndex = b.SerializeBits<byte>(PalIndex, 3, name: nameof(PalIndex));
+                        b.SerializePadding(1, logIfNotNull: true);
+                    });
+                    break;
+
+                case AnimationChannelType.Sound:
+                    SoundId = s.Serialize<ushort>(SoundId, name: nameof(SoundId));
+                    s.SerializePadding(2, logIfNotNull: true);
+                    break;
+
+                case AnimationChannelType.DisplacementVector:
+                    DisplacementVector = s.SerializeObject<Vector2>(DisplacementVector, name: nameof(DisplacementVector));
+                    break;
+
+                case AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox:
+                    Box = s.SerializeObject<ChannelBox>(Box, name: nameof(Box));
+                    break;
+
+                default:
+                    throw new BinarySerializableException(this, $"Unsupported channel type {ChannelType}");
             }
         }
     }

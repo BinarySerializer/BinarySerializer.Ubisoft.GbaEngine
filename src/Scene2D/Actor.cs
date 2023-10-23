@@ -7,6 +7,9 @@
         public byte FirstActionId { get; set; }
         public byte[] Links { get; set; }
 
+        // Dependencies
+        public ActorModel Model { get; set; }
+
         public override void SerializeImpl(SerializerObject s)
         {
             base.SerializeImpl(s);
