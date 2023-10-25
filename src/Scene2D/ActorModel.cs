@@ -6,9 +6,11 @@
         public EngineBox DetectionBox { get; set; }
         
         public byte Idx_AnimatedObject { get; set; }
-        public byte Flags { get; set; }
+        public ActorFlags Flags { get; set; }
         public byte HitPoints { get; set; }
         public byte AttackPoints { get; set; }
+
+        public Action[] Actions { get; set; }
 
         // Dependencies
         public AnimatedObject AnimatedObject { get; set; }
@@ -19,11 +21,11 @@
             DetectionBox = s.SerializeObject<EngineBox>(DetectionBox, name: nameof(DetectionBox));
 
             Idx_AnimatedObject = s.Serialize<byte>(Idx_AnimatedObject, name: nameof(Idx_AnimatedObject));
-            Flags = s.Serialize<byte>(Flags, name: nameof(Flags));
+            Flags = s.Serialize<ActorFlags>(Flags, name: nameof(Flags));
             HitPoints = s.Serialize<byte>(HitPoints, name: nameof(HitPoints));
             AttackPoints = s.Serialize<byte>(AttackPoints, name: nameof(AttackPoints));
 
-            // TODO: Serialize actions
+            Actions = s.SerializeObjectArray<Action>(Actions, (Size - 12) / 8, name: nameof(Actions));
         }
 
         public override void SerializeDependencies(SerializerObject s)
