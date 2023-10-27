@@ -16,6 +16,7 @@ namespace BinarySerializer.Onyx.Gba
         public byte KnotsCount { get; set; }
         public Actor[] AlwaysActors { get; set; }
         public Actor[] Actors { get; set; }
+        public Captor[] Captors { get; set; }
 
         // Dependencies
         public Playfield Playfield { get; set; }
@@ -36,7 +37,8 @@ namespace BinarySerializer.Onyx.Gba
 
             AlwaysActors = s.SerializeObjectArray<Actor>(AlwaysActors, AlwaysActorsCount, name: nameof(AlwaysActors));
             Actors = s.SerializeObjectArray<Actor>(Actors, ActorsCount, name: nameof(Actors));
-            // TODO: Serialize captors and knots
+            Captors = s.SerializeObjectArray<Captor>(Captors, CaptorsCount, name: nameof(Captors));
+            // TODO: Serialize knots
         }
 
         public override void SerializeDependencies(SerializerObject s)
@@ -45,8 +47,9 @@ namespace BinarySerializer.Onyx.Gba
 
             foreach (Actor actor in AlwaysActors.Concat(Actors))
                 actor.Model = SerializeDependency<ActorModel>(s, actor.Model, actor.Idx_ActorModel, name: nameof(actor.Model));
-            
-            // TODO: Serialize captor data
+
+            foreach (Captor captor in Captors)
+                captor.Events = SerializeDependency<CaptorEvents>(s, captor.Events, captor.Idx_Events, x => x.Pre_Length = captor.EventsCount, name: nameof(captor.Events));
         }
     }
 }
