@@ -6,7 +6,14 @@
         public EngineBox DetectionBox { get; set; }
         
         public byte Idx_AnimatedObject { get; set; }
-        public ActorFlags Flags { get; set; }
+
+        public ActorMapCollisionType MapCollisionType { get; set; }
+        public bool HasMapCollision { get; set; }
+        public bool HasObjectCollision { get; set; }
+        public bool Flag_06 { get; set; }
+        public bool IsAgainstCaptor { get; set; }
+        public bool ReceivesDamage { get; set; }
+        
         public byte HitPoints { get; set; }
         public byte AttackPoints { get; set; }
 
@@ -21,7 +28,15 @@
             DetectionBox = s.SerializeObject<EngineBox>(DetectionBox, name: nameof(DetectionBox));
 
             Idx_AnimatedObject = s.Serialize<byte>(Idx_AnimatedObject, name: nameof(Idx_AnimatedObject));
-            Flags = s.Serialize<ActorFlags>(Flags, name: nameof(Flags));
+            s.DoBits<byte>(b =>
+            {
+                MapCollisionType = b.SerializeBits<ActorMapCollisionType>(MapCollisionType, 3, name: nameof(MapCollisionType));
+                HasMapCollision = b.SerializeBits<bool>(HasMapCollision, 1, name: nameof(HasMapCollision));
+                HasObjectCollision = b.SerializeBits<bool>(HasObjectCollision, 1, name: nameof(HasObjectCollision));
+                Flag_06 = b.SerializeBits<bool>(Flag_06, 1, name: nameof(Flag_06));
+                IsAgainstCaptor = b.SerializeBits<bool>(IsAgainstCaptor, 1, name: nameof(IsAgainstCaptor));
+                ReceivesDamage = b.SerializeBits<bool>(ReceivesDamage, 1, name: nameof(ReceivesDamage));
+            });
             HitPoints = s.Serialize<byte>(HitPoints, name: nameof(HitPoints));
             AttackPoints = s.Serialize<byte>(AttackPoints, name: nameof(AttackPoints));
 
@@ -32,7 +47,13 @@
         {
             AnimatedObject = SerializeDependency<AnimatedObject>(s, AnimatedObject, Idx_AnimatedObject, name: nameof(AnimatedObject));
 
-            // TODO: Serialize action data
+            foreach (Action action in Actions)
+            {
+                if (action.MechModelType != null)
+                {
+                    action.MechModel = SerializeDependency<MechModel>(s, action.MechModel, action.Idx_MechModel, name: nameof(action.MechModel));
+                }
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BinarySerializer.Onyx.Gba
         public byte Byte_0F { get; set; }
         public MapTile[] TileMap { get; set; }
 
-        // Collision
+        // Physical
         public byte[] CollisionMap { get; set; }
 
         private static readonly SerializeInto<MapTile> SerializeIntoMapTile_Dynamic4bpp = (s, x) =>
@@ -91,7 +91,7 @@ namespace BinarySerializer.Onyx.Gba
 
             if (Type == GameLayerType.TileLayer)
                 SerializeTileLayer(s);
-            else if (Type == GameLayerType.TileCollisionLayer)
+            else if (Type == GameLayerType.TilePhysicalLayer)
                 SerializeTileCollisionLayer(s);
             else
                 throw new BinarySerializableException(this, $"Undefined game layer type {Type}");

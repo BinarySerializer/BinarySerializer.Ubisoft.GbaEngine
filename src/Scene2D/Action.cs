@@ -5,16 +5,20 @@
         public EngineBox Box { get; set; }
         public ushort AnimationIndex { get; set; }
         public ActionFlags Flags { get; set; }
-        public byte? Type { get; set; }
-        public byte Idx_Data { get; set; }
+
+        public byte? MechModelType { get; set; }
+        public byte Idx_MechModel { get; set; }
+
+        // Dependencies
+        public MechModel MechModel { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
             Box = s.SerializeObject<EngineBox>(Box, name: nameof(Box));
             AnimationIndex = s.Serialize<byte>((byte)AnimationIndex, name: nameof(AnimationIndex));
             Flags = s.Serialize<ActionFlags>(Flags, name: nameof(Flags));
-            Type = s.SerializeNullable<byte>(Type, name: nameof(Type));
-            Idx_Data = s.Serialize<byte>(Idx_Data, name: nameof(Idx_Data));
+            MechModelType = s.SerializeNullable<byte>(MechModelType, name: nameof(MechModelType));
+            Idx_MechModel = s.Serialize<byte>(Idx_MechModel, name: nameof(Idx_MechModel));
         }
     }
 }
