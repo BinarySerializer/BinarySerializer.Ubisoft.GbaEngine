@@ -7,6 +7,7 @@
         public byte Idx_Palette { get; set; }
         public byte PalettesCount { get; set; }
         public bool Is8Bit { get; set; }
+        public bool IsDynamic { get; set; }
         public byte AnimationsCount { get; set; }
         public byte Byte_06 { get; set; }
         public byte[] Idx_Animations { get; set; }
@@ -25,7 +26,8 @@
             {
                 PalettesCount = b.SerializeBits<byte>(PalettesCount, 4, name: nameof(PalettesCount));
                 Is8Bit = b.SerializeBits<bool>(Is8Bit, 1, name: nameof(Is8Bit));
-                b.SerializePadding(3, logIfNotNull: true);
+                IsDynamic = b.SerializeBits<bool>(IsDynamic, 1, name: nameof(IsDynamic));
+                b.SerializePadding(2, logIfNotNull: true);
             });
             AnimationsCount = s.Serialize<byte>(AnimationsCount, name: nameof(AnimationsCount));
             Byte_06 = s.Serialize<byte>(Byte_06, name: nameof(Byte_06));
