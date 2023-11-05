@@ -5,7 +5,7 @@ namespace BinarySerializer.Onyx.Gba
     public class Scene2D : Resource
     {
         public byte Idx_PlayField { get; set; }
-        public ushort Ushort_02 { get; set; }
+        public ushort ActorVramLength { get; set; }
         public byte GameObjectCount { get; set; }
         public byte AlwaysActorsCount { get; set; }
         public byte ActorsCount { get; set; }
@@ -17,6 +17,7 @@ namespace BinarySerializer.Onyx.Gba
         public Actor[] AlwaysActors { get; set; }
         public Actor[] Actors { get; set; }
         public Captor[] Captors { get; set; }
+        public Knot[] Knots { get; set; }
 
         // Dependencies
         public Playfield Playfield { get; set; }
@@ -25,7 +26,7 @@ namespace BinarySerializer.Onyx.Gba
         {
             Idx_PlayField = s.Serialize<byte>(Idx_PlayField, name: nameof(Idx_PlayField));
             s.SerializePadding(1, logIfNotNull: true);
-            Ushort_02 = s.Serialize<ushort>(Ushort_02, name: nameof(Ushort_02));
+            ActorVramLength = s.Serialize<ushort>(ActorVramLength, name: nameof(ActorVramLength));
             GameObjectCount = s.Serialize<byte>(GameObjectCount, name: nameof(GameObjectCount));
             AlwaysActorsCount = s.Serialize<byte>(AlwaysActorsCount, name: nameof(AlwaysActorsCount));
             ActorsCount = s.Serialize<byte>(ActorsCount, name: nameof(ActorsCount));
@@ -38,7 +39,7 @@ namespace BinarySerializer.Onyx.Gba
             AlwaysActors = s.SerializeObjectArray<Actor>(AlwaysActors, AlwaysActorsCount, name: nameof(AlwaysActors));
             Actors = s.SerializeObjectArray<Actor>(Actors, ActorsCount, name: nameof(Actors));
             Captors = s.SerializeObjectArray<Captor>(Captors, CaptorsCount, name: nameof(Captors));
-            // TODO: Serialize knots
+            Knots = s.SerializeObjectArray<Knot>(Knots, KnotsCount, name: nameof(Knots));
         }
 
         public override void SerializeDependencies(SerializerObject s)
