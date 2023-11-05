@@ -4,9 +4,8 @@
     {
         public Vector2 Pos { get; set; }
 
-        // TODO: What are these flags for?
         public bool IsEnabled { get; set; }
-        public bool Flag_1 { get; set; }
+        public bool IsAwake { get; set; }
         public bool IsAnimatedObjectDynamic { get; set; }
         public bool Flag_3 { get; set; }
         public bool ResurrectsImmediately { get; set; }
@@ -20,7 +19,7 @@
             s.DoBits<byte>(b =>
             {
                 IsEnabled = b.SerializeBits<bool>(IsEnabled, 1, name: nameof(IsEnabled));
-                Flag_1 = b.SerializeBits<bool>(Flag_1, 1, name: nameof(Flag_1));
+                IsAwake = b.SerializeBits<bool>(IsAwake, 1, name: nameof(IsAwake));
                 IsAnimatedObjectDynamic = b.SerializeBits<bool>(IsAnimatedObjectDynamic, 1, name: nameof(IsAnimatedObjectDynamic));
                 Flag_3 = b.SerializeBits<bool>(Flag_3, 1, name: nameof(Flag_3));
                 ResurrectsImmediately = b.SerializeBits<bool>(ResurrectsImmediately, 1, name: nameof(ResurrectsImmediately));
