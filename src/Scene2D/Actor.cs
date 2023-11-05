@@ -2,7 +2,7 @@
 {
     public class Actor : GameObject
     {
-        public byte Id { get; set; }
+        public byte Type { get; set; }
         public byte Idx_ActorModel { get; set; }
         public byte FirstActionId { get; set; }
         public byte[] Links { get; set; }
@@ -14,7 +14,7 @@
         {
             base.SerializeImpl(s);
 
-            Id = s.Serialize<byte>(Id, name: nameof(Id));
+            Type = s.Serialize<byte>(Type, name: nameof(Type));
             Idx_ActorModel = s.Serialize<byte>(Idx_ActorModel, name: nameof(Idx_ActorModel));
             FirstActionId = s.Serialize<byte>(FirstActionId, name: nameof(FirstActionId));
             Links = s.SerializeArray<byte>(Links, 4, name: nameof(Links));
