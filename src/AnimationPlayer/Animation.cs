@@ -6,7 +6,7 @@ namespace BinarySerializer.Onyx.Gba
     {
         public byte Speed { get; set; }
         public bool DoNotRepeat { get; set; }
-        public byte Idx_PaletteInfo { get; set; } // Unused for Rayman 3 - used in other games?
+        public byte Idx_PaletteCycleAnimation { get; set; }
         public byte Idx_AffineMatrices { get; set; }
         public byte FramesCount { get; set; }
         public byte FramesCountAlignment { get; set; }
@@ -16,6 +16,7 @@ namespace BinarySerializer.Onyx.Gba
 
         // Dependencies (from AnimatedObject)
         public AffineMatrices AffineMatrices { get; set; }
+        public PaletteCycleAnimation PaletteCycleAnimation { get; set; }
 
         public override void SerializeResource(SerializerObject s)
         {
@@ -24,7 +25,7 @@ namespace BinarySerializer.Onyx.Gba
                 Speed = b.SerializeBits<byte>(Speed, 7, name: nameof(Speed));
                 DoNotRepeat = b.SerializeBits<bool>(DoNotRepeat, 1, name: nameof(DoNotRepeat));
             });
-            Idx_PaletteInfo = s.Serialize<byte>(Idx_PaletteInfo, name: nameof(Idx_PaletteInfo));
+            Idx_PaletteCycleAnimation = s.Serialize<byte>(Idx_PaletteCycleAnimation, name: nameof(Idx_PaletteCycleAnimation));
             Idx_AffineMatrices = s.Serialize<byte>(Idx_AffineMatrices, name: nameof(Idx_AffineMatrices));
             s.DoBits<byte>(b =>
             {

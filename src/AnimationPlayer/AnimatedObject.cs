@@ -49,6 +49,9 @@
             {
                 if (animation.Idx_AffineMatrices != 0)
                     animation.AffineMatrices = SerializeDependency<AffineMatrices>(s, animation.AffineMatrices, animation.Idx_AffineMatrices, name: nameof(animation.AffineMatrices));
+
+                if (animation.Idx_PaletteCycleAnimation != 0)
+                    animation.PaletteCycleAnimation = SerializeDependency<PaletteCycleAnimation>(s, animation.PaletteCycleAnimation, animation.Idx_PaletteCycleAnimation, name: nameof(animation.PaletteCycleAnimation));
             }
         }
     }
