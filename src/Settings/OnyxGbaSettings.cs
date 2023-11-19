@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Onyx.Gba
 {
     public class OnyxGbaSettings
     {
