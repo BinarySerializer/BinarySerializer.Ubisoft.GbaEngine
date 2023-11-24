@@ -20,5 +20,16 @@ namespace BinarySerializer.Onyx.Gba
             [DefinedPointer.Rayman3_Act6] = 0x080d6f98,
             [DefinedPointer.Rayman3_SinglePakOffsetTable] = 0x087fbea0,
         };
+
+        public static Dictionary<DefinedPointer, long> Rayman3_NGage => new()
+        {
+            [DefinedPointer.Rayman3_LevelInfo] = 0x100ede28,
+            //[DefinedPointer.Rayman3_Act1] = 0x,
+            //[DefinedPointer.Rayman3_Act2] = 0x,
+            //[DefinedPointer.Rayman3_Act3] = 0x,
+            //[DefinedPointer.Rayman3_Act4] = 0x,
+            //[DefinedPointer.Rayman3_Act5] = 0x,
+            //[DefinedPointer.Rayman3_Act6] = 0x,
+        };
     }
 }

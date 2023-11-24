@@ -54,16 +54,28 @@ namespace BinarySerializer.Onyx.Gba
         {
             OnyxGbaSettings settings = Context.GetRequiredSettings<OnyxGbaSettings>();
 
-            Font8 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font8, file), name: nameof(Font8));
-            Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
-            Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
+            if (settings.Platform == Platform.GBA)
+            {
+                Font8 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font8, file), name: nameof(Font8));
+                Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
+                Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
+            }
+            else if (settings.Platform == Platform.NGage)
+            {
+                // TODO: Load from resources
+            }
 
             if (settings.Game == Game.Rayman3)
             {
                 Rayman3_LevelInfo = FileFactory.Read<ObjectArray<LevelInfo>>(
                     Context,
                     Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_LevelInfo, file),
-                    (_, obj) => obj.Pre_Length = 65,
+                    (_, obj) => obj.Pre_Length = settings.Platform switch
+                    {
+                        Platform.GBA => 65,
+                        Platform.NGage => 71,
+                        _ => 0,
+                    },
                     name: nameof(Rayman3_LevelInfo));
             }
         }
