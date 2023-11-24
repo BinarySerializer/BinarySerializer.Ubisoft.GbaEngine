@@ -58,7 +58,7 @@ namespace BinarySerializer.Onyx.Gba
             Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
             Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
 
-            if (settings.EngineVersion is EngineVersion.Rayman3 or EngineVersion.Rayman3_NGage)
+            if (settings.Game == Game.Rayman3)
             {
                 Rayman3_LevelInfo = FileFactory.Read<ObjectArray<LevelInfo>>(
                     Context,

@@ -1,8 +1,7 @@
 ﻿namespace BinarySerializer.Onyx.Gba
 {
-    public enum EngineVersion
+    public enum Game
     {
         Rayman3,
-        Rayman3_NGage,
     }
 }
