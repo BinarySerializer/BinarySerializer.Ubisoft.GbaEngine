@@ -8,6 +8,9 @@
         Font16,
         Font32,
 
+        // N-Gage
+        NGage_SongTable,
+
         // Rayman 3
         Rayman3_LevelInfo,
         Rayman3_Act1,

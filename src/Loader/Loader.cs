@@ -18,6 +18,9 @@ namespace BinarySerializer.Onyx.Gba
         public Font Font16 { get; set; }
         public Font Font32 { get; set; }
 
+        // N-Gage
+        public NGageSoundEvent[] NGage_SoundEvents { get; set; }
+
         // Rayman 3
         public LevelInfo[] Rayman3_LevelInfo { get; protected set; }
 
@@ -62,7 +65,13 @@ namespace BinarySerializer.Onyx.Gba
             }
             else if (settings.Platform == Platform.NGage)
             {
-                // TODO: Load from resources
+                // TODO: Load font from resources
+
+                NGage_SoundEvents = FileFactory.Read<ObjectArray<NGageSoundEvent>>(
+                    Context, 
+                    Context.GetRequiredPreDefinedPointer(DefinedPointer.NGage_SongTable, file), 
+                    onPreSerialize: (_, x) => x.Pre_Length = 515, 
+                    name: nameof(NGage_SoundEvents));
             }
 
             if (settings.Game == Game.Rayman3)

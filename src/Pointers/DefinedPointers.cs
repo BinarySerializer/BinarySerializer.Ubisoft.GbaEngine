@@ -23,6 +23,8 @@ namespace BinarySerializer.Onyx.Gba
 
         public static Dictionary<DefinedPointer, long> Rayman3_NGage => new()
         {
+            [DefinedPointer.NGage_SongTable] = 0x100f1c3c,
+
             [DefinedPointer.Rayman3_LevelInfo] = 0x100ede28,
             //[DefinedPointer.Rayman3_Act1] = 0x,
             //[DefinedPointer.Rayman3_Act2] = 0x,
