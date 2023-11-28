@@ -2,27 +2,26 @@
 {
     public class SoundEvent : BinarySerializable
     {
-        public ushort Type { get; set; }
+        public SoundEventType Type { get; set; }
 
-        public ushort Type1_Ushort_00 { get; set; }
+        public ushort Ushort_00 { get; set; } // Value between 0-100. Determines if song should be played based on playing songs. Priority?
         public ushort ResourceId { get; set; }
         public byte Type1_Byte_04 { get; set; }
         public bool Type1_Flag0 { get; set; } // Always false in Rayman 3
         public bool Type1_Flag1 { get; set; } // Only true for one event in Rayman 3
 
-        public ushort Type23_Ushort_00 { get; set; } // Unused?
-        public ushort Type23_Value1 { get; set; }
-        public ushort Type23_Value2 { get; set; }
-        public ushort Type23_Value3 { get; set; }
+        public ushort StopEventId { get; set; }
+        public ushort NextEventId { get; set; }
+        public ushort FadeOutTime { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
-            Type = s.Serialize<ushort>(Type, name: nameof(Type));
+            Type = s.Serialize<SoundEventType>(Type, name: nameof(Type));
+            Ushort_00 = s.Serialize<ushort>(Ushort_00, name: nameof(Ushort_00));
 
             switch (Type)
             {
-                case 1:
-                    Type1_Ushort_00 = s.Serialize<ushort>(Type1_Ushort_00, name: nameof(Type1_Ushort_00));
+                case SoundEventType.PlaySong:
                     ResourceId = s.Serialize<ushort>(ResourceId, name: nameof(ResourceId));
                     Type1_Byte_04 = s.Serialize<byte>(Type1_Byte_04, name: nameof(Type1_Byte_04));
                     s.DoBits<byte>(b =>
@@ -33,23 +32,27 @@
                     });
                     break;
 
-                case 2:
-                    Type23_Ushort_00 = s.Serialize<ushort>(Type23_Ushort_00, name: nameof(Type23_Ushort_00));
-                    Type23_Value1 = s.Serialize<ushort>(Type23_Value1, name: nameof(Type23_Value1));
-                    Type23_Value2 = 0xFFFF;
-                    Type23_Value3 = s.Serialize<ushort>(Type23_Value3, name: nameof(Type23_Value3));
+                case SoundEventType.StopSong:
+                    StopEventId = s.Serialize<ushort>(StopEventId, name: nameof(StopEventId));
+                    FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
                     break;
 
-                case 3:
-                    Type23_Ushort_00 = s.Serialize<ushort>(Type23_Ushort_00, name: nameof(Type23_Ushort_00));
-                    Type23_Value2 = s.Serialize<ushort>(Type23_Value2, name: nameof(Type23_Value2));
-                    Type23_Value1 = s.Serialize<ushort>(Type23_Value1, name: nameof(Type23_Value1));
-                    Type23_Value3 = s.Serialize<ushort>(Type23_Value3, name: nameof(Type23_Value3));
+                case SoundEventType.StopAndSetNext:
+                    NextEventId = s.Serialize<ushort>(NextEventId, name: nameof(NextEventId));
+                    StopEventId = s.Serialize<ushort>(StopEventId, name: nameof(StopEventId));
+                    FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
                     break;
 
                 default:
                     throw new BinarySerializableException(this, $"Invalid event type {Type}");
             }
+        }
+
+        public enum SoundEventType : ushort
+        {
+            PlaySong = 1,
+            StopSong = 2,
+            StopAndSetNext = 3,
         }
     }
 }
