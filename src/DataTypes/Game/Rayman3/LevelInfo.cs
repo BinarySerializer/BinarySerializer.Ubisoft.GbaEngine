@@ -2,8 +2,8 @@
 {
     public class LevelInfo : BinarySerializable
     {
-        public ushort LevelMusicId { get; set; }
-        public ushort FinishLevelMusicId { get; set; }
+        public Rayman3SoundEvent StartMusicSoundEvent { get; set; }
+        public Rayman3SoundEvent StopMusicSoundEvent { get; set; }
 
         public ushort GlobalLumsIndex { get; set; }
         public ushort GlobalCagesIndex { get; set; }
@@ -25,8 +25,8 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            LevelMusicId = s.Serialize<ushort>(LevelMusicId, name: nameof(LevelMusicId));
-            FinishLevelMusicId = s.Serialize<ushort>(FinishLevelMusicId, name: nameof(FinishLevelMusicId));
+            StartMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StartMusicSoundEvent, name: nameof(StartMusicSoundEvent));
+            StopMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StopMusicSoundEvent, name: nameof(StopMusicSoundEvent));
             
             GlobalLumsIndex = s.Serialize<ushort>(GlobalLumsIndex, name: nameof(GlobalLumsIndex));
             GlobalCagesIndex = s.Serialize<ushort>(GlobalCagesIndex, name: nameof(GlobalCagesIndex));
