@@ -4,7 +4,7 @@
     {
         public SoundEventType Type { get; set; }
 
-        public ushort Ushort_00 { get; set; } // Value between 0-100. Determines if song should be played based on playing songs. Priority?
+        public ushort Volume { get; set; } // 0-100
         public ushort ResourceId { get; set; }
         public byte Type1_Byte_04 { get; set; }
         public bool Type1_Flag0 { get; set; } // Always false in Rayman 3
@@ -17,7 +17,7 @@
         public override void SerializeImpl(SerializerObject s)
         {
             Type = s.Serialize<SoundEventType>(Type, name: nameof(Type));
-            Ushort_00 = s.Serialize<ushort>(Ushort_00, name: nameof(Ushort_00));
+            Volume = s.Serialize<ushort>(Volume, name: nameof(Volume));
 
             switch (Type)
             {
