@@ -65,7 +65,9 @@ namespace BinarySerializer.Onyx.Gba
             }
             else if (settings.Platform == Platform.NGage)
             {
-                // TODO: Load font from resources
+                Font8 = FileFactory.Read<Font>(Context, GameOffsetTable.GetPointer(Context, 187), name: nameof(Font8));
+                Font16 = FileFactory.Read<Font>(Context, GameOffsetTable.GetPointer(Context, 188), name: nameof(Font16));
+                Font32 = FileFactory.Read<Font>(Context, GameOffsetTable.GetPointer(Context, 189), name: nameof(Font32));
 
                 NGage_SoundEvents = FileFactory.Read<ObjectArray<NGageSoundEvent>>(
                     Context, 
