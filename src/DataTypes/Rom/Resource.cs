@@ -100,4 +100,15 @@ namespace BinarySerializer.Onyx.Gba
         public abstract void SerializeResource(SerializerObject s);
         public virtual void SerializeDependencies(SerializerObject s) { }
     }
+
+    public class Resource<T> : Resource
+        where T : BinarySerializable, new()
+    {
+        public T Value { get; set; }
+
+        public override void SerializeResource(SerializerObject s)
+        {
+            Value = s.SerializeObject<T>(Value, name: nameof(Value));
+        }
+    }
 }
