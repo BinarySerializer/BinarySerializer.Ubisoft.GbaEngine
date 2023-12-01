@@ -2,6 +2,7 @@
 {
     public enum Game
     {
+        Rayman3_Prototype,
         Rayman3,
     }
 }
