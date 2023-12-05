@@ -20,7 +20,7 @@
             FramesCount = s.Serialize<byte>(FramesCount, name: nameof(FramesCount));
             s.SerializePadding(3, logIfNotNull: true);
             Frames = s.SerializePointer<ActFrame[]>(Frames, name: nameof(Frames)).
-                ResolveObjectArray(s, FramesCount);
+                ResolveObjectArray(s, FramesCount + 1);
         }
     }
 }
