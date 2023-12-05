@@ -1,4 +1,6 @@
-﻿namespace BinarySerializer.Onyx.Gba.Rayman3
+﻿using System.Text;
+
+namespace BinarySerializer.Onyx.Gba.Rayman3
 {
     public class Text : BinarySerializable
     {
@@ -12,7 +14,7 @@
             Lines = s.SerializePointer<Pointer<string>[]>(Lines, name: nameof(Lines)).ResolvePointerArray(s, LinesCount);
 
             foreach (Pointer<string> linePointer in Lines.Value)
-                linePointer.ResolveString(s);
+                linePointer.ResolveString(s, encoding: Encoding.GetEncoding(1252));
         }
     }
 }
