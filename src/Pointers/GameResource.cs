@@ -46,6 +46,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 132)]
         IntroAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 125)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 139)]
+        StoryNextTextAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 187)]
         Font8,
 

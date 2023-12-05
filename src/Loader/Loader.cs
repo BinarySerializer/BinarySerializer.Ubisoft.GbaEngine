@@ -23,6 +23,7 @@ namespace BinarySerializer.Onyx.Gba
 
         // Rayman 3
         public LevelInfo[] Rayman3_LevelInfo { get; protected set; }
+        public Act Act1 { get; protected set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -88,6 +89,8 @@ namespace BinarySerializer.Onyx.Gba
                         _ => 0,
                     },
                     name: nameof(Rayman3_LevelInfo));
+
+                Act1 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act1, file), name: nameof(Act1));
             }
         }
     }

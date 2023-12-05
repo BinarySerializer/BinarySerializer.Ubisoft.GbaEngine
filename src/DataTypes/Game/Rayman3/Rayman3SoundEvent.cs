@@ -2,6 +2,8 @@
 {
     public enum Rayman3SoundEvent : ushort
     {
+        None = 0xFFFF,
+
         Play__BigFoot1_Mix02 = 4,
         Play__Bounce01_Mix02 = 10,
         Play__CageHit_Mix07 = 12,
