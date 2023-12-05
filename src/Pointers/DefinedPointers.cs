@@ -14,10 +14,10 @@ namespace BinarySerializer.Onyx.Gba
             [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x080d4058,
             [DefinedPointer.Rayman3_LevelInfo] = 0x080d4080,
             [DefinedPointer.Rayman3_Act1] = 0x080d6e0c,
-            //[DefinedPointer.Rayman3_Act2] = 0x,
-            //[DefinedPointer.Rayman3_Act3] = 0x,
-            //[DefinedPointer.Rayman3_Act4] = 0x,
-            //[DefinedPointer.Rayman3_Act5] = 0x,
+            [DefinedPointer.Rayman3_Act2] = 0x080d6e48,
+            [DefinedPointer.Rayman3_Act3] = 0x080d6e84,
+            [DefinedPointer.Rayman3_Act4] = 0x080d6ed0,
+            [DefinedPointer.Rayman3_Act5] = 0x080d6f0c,
             [DefinedPointer.Rayman3_Act6] = 0x080d6f98,
             [DefinedPointer.Rayman3_SinglePakOffsetTable] = 0x087fbea0,
         };
@@ -26,6 +26,7 @@ namespace BinarySerializer.Onyx.Gba
         {
             [DefinedPointer.NGage_SongTable] = 0x100f1c3c,
 
+            //[DefinedPointer.Rayman3_LocalizedTextBanks] = ,
             [DefinedPointer.Rayman3_LevelInfo] = 0x100ede28,
             //[DefinedPointer.Rayman3_Act1] = 0x,
             //[DefinedPointer.Rayman3_Act2] = 0x,
