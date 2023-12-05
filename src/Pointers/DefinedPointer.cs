@@ -12,6 +12,7 @@
         NGage_SongTable,
 
         // Rayman 3
+        Rayman3_LocalizedTextBanks,
         Rayman3_LevelInfo,
         Rayman3_Act1,
         Rayman3_Act2,

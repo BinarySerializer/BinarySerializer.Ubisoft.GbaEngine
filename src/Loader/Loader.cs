@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using BinarySerializer.Onyx.Gba.Rayman3;
 
 namespace BinarySerializer.Onyx.Gba
@@ -22,6 +23,7 @@ namespace BinarySerializer.Onyx.Gba
         public NGageSoundEvent[] NGage_SoundEvents { get; set; }
 
         // Rayman 3
+        public LocalizedTextBanks Rayman3_LocalizedTextBanks { get; protected set; }
         public LevelInfo[] Rayman3_LevelInfo { get; protected set; }
         public Act Act1 { get; protected set; }
 
@@ -79,6 +81,26 @@ namespace BinarySerializer.Onyx.Gba
 
             if (settings.Game == Game.Rayman3)
             {
+                Rayman3_LocalizedTextBanks = FileFactory.Read<LocalizedTextBanks>(
+                    Context,
+                    Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_LocalizedTextBanks, file),
+                    (_, obj) =>
+                    {
+                        obj.Pre_LanguagesCount = settings.Platform switch
+                        {
+                            Platform.GBA => 10,
+                            Platform.NGage => 6,
+                            _ => 0,
+                        };
+                        obj.Pre_TextBanksCounts = settings.Platform switch
+                        {
+                            Platform.GBA =>   new[] { 17, 6, 9, 2, 2, 3, 2, 7, 35, 13, 1, 18 },
+                            Platform.NGage => new[] { 17, 6, 9, 2, 2, 3, 2, 7, 35, 13, 1, 40 },
+                            _ => Array.Empty<int>(),
+                        };
+                    },
+                    name: nameof(Rayman3_LocalizedTextBanks));
+
                 Rayman3_LevelInfo = FileFactory.Read<ObjectArray<LevelInfo>>(
                     Context,
                     Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_LevelInfo, file),

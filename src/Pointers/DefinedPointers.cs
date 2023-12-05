@@ -11,6 +11,7 @@ namespace BinarySerializer.Onyx.Gba
             [DefinedPointer.Font16] = 0x080ea4c8,
             [DefinedPointer.Font32] = 0x080eb3c4,
 
+            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x080d4058,
             [DefinedPointer.Rayman3_LevelInfo] = 0x080d4080,
             [DefinedPointer.Rayman3_Act1] = 0x080d6e0c,
             //[DefinedPointer.Rayman3_Act2] = 0x,
