@@ -7,7 +7,7 @@
         public Rayman3SoundEvent StartMusicSoundEvent { get; set; }
         public Rayman3SoundEvent StopMusicSoundEvent { get; set; }
         public byte[] Bytes_06 { get; set; }
-        public byte FramesCount { get; set; }
+        public byte LastFrameIndex { get; set; }
         public Pointer<ActFrame[]> Frames { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
@@ -17,10 +17,10 @@
             StartMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StartMusicSoundEvent, name: nameof(StartMusicSoundEvent));
             StopMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StopMusicSoundEvent, name: nameof(StopMusicSoundEvent));
             Bytes_06 = s.SerializeArray<byte>(Bytes_06, 2, name: nameof(Bytes_06));
-            FramesCount = s.Serialize<byte>(FramesCount, name: nameof(FramesCount));
+            LastFrameIndex = s.Serialize<byte>(LastFrameIndex, name: nameof(LastFrameIndex));
             s.SerializePadding(3, logIfNotNull: true);
             Frames = s.SerializePointer<ActFrame[]>(Frames, name: nameof(Frames)).
-                ResolveObjectArray(s, FramesCount + 1);
+                ResolveObjectArray(s, LastFrameIndex + 1);
         }
     }
 }
