@@ -25,12 +25,13 @@ namespace BinarySerializer.Onyx.Gba
         // Rayman 3
         public LocalizedTextBanks Rayman3_LocalizedTextBanks { get; protected set; }
         public LevelInfo[] Rayman3_LevelInfo { get; protected set; }
-        public Act Act1 { get; protected set; }
-        public Act Act2 { get; protected set; }
-        public Act Act3 { get; protected set; }
-        public Act Act4 { get; protected set; }
-        public Act Act5 { get; protected set; }
-        public Act Act6 { get; protected set; }
+        public Act Rayman3_NGageSplashScreens { get; protected set; }
+        public Act Rayman3_Act1 { get; protected set; }
+        public Act Rayman3_Act2 { get; protected set; }
+        public Act Rayman3_Act3 { get; protected set; }
+        public Act Rayman3_Act4 { get; protected set; }
+        public Act Rayman3_Act5 { get; protected set; }
+        public Act Rayman3_Act6 { get; protected set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -117,12 +118,15 @@ namespace BinarySerializer.Onyx.Gba
                     },
                     name: nameof(Rayman3_LevelInfo));
 
-                Act1 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act1, file), name: nameof(Act1));
-                Act2 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act2, file), name: nameof(Act2));
-                Act3 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act3, file), name: nameof(Act3));
-                Act4 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act4, file), name: nameof(Act4));
-                Act5 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act5, file), name: nameof(Act5));
-                Act6 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act6, file), name: nameof(Act6));
+                if (settings.Platform == Platform.NGage)
+                    Rayman3_NGageSplashScreens = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NGageSplashScreens, file), name: nameof(Rayman3_NGageSplashScreens));
+
+                Rayman3_Act1 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act1, file), name: nameof(Rayman3_Act1));
+                Rayman3_Act2 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act2, file), name: nameof(Rayman3_Act2));
+                Rayman3_Act3 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act3, file), name: nameof(Rayman3_Act3));
+                Rayman3_Act4 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act4, file), name: nameof(Rayman3_Act4));
+                Rayman3_Act5 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act5, file), name: nameof(Rayman3_Act5));
+                Rayman3_Act6 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act6, file), name: nameof(Rayman3_Act6));
             }
         }
     }

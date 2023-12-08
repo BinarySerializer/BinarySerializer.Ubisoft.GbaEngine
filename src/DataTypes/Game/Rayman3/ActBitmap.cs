@@ -8,7 +8,7 @@ namespace BinarySerializer.Onyx.Gba.Rayman3
 
         public override void SerializeImpl(SerializerObject s)
         {
-            s.DoEncoded(new LZSSEncoder(), () => ImgData = s.SerializeArray<byte>(ImgData, Constants.ScreenWidth * Constants.ScreenHeight, name: nameof(ImgData)));
+            s.DoEncoded(new LZSSEncoder(), () => ImgData = s.SerializeArray<byte>(ImgData, s.CurrentLength, name: nameof(ImgData)));
         }
     }
 }

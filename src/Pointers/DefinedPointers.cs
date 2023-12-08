@@ -26,14 +26,15 @@ namespace BinarySerializer.Onyx.Gba
         {
             [DefinedPointer.NGage_SongTable] = 0x100f1c3c,
 
-            //[DefinedPointer.Rayman3_LocalizedTextBanks] = ,
+            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x100d1cec,
             [DefinedPointer.Rayman3_LevelInfo] = 0x100ede28,
-            //[DefinedPointer.Rayman3_Act1] = 0x,
-            //[DefinedPointer.Rayman3_Act2] = 0x,
-            //[DefinedPointer.Rayman3_Act3] = 0x,
-            //[DefinedPointer.Rayman3_Act4] = 0x,
-            //[DefinedPointer.Rayman3_Act5] = 0x,
-            //[DefinedPointer.Rayman3_Act6] = 0x,
+            [DefinedPointer.Rayman3_NGageSplashScreens] = 0x100f2e78,
+            [DefinedPointer.Rayman3_Act1] = 0x100f2c98,
+            [DefinedPointer.Rayman3_Act2] = 0x100f2d20,
+            [DefinedPointer.Rayman3_Act3] = 0x100f2d54,
+            [DefinedPointer.Rayman3_Act4] = 0x100f2d88,
+            [DefinedPointer.Rayman3_Act5] = 0x100f2dc8,
+            [DefinedPointer.Rayman3_Act6] = 0x100f2dfc,
         };
     }
 }
