@@ -10,6 +10,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 103)]
         MenuPlayfield,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 104)]
+        NGageButtons,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 92)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 105)]
         MenuPropAnimations,
