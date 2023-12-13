@@ -7,7 +7,7 @@
         public bool IsEnabled { get; set; }
         public bool IsAwake { get; set; }
         public bool IsAnimatedObjectDynamic { get; set; }
-        public bool Flag_3 { get; set; }
+        public bool IsSpawnable { get; set; }
         public bool ResurrectsImmediately { get; set; }
         public bool ResurrectsLater { get; set; }
         public bool Flag_6 { get; set; }
@@ -21,7 +21,7 @@
                 IsEnabled = b.SerializeBits<bool>(IsEnabled, 1, name: nameof(IsEnabled));
                 IsAwake = b.SerializeBits<bool>(IsAwake, 1, name: nameof(IsAwake));
                 IsAnimatedObjectDynamic = b.SerializeBits<bool>(IsAnimatedObjectDynamic, 1, name: nameof(IsAnimatedObjectDynamic));
-                Flag_3 = b.SerializeBits<bool>(Flag_3, 1, name: nameof(Flag_3));
+                IsSpawnable = b.SerializeBits<bool>(IsSpawnable, 1, name: nameof(IsSpawnable));
                 ResurrectsImmediately = b.SerializeBits<bool>(ResurrectsImmediately, 1, name: nameof(ResurrectsImmediately));
                 ResurrectsLater = b.SerializeBits<bool>(ResurrectsLater, 1, name: nameof(ResurrectsLater));
                 Flag_6 = b.SerializeBits<bool>(Flag_6, 1, name: nameof(Flag_6));
