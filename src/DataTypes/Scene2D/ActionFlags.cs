@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     [Flags]
     public enum ActionFlags : byte

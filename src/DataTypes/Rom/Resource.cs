@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public abstract class Resource : BinarySerializable
     {

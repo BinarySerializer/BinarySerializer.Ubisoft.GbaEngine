@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Onyx.Gba
+﻿namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class Cluster : Resource
     {

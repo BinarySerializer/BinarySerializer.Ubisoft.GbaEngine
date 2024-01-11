@@ -1,2 +1,2 @@
-# BinarySerializer.Onyx.Gba
-BinarySerializer.Onyx.Gba is an extension library to [BinarySerializer](https://github.com/BinarySerializer/BinarySerializer) for the GBA version of the Onyx game engine. Currently it's only targetting Rayman 3, but it is planned to recieve support for all of the games which [Ray1Map](https://github.com/BinarySerializer/Ray1Map) supports.
+# BinarySerializer.Ubisoft.GbaEngine
+BinarySerializer.Ubisoft.GbaEngine is an extension library to [BinarySerializer](https://github.com/BinarySerializer/BinarySerializer) for Ubisoft's GbaEngine. Currently it's only targeting Rayman 3, but it is planned to receive support for all of the games which [Ray1Map](https://github.com/BinarySerializer/Ray1Map) supports, which includes the three available engine branches (Montreal, Milan and Shanghai).

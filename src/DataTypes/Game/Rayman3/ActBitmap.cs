@@ -1,6 +1,6 @@
 ﻿using BinarySerializer.Nintendo.GBA;
 
-namespace BinarySerializer.Onyx.Gba.Rayman3
+namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
     public class ActBitmap : BinarySerializable
     {

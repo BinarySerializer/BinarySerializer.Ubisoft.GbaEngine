@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Onyx.Gba
+﻿namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class NGageLoader : Loader
     {
@@ -13,7 +13,7 @@
         public void LoadData(string exeFileName, string dataFileName)
         {
             GameOffsetTable = FileFactory.Read<OffsetTable>(Context, dataFileName);
-            Context.GetRequiredSettings<OnyxGbaSettings>().RootTable = GameOffsetTable;
+            Context.GetRequiredSettings<GbaEngineSettings>().RootTable = GameOffsetTable;
 
             LoadExeData(Context.GetRequiredFile(exeFileName));
         }

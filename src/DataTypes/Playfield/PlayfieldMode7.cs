@@ -1,6 +1,6 @@
 ﻿using BinarySerializer.Nintendo.GBA;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class PlayfieldMode7 : BinarySerializable
     {

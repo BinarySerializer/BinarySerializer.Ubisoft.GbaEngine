@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Onyx.Gba.Rayman3
+﻿namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
     public class SaveGameSlot : BinarySerializable
     {
@@ -35,7 +35,7 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            OnyxGbaSettings settings = s.GetRequiredSettings<OnyxGbaSettings>();
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
 
             s.SerializeMagic<uint>(0x224455);
 

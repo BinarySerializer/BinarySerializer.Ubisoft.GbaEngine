@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public sealed class GameResourceDefineAttribute : Attribute

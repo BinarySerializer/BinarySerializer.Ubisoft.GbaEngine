@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public static class DefinedPointers
     {

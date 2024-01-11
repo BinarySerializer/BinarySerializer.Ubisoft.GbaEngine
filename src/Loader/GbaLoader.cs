@@ -1,6 +1,6 @@
 ﻿using BinarySerializer.Nintendo.GBA;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class GbaLoader : Loader
     {
@@ -23,7 +23,7 @@ namespace BinarySerializer.Onyx.Gba
             BinaryFile romFile = Context.GetRequiredFile(romFileName);
 
             GameOffsetTable = FileFactory.Read<OffsetTable>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.GameOffsetTable, romFile), name: nameof(GameOffsetTable));
-            Context.GetRequiredSettings<OnyxGbaSettings>().RootTable = GameOffsetTable;
+            Context.GetRequiredSettings<GbaEngineSettings>().RootTable = GameOffsetTable;
 
             LoadExeData(romFile);
         }

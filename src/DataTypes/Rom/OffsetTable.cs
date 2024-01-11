@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class OffsetTable : BinarySerializable
     {
@@ -13,7 +13,7 @@ namespace BinarySerializer.Onyx.Gba
             if (index >= Count)
                 throw new ArgumentOutOfRangeException(nameof(index), index, $"Invalid offset index {index}, length is {Count}");
 
-            OffsetTable rootTable = context.GetRequiredSettings<OnyxGbaSettings>().RootTable;
+            OffsetTable rootTable = context.GetRequiredSettings<GbaEngineSettings>().RootTable;
 
             return rootTable.Offset + Offsets[index] * 4;
         }
@@ -27,7 +27,7 @@ namespace BinarySerializer.Onyx.Gba
         public T ReadResource<T>(Context context, GameResource gameResource, string name = null)
             where T : Resource, new()
         {
-            OnyxGbaSettings settings = context.GetRequiredSettings<OnyxGbaSettings>();
+            GbaEngineSettings settings = context.GetRequiredSettings<GbaEngineSettings>();
 
             GameResourceDefineAttribute define = gameResource.
                 GetAttributes<GameResourceDefineAttribute>().

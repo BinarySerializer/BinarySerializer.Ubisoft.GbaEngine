@@ -1,6 +1,6 @@
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    public class OnyxGbaSettings
+    public class GbaEngineSettings
     {
         public Game Game { get; set; }
         public Platform Platform { get; set; }

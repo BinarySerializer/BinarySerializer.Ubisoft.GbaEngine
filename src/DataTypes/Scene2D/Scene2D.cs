@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class Scene2D : Resource
     {

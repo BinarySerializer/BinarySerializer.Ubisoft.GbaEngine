@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Onyx.Gba.Rayman3
+﻿namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
     public class ActFrame : BinarySerializable
     {
@@ -16,7 +16,7 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            OnyxGbaSettings settings = s.GetRequiredSettings<OnyxGbaSettings>();
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
 
             if (settings.Platform == Platform.GBA)
             {

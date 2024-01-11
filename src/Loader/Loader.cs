@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using BinarySerializer.Onyx.Gba.Rayman3;
+using BinarySerializer.Ubisoft.GbaEngine.Rayman3;
 
-namespace BinarySerializer.Onyx.Gba
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public abstract class Loader
     {
@@ -64,7 +64,7 @@ namespace BinarySerializer.Onyx.Gba
 
         protected void LoadExeData(BinaryFile file)
         {
-            OnyxGbaSettings settings = Context.GetRequiredSettings<OnyxGbaSettings>();
+            GbaEngineSettings settings = Context.GetRequiredSettings<GbaEngineSettings>();
 
             if (settings.Platform == Platform.GBA)
             {
