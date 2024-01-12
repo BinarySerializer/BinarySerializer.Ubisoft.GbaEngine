@@ -9,7 +9,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public byte GameObjectCount { get; set; }
         public byte AlwaysActorsCount { get; set; }
         public byte ActorsCount { get; set; }
-        public byte Byte_07 { get; set; }
+        public byte ProjectileActorsCount { get; set; } // Unused in final version of Rayman 3 - used in earlier engine versions
         public byte Byte_08 { get; set; }
         public byte CaptorsCount { get; set; }
         public byte KnotsWidth { get; set; }
@@ -30,7 +30,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             GameObjectCount = s.Serialize<byte>(GameObjectCount, name: nameof(GameObjectCount));
             AlwaysActorsCount = s.Serialize<byte>(AlwaysActorsCount, name: nameof(AlwaysActorsCount));
             ActorsCount = s.Serialize<byte>(ActorsCount, name: nameof(ActorsCount));
-            Byte_07 = s.Serialize<byte>(Byte_07, name: nameof(Byte_07));
+            ProjectileActorsCount = s.Serialize<byte>(ProjectileActorsCount, name: nameof(ProjectileActorsCount));
             Byte_08 = s.Serialize<byte>(Byte_08, name: nameof(Byte_08));
             CaptorsCount = s.Serialize<byte>(CaptorsCount, name: nameof(CaptorsCount));
             KnotsWidth = s.Serialize<byte>(KnotsWidth, name: nameof(KnotsWidth));
