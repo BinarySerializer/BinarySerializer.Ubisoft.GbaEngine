@@ -9,7 +9,7 @@
             Params = s.SerializeObjectArray<FixedPointInt32>(Params, Size / 4, x => x.Pre_PointPosition = 16, name: nameof(Params));
 
             if (Size % 4 != 0)
-                s.Log($"Unserialized mech params!");
+                s.Log("Unserialized mech params!");
         }
     }
 }

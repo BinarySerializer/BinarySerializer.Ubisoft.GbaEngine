@@ -49,7 +49,7 @@
 
             foreach (Action action in Actions)
             {
-                if (action.MechModelType != null)
+                if (action.MechModelType != null && action.MechModelType.Value is not (0 or 1 or 2))
                 {
                     action.MechModel = SerializeDependency<MechModel>(s, action.MechModel, action.Idx_MechModel, name: nameof(action.MechModel));
                 }
