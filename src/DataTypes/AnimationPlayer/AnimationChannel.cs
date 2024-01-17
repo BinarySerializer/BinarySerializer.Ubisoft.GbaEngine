@@ -14,6 +14,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public OBJ_ATTR_ObjectMode ObjectMode { get; set; }
         public ushort TileIndex { get; set; }
         public byte PalIndex { get; set; }
+        public bool ReusesTiles { get; set; } // Same tiles as previous channel
         public bool FlipX { get; set; }
         public bool FlipY { get; set; }
         public ushort AffineMatrixIndex { get; set; }
@@ -68,7 +69,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                     {
                         TileIndex = b.SerializeBits<ushort>(TileIndex, 12, name: nameof(TileIndex));
                         PalIndex = b.SerializeBits<byte>(PalIndex, 3, name: nameof(PalIndex));
-                        b.SerializePadding(1, logIfNotNull: true);
+                        ReusesTiles = b.SerializeBits<bool>(ReusesTiles, 1, name: nameof(ReusesTiles));
                     });
                     break;
 
