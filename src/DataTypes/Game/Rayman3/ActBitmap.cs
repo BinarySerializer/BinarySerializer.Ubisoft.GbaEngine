@@ -9,6 +9,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
         public override void SerializeImpl(SerializerObject s)
         {
             s.DoEncoded(new LZSSEncoder(), () => ImgData = s.SerializeArray<byte>(ImgData, s.CurrentLength, name: nameof(ImgData)));
+            s.Align();
         }
     }
 }

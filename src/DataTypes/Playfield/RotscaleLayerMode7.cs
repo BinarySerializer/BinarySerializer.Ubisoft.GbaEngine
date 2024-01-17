@@ -21,6 +21,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             IStreamEncoder encoder = Pre_GameLayer.IsCompressed ? new LZSSEncoder() : null;
             s.DoEncoded(encoder, () => TileMap = s.SerializeIntoArray<MapTile>(TileMap, Pre_GameLayer.Width * Pre_GameLayer.Height, MapTile.SerializeInto_Affine, name: nameof(TileMap)));
+            s.Align();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             IStreamEncoder encoder = IsCompressed ? new LZSSEncoder() : null;
             s.DoEncoded(encoder, () => Data = s.SerializeArray<byte>(Data, Length * 0x20, name: nameof(Data)));
+            s.Align();
         }
     }
 }

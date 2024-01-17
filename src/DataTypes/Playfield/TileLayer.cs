@@ -63,6 +63,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 serializeInto = MapTile.SerializeInto_Regular;
 
             s.DoEncoded(encoder, () => TileMap = s.SerializeIntoArray<MapTile>(TileMap, Pre_GameLayer.Width * Pre_GameLayer.Height, serializeInto, name: nameof(TileMap)));
+
+            s.Align();
         }
     }
 }
