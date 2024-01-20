@@ -6,6 +6,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 79)]
         HudAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 80)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
+        TimerAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 91)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 103)]
         MenuPlayfield,
