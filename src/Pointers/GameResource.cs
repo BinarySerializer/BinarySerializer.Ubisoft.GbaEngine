@@ -45,6 +45,18 @@
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuSteamAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 109)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 123)]
+        GameOverRaymanAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 110)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 124)]
+        GameOverCountdownAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 111)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 125)]
+        GameOverButterflyAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 117)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 131)]
         IntroPlayfield,
