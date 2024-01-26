@@ -73,6 +73,12 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 139)]
         StoryNextTextAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 143)]
+        GameOverBitmap,
+
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 165)]
+        GameOverPalette,
+
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 187)]
         Font8,
 

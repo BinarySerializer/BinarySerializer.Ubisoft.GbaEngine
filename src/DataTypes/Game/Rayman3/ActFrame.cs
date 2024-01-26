@@ -1,4 +1,6 @@
-﻿namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
+﻿using BinarySerializer.Nintendo.GBA;
+
+namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
     public class ActFrame : BinarySerializable
     {
@@ -11,8 +13,8 @@
         public Rayman3SoundEvent UnusedMusicSongEvent { get; set; } // Unused
 
         // Serialized from pointers
-        public ActBitmap Bitmap { get; set; }
-        public RGB555Color[] Palette { get; set; }
+        public Bitmap Bitmap { get; set; }
+        public Palette256 Palette { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
@@ -27,8 +29,8 @@
                 MusicSongEvent = s.Serialize<Rayman3SoundEvent>(MusicSongEvent, name: nameof(MusicSongEvent));
                 UnusedMusicSongEvent = s.Serialize<Rayman3SoundEvent>(UnusedMusicSongEvent, name: nameof(UnusedMusicSongEvent));
 
-                s.DoAt(BitmapPointer, () => Bitmap = s.SerializeObject<ActBitmap>(Bitmap, name: nameof(Bitmap)));
-                s.DoAt(PalettePointer, () => Palette = s.SerializeObjectArray<RGB555Color>(Palette, 256, name: nameof(Palette)));
+                s.DoAt(BitmapPointer, () => Bitmap = s.SerializeObject<Bitmap>(Bitmap, name: nameof(Bitmap)));
+                s.DoAt(PalettePointer, () => Palette = s.SerializeObject<Palette256>(Palette, name: nameof(Palette)));
             }
             else if (settings.Platform == Platform.NGage)
             {
@@ -40,9 +42,9 @@
                 s.SerializePadding(2, logIfNotNull: true);
 
                 s.DoAt(settings.RootTable.GetPointer(s.Context, BitmapResourceId), 
-                    () => Bitmap = s.SerializeObject<ActBitmap>(Bitmap, name: nameof(Bitmap)));
+                    () => Bitmap = s.SerializeObject<Bitmap>(Bitmap, name: nameof(Bitmap)));
                 s.DoAt(settings.RootTable.GetPointer(s.Context, PaletteResourceId), 
-                    () => Palette = s.SerializeObjectArray<RGB555Color>(Palette, 256, name: nameof(Palette)));
+                    () => Palette = s.SerializeObject<Palette256>(Palette, name: nameof(Palette)));
             }
             else
             {

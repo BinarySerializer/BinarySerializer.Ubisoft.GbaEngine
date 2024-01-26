@@ -22,5 +22,7 @@
         Rayman3_Act5,
         Rayman3_Act6,
         Rayman3_SinglePakOffsetTable,
+        Rayman3_GameOverBitmap,
+        Rayman3_GameOverPalette,
     }
 }

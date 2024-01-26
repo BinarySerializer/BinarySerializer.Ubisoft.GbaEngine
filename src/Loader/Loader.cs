@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using BinarySerializer.Nintendo.GBA;
 using BinarySerializer.Ubisoft.GbaEngine.Rayman3;
 
 namespace BinarySerializer.Ubisoft.GbaEngine
@@ -32,6 +33,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Act Rayman3_Act4 { get; protected set; }
         public Act Rayman3_Act5 { get; protected set; }
         public Act Rayman3_Act6 { get; protected set; }
+        public Bitmap Rayman3_GameOverBitmap { get; set; }
+        public Palette256 Rayman3_GameOverPalette { get; set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -127,6 +130,29 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 Rayman3_Act4 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act4, file), name: nameof(Rayman3_Act4));
                 Rayman3_Act5 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act5, file), name: nameof(Rayman3_Act5));
                 Rayman3_Act6 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act6, file), name: nameof(Rayman3_Act6));
+
+                if (settings.Platform == Platform.GBA)
+                {
+                    Rayman3_GameOverBitmap = FileFactory.Read<Bitmap>(
+                        context: Context, 
+                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameOverBitmap, file), 
+                        name: nameof(Rayman3_GameOverBitmap));
+                    Rayman3_GameOverPalette = FileFactory.Read<Palette256>(
+                        context: Context, 
+                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameOverPalette, file),
+                        name: nameof(Rayman3_GameOverPalette));
+                }
+                else if (settings.Platform == Platform.NGage)
+                {
+                    Rayman3_GameOverBitmap = GameOffsetTable.ReadResource<Resource<Bitmap>>(
+                        context: Context, 
+                        gameResource: GameResource.GameOverBitmap, 
+                        name: nameof(Rayman3_GameOverBitmap)).Value;
+                    Rayman3_GameOverPalette = GameOffsetTable.ReadResource<Resource<Palette256>>(
+                        context: Context, 
+                        gameResource: GameResource.GameOverPalette, 
+                        name: nameof(Rayman3_GameOverPalette)).Value;
+                }
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
-    public class ActBitmap : BinarySerializable
+    public class Bitmap : BinarySerializable
     {
         public byte[] ImgData { get; set; }
 
