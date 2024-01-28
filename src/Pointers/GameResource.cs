@@ -37,9 +37,13 @@
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuLanguageListAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 99)]
+        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        MenuOptionsAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 100)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
-        SlotEmptyAnimations,
+        MenuSlotEmptyAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
