@@ -6,7 +6,7 @@
 
         public ushort Priority { get; set; } // 0-100
         public ushort ResourceId { get; set; }
-        public byte SoundType { get; set; } // 0-7, categorizes songs, used to give them different volumes
+        public SoundType SoundType { get; set; } // 0-7, categorizes songs, used to give them different volumes
         public bool Type1_Flag0 { get; set; } // Always false in Rayman 3
         public bool Type1_Flag1 { get; set; } // Only true for one event in Rayman 3
 
@@ -23,7 +23,7 @@
             {
                 case SoundEventType.PlaySong:
                     ResourceId = s.Serialize<ushort>(ResourceId, name: nameof(ResourceId));
-                    SoundType = s.Serialize<byte>(SoundType, name: nameof(SoundType));
+                    SoundType = s.Serialize<SoundType>(SoundType, name: nameof(SoundType));
                     s.DoBits<byte>(b =>
                     {
                         Type1_Flag0 = b.SerializeBits<bool>(Type1_Flag0, 1, name: nameof(Type1_Flag0));
