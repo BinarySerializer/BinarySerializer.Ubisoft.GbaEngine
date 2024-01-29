@@ -8,8 +8,8 @@
         public ResourceType Type { get; set; }
 
         public ushort SongTableIndex { get; set; }
-        public bool Flag0 { get; set; } // Loop?
-        public bool Flag1 { get; set; } // True for music, false for sfx?
+        public bool Loop { get; set; } // Only loops if IsMusic is true
+        public bool IsMusic { get; set; } // Determines if the track should resume after pausing all songs
 
         public int ResourceIdsOffset { get; set; }
         public byte ResourceIdsCount { get; set; }
@@ -28,8 +28,8 @@
                     SongTableIndex = s.Serialize<ushort>(SongTableIndex, name: nameof(SongTableIndex));
                     s.DoBits<byte>(b =>
                     {
-                        Flag0 = b.SerializeBits<bool>(Flag0, 1, name: nameof(Flag0));
-                        Flag1 = b.SerializeBits<bool>(Flag1, 1, name: nameof(Flag1));
+                        Loop = b.SerializeBits<bool>(Loop, 1, name: nameof(Loop));
+                        IsMusic = b.SerializeBits<bool>(IsMusic, 1, name: nameof(IsMusic));
                         b.SerializePadding(6, logIfNotNull: true);
                     });
                     s.SerializePadding(1, logIfNotNull: true);

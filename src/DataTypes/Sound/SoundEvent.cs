@@ -6,9 +6,9 @@
 
         public ushort Priority { get; set; } // 0-100
         public ushort ResourceId { get; set; }
-        public SoundType SoundType { get; set; } // 0-7, categorizes songs, used to give them different volumes
-        public bool Type1_Flag0 { get; set; } // Always false in Rayman 3
-        public bool Type1_Flag1 { get; set; } // Only true for one event in Rayman 3
+        public SoundType SoundType { get; set; } // 0-7, categorizes songs by type, mostly used to give them different volumes
+        public bool EnablePan { get; set; } // Calculate pan based on object position - always false in Rayman 3
+        public bool EnableRollOff { get; set; } // Calculate roll-off volume based on object position - only used for Boss Machine in Rayman 3
 
         public ushort StopEventId { get; set; }
         public ushort NextEventId { get; set; }
@@ -26,8 +26,8 @@
                     SoundType = s.Serialize<SoundType>(SoundType, name: nameof(SoundType));
                     s.DoBits<byte>(b =>
                     {
-                        Type1_Flag0 = b.SerializeBits<bool>(Type1_Flag0, 1, name: nameof(Type1_Flag0));
-                        Type1_Flag1 = b.SerializeBits<bool>(Type1_Flag1, 1, name: nameof(Type1_Flag1));
+                        EnablePan = b.SerializeBits<bool>(EnablePan, 1, name: nameof(EnablePan));
+                        EnableRollOff = b.SerializeBits<bool>(EnableRollOff, 1, name: nameof(EnableRollOff));
                         b.SerializePadding(6, logIfNotNull: true);
                     });
                     break;
