@@ -45,6 +45,14 @@
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuSlotEmptyAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 101)]
+        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        MenuMultiplayerModeAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 102)]
+        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        MenuMultiplayerPlayersAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuSteamAnimations,
