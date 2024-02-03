@@ -35,6 +35,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Act Rayman3_Act6 { get; protected set; }
         public Bitmap Rayman3_GameOverBitmap { get; set; }
         public Palette256 Rayman3_GameOverPalette { get; set; }
+        public Bitmap Rayman3_GameCubeMenuBitmap { get; set; }
+        public Palette256 Rayman3_GameCubeMenuPalette { get; set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -141,6 +143,15 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                         context: Context, 
                         offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameOverPalette, file),
                         name: nameof(Rayman3_GameOverPalette));
+
+                    Rayman3_GameCubeMenuBitmap = FileFactory.Read<Bitmap>(
+                        context: Context,
+                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameCubeMenuBitmap, file),
+                        name: nameof(Rayman3_GameCubeMenuBitmap));
+                    Rayman3_GameCubeMenuPalette = FileFactory.Read<Palette256>(
+                        context: Context,
+                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameCubeMenuPalette, file),
+                        name: nameof(Rayman3_GameCubeMenuPalette));
                 }
                 else if (settings.Platform == Platform.NGage)
                 {

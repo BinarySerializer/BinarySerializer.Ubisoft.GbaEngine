@@ -24,5 +24,7 @@
         Rayman3_SinglePakOffsetTable,
         Rayman3_GameOverBitmap,
         Rayman3_GameOverPalette,
+        Rayman3_GameCubeMenuBitmap,
+        Rayman3_GameCubeMenuPalette,
     }
 }

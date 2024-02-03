@@ -22,6 +22,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Rayman3_SinglePakOffsetTable] = 0x087fbea0,
             [DefinedPointer.Rayman3_GameOverBitmap] = 0x082146d4,
             [DefinedPointer.Rayman3_GameOverPalette] = 0x080b39c0,
+            [DefinedPointer.Rayman3_GameCubeMenuBitmap] = 0x0820ed94,
+            [DefinedPointer.Rayman3_GameCubeMenuPalette] = 0x080b37c0,
         };
 
         public static Dictionary<DefinedPointer, long> Rayman3_NGage => new()
