@@ -31,7 +31,7 @@
         public bool UnlockedFinalBoss { get; set; }
         public bool UnlockedLyChallengeGCN { get; set; }
 
-        public byte LastCompletedGCNBonus { get; set; }
+        public byte CompletedGCNBonusLevels { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
@@ -76,7 +76,7 @@
                         PlayedMurphyWorldHelp = b.SerializeBits<bool>(PlayedMurphyWorldHelp, 1, name: nameof(PlayedMurphyWorldHelp));
                         b.SerializePadding(2, logIfNotNull: true);
                     });
-                    LastCompletedGCNBonus = s.Serialize<byte>(LastCompletedGCNBonus, name: nameof(LastCompletedGCNBonus));
+                    CompletedGCNBonusLevels = s.Serialize<byte>(CompletedGCNBonusLevels, name: nameof(CompletedGCNBonusLevels));
                     s.SerializePadding(6, logIfNotNull: true);
                 }
                 else
@@ -108,7 +108,7 @@
                         UnlockedLyChallengeGCN = b.SerializeBits<bool>(UnlockedLyChallengeGCN, 1, name: nameof(UnlockedLyChallengeGCN));
                         b.SerializePadding(7, logIfNotNull: true);
                     });
-                    LastCompletedGCNBonus = s.Serialize<byte>(LastCompletedGCNBonus, name: nameof(LastCompletedGCNBonus));
+                    CompletedGCNBonusLevels = s.Serialize<byte>(CompletedGCNBonusLevels, name: nameof(CompletedGCNBonusLevels));
                     s.SerializePadding(5, logIfNotNull: true);
                 }
             });
