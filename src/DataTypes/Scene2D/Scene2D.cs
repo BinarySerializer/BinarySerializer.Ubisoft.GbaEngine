@@ -22,6 +22,25 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         // Dependencies
         public Playfield Playfield { get; set; }
 
+        protected override int GetGameCubeOffsetsCount(SerializerObject s)
+        {
+            int highestIndex = Idx_PlayField;
+
+            foreach (Actor actor in Actors.Concat(AlwaysActors))
+            {
+                if (actor.Idx_ActorModel > highestIndex) 
+                    highestIndex = actor.Idx_ActorModel;
+            }
+
+            foreach (Captor captor in Captors)
+            {
+                if (captor.Idx_Events > highestIndex) 
+                    highestIndex = captor.Idx_Events;
+            }
+
+            return highestIndex + 1;
+        }
+
         public override void SerializeResource(SerializerObject s)
         {
             Idx_PlayField = s.Serialize<byte>(Idx_PlayField, name: nameof(Idx_PlayField));
@@ -50,7 +69,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 actor.Model = SerializeDependency<ActorModel>(s, actor.Model, actor.Idx_ActorModel, name: nameof(actor.Model));
 
             foreach (Captor captor in Captors)
-                captor.Events = SerializeDependency<CaptorEvents>(s, captor.Events, captor.Idx_Events, x => x.Pre_Length = captor.EventsCount, name: nameof(captor.Events));
+                captor.Events = SerializeDependency<CaptorEvents>(s, captor.Events, captor.Idx_Events, isLocalOnGameCube: true, onPreSerialize: x => x.Pre_Length = captor.EventsCount, name: nameof(captor.Events));
         }
     }
 }

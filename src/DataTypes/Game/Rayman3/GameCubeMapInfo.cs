@@ -6,7 +6,8 @@
         public byte LumsCount { get; set; }
 
         public Rayman3SoundEvent StartMusicSoundEvent { get; set; }
-        public Rayman3SoundEvent StopMusicSoundEvent { get; set; }
+
+        public ushort Unknown { get; set; }
 
         public bool HasBlueLum { get; set; }
 
@@ -19,7 +20,8 @@
             LumsCount = s.Serialize<byte>(LumsCount, name: nameof(LumsCount));
 
             StartMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StartMusicSoundEvent, name: nameof(StartMusicSoundEvent));
-            StopMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StopMusicSoundEvent, name: nameof(StopMusicSoundEvent));
+
+            Unknown = s.Serialize<ushort>(Unknown, name: nameof(Unknown));
 
             HasBlueLum = s.Serialize<bool>(HasBlueLum, name: nameof(HasBlueLum));
             s.SerializePadding(1, logIfNotNull: true);

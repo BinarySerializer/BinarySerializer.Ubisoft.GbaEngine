@@ -9,6 +9,12 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Playfield2D Playfield2D { get; set; }
         public PlayfieldMode7 PlayfieldMode7 { get; set; }
 
+        protected override int GetGameCubeOffsetsCount(SerializerObject s)
+        {
+            // The tile kit is known to always be last
+            return Playfield2D.Idx_TileKit + 1;
+        }
+
         public override void SerializeResource(SerializerObject s)
         {
             Type = s.Serialize<PlayfieldType>(Type, name: nameof(Type));

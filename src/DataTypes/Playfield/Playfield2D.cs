@@ -30,9 +30,9 @@
         public void SerializeDependencies(SerializerObject s, Resource playfieldResource)
         {
             TileKit = playfieldResource.SerializeDependency<TileKit>(s, TileKit, Idx_TileKit, name: nameof(TileKit));
-            TileMappingTable = playfieldResource.SerializeDependency<TileMappingTable>(s, TileMappingTable, Idx_TileMappingTable, name: nameof(TileMappingTable));
-            Clusters = playfieldResource.SerializeDependencyArray<Cluster>(s, Clusters, Idx_Clusters, ClustersCount, name: nameof(Clusters));
-            Layers = playfieldResource.SerializeDependencyArray<GameLayer>(s, Layers, Idx_Layers, LayersCount, name: nameof(Layers));
+            TileMappingTable = playfieldResource.SerializeDependency<TileMappingTable>(s, TileMappingTable, Idx_TileMappingTable, isLocalOnGameCube: true, name: nameof(TileMappingTable));
+            Clusters = playfieldResource.SerializeDependencyArray<Cluster>(s, Clusters, Idx_Clusters, ClustersCount, isLocalOnGameCube: true, name: nameof(Clusters));
+            Layers = playfieldResource.SerializeDependencyArray<GameLayer>(s, Layers, Idx_Layers, LayersCount, isLocalOnGameCube: true, name: nameof(Layers));
         }
     }
 }

@@ -36,7 +36,7 @@
 
         public override void SerializeDependencies(SerializerObject s)
         {
-            Palettes = SerializeDependency<SpritePalettes>(s, Palettes, Idx_Palette, x =>
+            Palettes = SerializeDependency<SpritePalettes>(s, Palettes, Idx_Palette, onPreSerialize: x =>
             {
                 x.Pre_Is8Bit = Is8Bit;
                 x.Pre_PalettesCount = PalettesCount;

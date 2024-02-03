@@ -14,7 +14,6 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 throw new ArgumentOutOfRangeException(nameof(index), index, $"Invalid offset index {index}, length is {Count}");
 
             OffsetTable rootTable = context.GetRequiredSettings<GbaEngineSettings>().RootTable;
-
             return rootTable.Offset + Offsets[index] * 4;
         }
 
