@@ -25,6 +25,9 @@
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuStartEraseAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 95)]
+        GameCubeMenuAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 96)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuGameLogoAnimations,
@@ -56,6 +59,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuSteamAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 106)]
+        GameCubeMenuLevelCheckAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 109)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 123)]
