@@ -20,7 +20,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public ushort AffineMatrixIndex { get; set; }
 
         // Sound
-        public ushort SoundId { get; set; }
+        public short SoundId { get; set; }
 
         // Displacement vector
         public Vector2 DisplacementVector { get; set; }
@@ -74,7 +74,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                     break;
 
                 case AnimationChannelType.Sound:
-                    SoundId = s.Serialize<ushort>(SoundId, name: nameof(SoundId));
+                    SoundId = s.Serialize<short>(SoundId, name: nameof(SoundId));
                     s.SerializePadding(2, logIfNotNull: true);
                     break;
 

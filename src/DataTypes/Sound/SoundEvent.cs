@@ -10,8 +10,8 @@
         public bool EnablePan { get; set; } // Calculate pan based on object position - always false in Rayman 3
         public bool EnableRollOff { get; set; } // Calculate roll-off volume based on object position - only used for Boss Machine in Rayman 3
 
-        public ushort StopEventId { get; set; }
-        public ushort NextEventId { get; set; }
+        public short StopEventId { get; set; }
+        public short NextEventId { get; set; }
         public ushort FadeOutTime { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
@@ -33,13 +33,13 @@
                     break;
 
                 case SoundEventType.StopSong:
-                    StopEventId = s.Serialize<ushort>(StopEventId, name: nameof(StopEventId));
+                    StopEventId = s.Serialize<short>(StopEventId, name: nameof(StopEventId));
                     FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
                     break;
 
                 case SoundEventType.StopAndSetNext:
-                    NextEventId = s.Serialize<ushort>(NextEventId, name: nameof(NextEventId));
-                    StopEventId = s.Serialize<ushort>(StopEventId, name: nameof(StopEventId));
+                    NextEventId = s.Serialize<short>(NextEventId, name: nameof(NextEventId));
+                    StopEventId = s.Serialize<short>(StopEventId, name: nameof(StopEventId));
                     FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
                     break;
 

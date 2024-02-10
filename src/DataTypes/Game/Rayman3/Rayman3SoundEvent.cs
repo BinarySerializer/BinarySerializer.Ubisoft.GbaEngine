@@ -1,8 +1,8 @@
 ﻿namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
 {
-    public enum Rayman3SoundEvent : ushort
+    public enum Rayman3SoundEvent : short
     {
-        None = 0xFFFF,
+        None = -1,
 
         Play__BigFoot1_Mix02 = 4,
         Play__Bounce01_Mix02 = 10,
