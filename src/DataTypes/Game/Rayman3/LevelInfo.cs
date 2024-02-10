@@ -20,8 +20,7 @@
         public byte LevelCurtainActorId { get; set; }
         public ushort LevelId { get; set; }
 
-        // Seems to be 0xFFFF for special maps (3D ones, world map, bosses etc.)
-        public ushort Ushort_18 { get; set; }
+        public Rayman3SoundEvent StartSpecialMusicSoundEvent { get; set; } // Used for enemy music and teensies in hub worlds
 
         public override void SerializeImpl(SerializerObject s)
         {
@@ -44,7 +43,7 @@
             NextLevelId = s.Serialize<byte>(NextLevelId, name: nameof(NextLevelId));
             LevelCurtainActorId = s.Serialize<byte>(LevelCurtainActorId, name: nameof(LevelCurtainActorId));
             LevelId = s.Serialize<ushort>(LevelId, name: nameof(LevelId));
-            Ushort_18 = s.Serialize<ushort>(Ushort_18, name: nameof(Ushort_18));
+            StartSpecialMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StartSpecialMusicSoundEvent, name: nameof(StartSpecialMusicSoundEvent));
             s.SerializePadding(2, logIfNotNull: true);
         }
     }
