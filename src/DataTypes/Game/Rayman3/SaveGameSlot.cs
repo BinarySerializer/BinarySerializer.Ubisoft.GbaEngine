@@ -27,7 +27,7 @@
         public bool PlayedWorld4Unlock { get; set; }
 
         public bool PlayedWorld4Act { get; set; }
-        public bool PlayedMurphyWorldHelp { get; set; }
+        public bool PlayedMurfyWorldHelp { get; set; }
         public bool UnlockedFinalBoss { get; set; }
         public bool UnlockedLyChallengeGCN { get; set; }
 
@@ -73,7 +73,7 @@
                         PlayedWorld3Unlock = b.SerializeBits<bool>(PlayedWorld3Unlock, 1, name: nameof(PlayedWorld3Unlock));
                         PlayedWorld4Unlock = b.SerializeBits<bool>(PlayedWorld4Unlock, 1, name: nameof(PlayedWorld4Unlock));
                         PlayedWorld4Act = b.SerializeBits<bool>(PlayedWorld4Act, 1, name: nameof(PlayedWorld4Act));
-                        PlayedMurphyWorldHelp = b.SerializeBits<bool>(PlayedMurphyWorldHelp, 1, name: nameof(PlayedMurphyWorldHelp));
+                        PlayedMurfyWorldHelp = b.SerializeBits<bool>(PlayedMurfyWorldHelp, 1, name: nameof(PlayedMurfyWorldHelp));
                         b.SerializePadding(2, logIfNotNull: true);
                     });
                     CompletedGCNBonusLevels = s.Serialize<byte>(CompletedGCNBonusLevels, name: nameof(CompletedGCNBonusLevels));
@@ -100,7 +100,7 @@
                         PlayedWorld3Unlock = b.SerializeBits<bool>(PlayedWorld3Unlock, 1, name: nameof(PlayedWorld3Unlock));
                         PlayedWorld4Unlock = b.SerializeBits<bool>(PlayedWorld4Unlock, 1, name: nameof(PlayedWorld4Unlock));
                         PlayedWorld4Act = b.SerializeBits<bool>(PlayedWorld4Act, 1, name: nameof(PlayedWorld4Act));
-                        PlayedMurphyWorldHelp = b.SerializeBits<bool>(PlayedMurphyWorldHelp, 1, name: nameof(PlayedMurphyWorldHelp));
+                        PlayedMurfyWorldHelp = b.SerializeBits<bool>(PlayedMurfyWorldHelp, 1, name: nameof(PlayedMurfyWorldHelp));
                         UnlockedFinalBoss = b.SerializeBits<bool>(UnlockedFinalBoss, 1, name: nameof(UnlockedFinalBoss));
                     });
                     s.DoBits<byte>(b =>
