@@ -8,9 +8,9 @@
         public byte Idx_AnimatedObject { get; set; }
 
         public ActorMapCollisionType MapCollisionType { get; set; }
-        public bool HasMapCollision { get; set; }
-        public bool HasObjectCollision { get; set; }
-        public bool Flag_06 { get; set; }
+        public bool CheckAgainstMapCollision { get; set; }
+        public bool CheckAgainstObjectCollision { get; set; }
+        public bool IsSolid { get; set; }
         public bool IsAgainstCaptor { get; set; }
         public bool ReceivesDamage { get; set; }
         
@@ -31,9 +31,9 @@
             s.DoBits<byte>(b =>
             {
                 MapCollisionType = b.SerializeBits<ActorMapCollisionType>(MapCollisionType, 3, name: nameof(MapCollisionType));
-                HasMapCollision = b.SerializeBits<bool>(HasMapCollision, 1, name: nameof(HasMapCollision));
-                HasObjectCollision = b.SerializeBits<bool>(HasObjectCollision, 1, name: nameof(HasObjectCollision));
-                Flag_06 = b.SerializeBits<bool>(Flag_06, 1, name: nameof(Flag_06));
+                CheckAgainstMapCollision = b.SerializeBits<bool>(CheckAgainstMapCollision, 1, name: nameof(CheckAgainstMapCollision));
+                CheckAgainstObjectCollision = b.SerializeBits<bool>(CheckAgainstObjectCollision, 1, name: nameof(CheckAgainstObjectCollision));
+                IsSolid = b.SerializeBits<bool>(IsSolid, 1, name: nameof(IsSolid));
                 IsAgainstCaptor = b.SerializeBits<bool>(IsAgainstCaptor, 1, name: nameof(IsAgainstCaptor));
                 ReceivesDamage = b.SerializeBits<bool>(ReceivesDamage, 1, name: nameof(ReceivesDamage));
             });
