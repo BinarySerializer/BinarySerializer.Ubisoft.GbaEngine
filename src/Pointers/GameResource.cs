@@ -87,6 +87,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 137)]
         FogAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 124)]
+        WorldCurtainAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 125)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 139)]
         StoryNextTextAnimations,
