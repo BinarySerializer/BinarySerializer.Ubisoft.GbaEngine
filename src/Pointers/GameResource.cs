@@ -75,6 +75,26 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 125)]
         GameOverButterflyAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 112)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 126)]
+        TextBoxCanvasAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 113)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 127)]
+        TextBoxRaymanIconAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 114)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 128)]
+        TextBoxLyIconAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 115)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 129)]
+        TextBoxMurfyIconAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 116)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 130)]
+        TextBoxTeensiesIconAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 117)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 131)]
         IntroPlayfield,
