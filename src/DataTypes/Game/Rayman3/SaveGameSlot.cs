@@ -26,7 +26,7 @@
         public bool PlayedWorld3Unlock { get; set; }
         public bool PlayedWorld4Unlock { get; set; }
 
-        public bool PlayedWorld4Act { get; set; }
+        public bool PlayedAct4 { get; set; }
         public bool PlayedMurfyWorldHelp { get; set; }
         public bool UnlockedFinalBoss { get; set; }
         public bool UnlockedLyChallengeGCN { get; set; }
@@ -72,7 +72,7 @@
                         PlayedWorld2Unlock = b.SerializeBits<bool>(PlayedWorld2Unlock, 1, name: nameof(PlayedWorld2Unlock));
                         PlayedWorld3Unlock = b.SerializeBits<bool>(PlayedWorld3Unlock, 1, name: nameof(PlayedWorld3Unlock));
                         PlayedWorld4Unlock = b.SerializeBits<bool>(PlayedWorld4Unlock, 1, name: nameof(PlayedWorld4Unlock));
-                        PlayedWorld4Act = b.SerializeBits<bool>(PlayedWorld4Act, 1, name: nameof(PlayedWorld4Act));
+                        PlayedAct4 = b.SerializeBits<bool>(PlayedAct4, 1, name: nameof(PlayedAct4));
                         PlayedMurfyWorldHelp = b.SerializeBits<bool>(PlayedMurfyWorldHelp, 1, name: nameof(PlayedMurfyWorldHelp));
                         b.SerializePadding(2, logIfNotNull: true);
                     });
@@ -99,7 +99,7 @@
                         PlayedWorld2Unlock = b.SerializeBits<bool>(PlayedWorld2Unlock, 1, name: nameof(PlayedWorld2Unlock));
                         PlayedWorld3Unlock = b.SerializeBits<bool>(PlayedWorld3Unlock, 1, name: nameof(PlayedWorld3Unlock));
                         PlayedWorld4Unlock = b.SerializeBits<bool>(PlayedWorld4Unlock, 1, name: nameof(PlayedWorld4Unlock));
-                        PlayedWorld4Act = b.SerializeBits<bool>(PlayedWorld4Act, 1, name: nameof(PlayedWorld4Act));
+                        PlayedAct4 = b.SerializeBits<bool>(PlayedAct4, 1, name: nameof(PlayedAct4));
                         PlayedMurfyWorldHelp = b.SerializeBits<bool>(PlayedMurfyWorldHelp, 1, name: nameof(PlayedMurfyWorldHelp));
                         UnlockedFinalBoss = b.SerializeBits<bool>(UnlockedFinalBoss, 1, name: nameof(UnlockedFinalBoss));
                     });
