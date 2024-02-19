@@ -9,13 +9,15 @@
         public byte PalettesCount { get; set; }
         public byte Byte_07 { get; set; } // Unused in Rayman 3
 
-        public byte[] Idx_PaletteIndexes { get; set; }
+        public byte[] Idx_Palettes { get; set; }
 
         public byte[] Tiles4bpp { get; set; }
         public byte[] Tiles8bpp { get; set; }
 
         // Dependencies
         public TilePalette[] Palettes { get; set; }
+        public AnimatedTileKitManager AnimatedTileKitManager { get; set; }
+        public AnimatedTileKit[] AnimatedTileKits { get; set; }
 
         public override void SerializeResource(SerializerObject s)
         {
@@ -26,7 +28,7 @@
             PalettesCount = s.Serialize<byte>(PalettesCount, name: nameof(PalettesCount));
             Byte_07 = s.Serialize<byte>(Byte_07, name: nameof(Byte_07));
             
-            Idx_PaletteIndexes = s.SerializeArray<byte>(Idx_PaletteIndexes, PalettesCount, name: nameof(Idx_PaletteIndexes));
+            Idx_Palettes = s.SerializeArray<byte>(Idx_Palettes, PalettesCount, name: nameof(Idx_Palettes));
 
             Tiles4bpp = s.SerializeArray<byte>(Tiles4bpp, TilesCount4bpp * 0x20, name: nameof(Tiles4bpp));
             Tiles8bpp = s.SerializeArray<byte>(Tiles8bpp, TilesCount8bpp * 0x40, name: nameof(Tiles8bpp));
@@ -34,8 +36,13 @@
 
         public override void SerializeDependencies(SerializerObject s)
         {
-            Palettes = SerializeDependencyArray<TilePalette>(s, Palettes, Idx_PaletteIndexes, name: nameof(Palettes));
-            // TODO: Serialize animated tile kit
+            Palettes = SerializeDependencyArray<TilePalette>(s, Palettes, Idx_Palettes, name: nameof(Palettes));
+
+            if (Idx_AnimatedTileKit != 0xFF)
+            {
+                AnimatedTileKitManager = SerializeDependency<AnimatedTileKitManager>(s, AnimatedTileKitManager, Idx_AnimatedTileKit, name: nameof(AnimatedTileKitManager));
+                AnimatedTileKits = SerializeDependencyArray<AnimatedTileKit>(s, AnimatedTileKits, AnimatedTileKitManager.Idx_AnimatedTileKits, name: nameof(AnimatedTileKits));
+            }
         }
     }
 }
