@@ -18,7 +18,7 @@
 
         public byte NextLevelId { get; set; }
         public byte LevelCurtainActorId { get; set; }
-        public ushort LevelId { get; set; }
+        public ushort NameTextId { get; set; }
 
         public Rayman3SoundEvent StartSpecialMusicSoundEvent { get; set; } // Used for enemy music and teensies in hub worlds
 
@@ -42,7 +42,7 @@
 
             NextLevelId = s.Serialize<byte>(NextLevelId, name: nameof(NextLevelId));
             LevelCurtainActorId = s.Serialize<byte>(LevelCurtainActorId, name: nameof(LevelCurtainActorId));
-            LevelId = s.Serialize<ushort>(LevelId, name: nameof(LevelId));
+            NameTextId = s.Serialize<ushort>(NameTextId, name: nameof(NameTextId));
             StartSpecialMusicSoundEvent = s.Serialize<Rayman3SoundEvent>(StartSpecialMusicSoundEvent, name: nameof(StartSpecialMusicSoundEvent));
             s.SerializePadding(2, logIfNotNull: true);
         }
