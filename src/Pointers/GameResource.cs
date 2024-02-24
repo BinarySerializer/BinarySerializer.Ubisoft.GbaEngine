@@ -10,6 +10,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
         TimerAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 81)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 92)]
+        LevelDashboardAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 91)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 103)]
         MenuPlayfield,
