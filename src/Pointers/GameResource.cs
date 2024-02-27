@@ -2,6 +2,18 @@
 {
     public enum GameResource
     {
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 67)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 71)]
+        Player4RaymanPalette,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 68)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 72)]
+        Player2RaymanPalette,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 69)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 73)]
+        Player3RaymanPalette,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 70)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 79)]
         HudAnimations,
