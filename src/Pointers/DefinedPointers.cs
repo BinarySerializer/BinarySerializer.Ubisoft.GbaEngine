@@ -24,6 +24,12 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Rayman3_GameOverPalette] = 0x080b39c0,
             [DefinedPointer.Rayman3_GameCubeMenuBitmap] = 0x0820ed94,
             [DefinedPointer.Rayman3_GameCubeMenuPalette] = 0x080b37c0,
+            [DefinedPointer.Rayman3_NewPower1Replay] = 0x080d52e8,
+            [DefinedPointer.Rayman3_NewPower2Replay] = 0x080d5814,
+            [DefinedPointer.Rayman3_NewPower3Replay] = 0x080d5b46,
+            [DefinedPointer.Rayman3_NewPower4Replay] = 0x080d5f7e,
+            [DefinedPointer.Rayman3_NewPower5Replay] = 0x080d6694,
+            [DefinedPointer.Rayman3_NewPower6Replay] = 0x080d6318,
         };
 
         public static Dictionary<DefinedPointer, long> Rayman3_NGage => new()
@@ -39,6 +45,12 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Rayman3_Act4] = 0x100f2d88,
             [DefinedPointer.Rayman3_Act5] = 0x100f2dc8,
             [DefinedPointer.Rayman3_Act6] = 0x100f2dfc,
+            [DefinedPointer.Rayman3_NewPower1Replay] = 0x100cfa9c,
+            [DefinedPointer.Rayman3_NewPower2Replay] = 0x100cffc8,
+            [DefinedPointer.Rayman3_NewPower3Replay] = 0x100d02fa,
+            [DefinedPointer.Rayman3_NewPower4Replay] = 0x100d0732,
+            [DefinedPointer.Rayman3_NewPower5Replay] = 0x100d0e48,
+            [DefinedPointer.Rayman3_NewPower6Replay] = 0x100d0acc,
         };
     }
 }

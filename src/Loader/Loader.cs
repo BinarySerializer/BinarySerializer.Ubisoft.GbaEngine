@@ -37,6 +37,12 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Palette256 Rayman3_GameOverPalette { get; set; }
         public Bitmap Rayman3_GameCubeMenuBitmap { get; set; }
         public Palette256 Rayman3_GameCubeMenuPalette { get; set; }
+        public JoyPadReplayData Rayman3_NewPower1Replay { get; set; }
+        public JoyPadReplayData Rayman3_NewPower2Replay { get; set; }
+        public JoyPadReplayData Rayman3_NewPower3Replay { get; set; }
+        public JoyPadReplayData Rayman3_NewPower4Replay { get; set; }
+        public JoyPadReplayData Rayman3_NewPower5Replay { get; set; }
+        public JoyPadReplayData Rayman3_NewPower6Replay { get; set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -164,6 +170,13 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                         gameResource: GameResource.GameOverPalette, 
                         name: nameof(Rayman3_GameOverPalette)).Value;
                 }
+
+                Rayman3_NewPower1Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower1Replay, file), name: nameof(Rayman3_NewPower1Replay));
+                Rayman3_NewPower2Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower2Replay, file), name: nameof(Rayman3_NewPower2Replay));
+                Rayman3_NewPower3Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower3Replay, file), name: nameof(Rayman3_NewPower3Replay));
+                Rayman3_NewPower4Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower4Replay, file), name: nameof(Rayman3_NewPower4Replay));
+                Rayman3_NewPower5Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower5Replay, file), name: nameof(Rayman3_NewPower5Replay));
+                Rayman3_NewPower6Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower6Replay, file), name: nameof(Rayman3_NewPower6Replay));
             }
         }
     }

@@ -26,5 +26,11 @@
         Rayman3_GameOverPalette,
         Rayman3_GameCubeMenuBitmap,
         Rayman3_GameCubeMenuPalette,
+        Rayman3_NewPower1Replay,
+        Rayman3_NewPower2Replay,
+        Rayman3_NewPower3Replay,
+        Rayman3_NewPower4Replay,
+        Rayman3_NewPower5Replay,
+        Rayman3_NewPower6Replay,
     }
 }
