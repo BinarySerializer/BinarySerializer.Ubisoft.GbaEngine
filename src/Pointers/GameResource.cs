@@ -26,6 +26,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 92)]
         LevelDashboardAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 88)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 99)]
+        BossMachineBarAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 91)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 103)]
         MenuPlayfield,
