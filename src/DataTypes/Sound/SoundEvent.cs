@@ -21,7 +21,7 @@
 
             switch (Type)
             {
-                case SoundEventType.PlaySong:
+                case SoundEventType.Play:
                     ResourceId = s.Serialize<ushort>(ResourceId, name: nameof(ResourceId));
                     SoundType = s.Serialize<SoundType>(SoundType, name: nameof(SoundType));
                     s.DoBits<byte>(b =>
@@ -32,12 +32,12 @@
                     });
                     break;
 
-                case SoundEventType.StopSong:
+                case SoundEventType.Stop:
                     StopEventId = s.Serialize<short>(StopEventId, name: nameof(StopEventId));
                     FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
                     break;
 
-                case SoundEventType.StopAndSetNext:
+                case SoundEventType.StopAndGo:
                     NextEventId = s.Serialize<short>(NextEventId, name: nameof(NextEventId));
                     StopEventId = s.Serialize<short>(StopEventId, name: nameof(StopEventId));
                     FadeOutTime = s.Serialize<ushort>(FadeOutTime, name: nameof(FadeOutTime));
@@ -50,9 +50,10 @@
 
         public enum SoundEventType : ushort
         {
-            PlaySong = 1,
-            StopSong = 2,
-            StopAndSetNext = 3,
+            Invalid = 0,
+            Play = 1,
+            Stop = 2,
+            StopAndGo = 3,
         }
     }
 }

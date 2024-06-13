@@ -53,6 +53,7 @@
 
         public enum ResourceType : ushort
         {
+            Invalid = 0,
             Song = 1,
             Switch = 2, // Unused in Rayman 3
             Random = 3,
