@@ -2,11 +2,11 @@
 {
     public enum ActorMapCollisionType
     {
-        CheckX = 0,
-        CheckY = 1,
-        CheckXY = 2,
-        CheckExtendedX = 3,
-        CheckExtendedY = 4,
-        CheckExtendedXY = 5,
+        BasicXOnly = 0,
+        BasicYOnly = 1,
+        Basic = 2,
+        Large = 3,
+        Complex = 4,
+        ComplexWithAngles = 5,
     }
 }
