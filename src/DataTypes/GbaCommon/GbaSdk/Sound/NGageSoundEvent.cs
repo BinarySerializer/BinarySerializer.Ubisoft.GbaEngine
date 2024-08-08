@@ -4,13 +4,13 @@
     {
         public bool IsValid { get; set; }
 
-        public int Int_00 { get; set; }
-        public int Int_0A { get; set; }
-        public int Int_16 { get; set; }
+        public int SoundResourceId { get; set; }
+        public int InstrumentsResourceId { get; set; } // Only set if music
+        public int Volume { get; set; }
 
-        public bool Bool_1D { get; set; }
-        public bool Bool_1E { get; set; }
-        public bool Bool_1F { get; set; }
+        public bool Loop { get; set; }
+        public bool PlaySong { get; set; } // True = Play, False = Stop
+        public bool IsMusic { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
@@ -23,14 +23,14 @@
 
                 b.Position = 0;
 
-                Int_00 = b.SerializeBits<int>(Int_00, 10, name: nameof(Int_00));
-                Int_0A = b.SerializeBits<int>(Int_0A, 10, name: nameof(Int_0A));
+                SoundResourceId = b.SerializeBits<int>(SoundResourceId, 10, name: nameof(SoundResourceId));
+                InstrumentsResourceId = b.SerializeBits<int>(InstrumentsResourceId, 10, name: nameof(InstrumentsResourceId));
                 b.SerializePadding(2, logIfNotNull: true);
-                Int_16 = b.SerializeBits<int>(Int_16, 3, name: nameof(Int_16));
+                Volume = b.SerializeBits<int>(Volume, 3, name: nameof(Volume));
                 b.SerializePadding(4, logIfNotNull: true);
-                Bool_1D = b.SerializeBits<bool>(Bool_1D, 1, name: nameof(Bool_1D));
-                Bool_1E = b.SerializeBits<bool>(Bool_1E, 1, name: nameof(Bool_1E));
-                Bool_1F = b.SerializeBits<bool>(Bool_1F, 1, name: nameof(Bool_1F));
+                Loop = b.SerializeBits<bool>(Loop, 1, name: nameof(Loop));
+                PlaySong = b.SerializeBits<bool>(PlaySong, 1, name: nameof(PlaySong));
+                IsMusic = b.SerializeBits<bool>(IsMusic, 1, name: nameof(IsMusic));
             });
         }
     }
