@@ -2,6 +2,9 @@
 {
     public enum GameResource
     {
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 65)]
+        SoundBank,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 67)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 71)]
         Player4RaymanPalette,

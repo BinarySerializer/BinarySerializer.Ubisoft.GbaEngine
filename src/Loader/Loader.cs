@@ -19,8 +19,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Font Font8 { get; set; }
         public Font Font16 { get; set; }
         public Font Font32 { get; set; }
-
-        // N-Gage
+        public SoundBank SoundBank { get; set; }
         public NGageSoundEvent[] NGage_SoundEvents { get; set; }
 
         // Rayman 3
@@ -82,6 +81,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 Font8 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font8, file), name: nameof(Font8));
                 Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
                 Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
+
+                SoundBank = GameOffsetTable.ReadResource<SoundBank>(Context, GameResource.SoundBank, name: nameof(SoundBank));
             }
             else if (settings.Platform == Platform.NGage)
             {

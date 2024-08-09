@@ -7,6 +7,7 @@
         Font8,
         Font16,
         Font32,
+        SoundBank,
 
         // N-Gage
         NGage_SongTable,
