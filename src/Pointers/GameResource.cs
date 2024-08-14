@@ -29,6 +29,14 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 92)]
         LevelDashboardAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 85)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 96)]
+        PauseSelectionAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 86)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 97)]
+        PauseCanvasAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 88)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 99)]
         BossMachineBarAnimations,
@@ -38,7 +46,7 @@
         MenuPlayfield,
 
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 104)]
-        NGageButtons,
+        NGageButtonSymbols,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 92)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 105)]
