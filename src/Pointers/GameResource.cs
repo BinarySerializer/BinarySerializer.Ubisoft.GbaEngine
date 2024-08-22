@@ -41,6 +41,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 99)]
         BossMachineBarAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 102)]
+        CaptureTheFlagArrowAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 91)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 103)]
         MenuPlayfield,
