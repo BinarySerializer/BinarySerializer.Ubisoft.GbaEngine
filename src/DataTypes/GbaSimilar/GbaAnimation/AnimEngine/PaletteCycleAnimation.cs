@@ -14,7 +14,7 @@
             ColorStartIndex = s.Serialize<byte>(ColorStartIndex, name: nameof(ColorStartIndex));
             ColorEndIndex = s.Serialize<byte>(ColorEndIndex, name: nameof(ColorEndIndex));
 
-            // Always 5 bytes?
+            // In Rayman 3 this has 1 byte for the blue lums bar and 5 bytes for the fire animation
             Bytes_03 = s.SerializeArray<byte>(Bytes_03, Size - 3, name: nameof(Bytes_03));
         }
     }
