@@ -21,6 +21,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 79)]
         HudAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 71)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 80)]
+        WorldDashboardAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 72)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 81)]
         BlueLumBarAnimations,
