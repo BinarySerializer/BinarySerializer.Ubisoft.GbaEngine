@@ -149,6 +149,14 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 132)]
         IntroAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 121)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 135)]
+        RaymanWorldMapAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 122)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 136)]
+        WorldMapPathAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 123)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 137)]
         FogAnimations,
