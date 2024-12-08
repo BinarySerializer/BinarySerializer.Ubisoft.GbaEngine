@@ -37,14 +37,19 @@
         {
             GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
 
-            s.SerializeMagic<uint>(0x224455);
+            Checksum16Processor checksumProcessor = null;
 
-            Checksum16Processor checksumProcessor = new(invertBits: true) { CalculatedValue = ~0x4455 };
-            checksumProcessor.Serialize<ushort>(s, name: "SaveSlotChecksum");
+            if (settings.Platform == Platform.GBA)
+            {
+                s.SerializeMagic<uint>(0x224455);
 
-            s.SerializePadding(2); // Always 0x100, but seems unused? Not part of the checksum calculation.
+                checksumProcessor = new Checksum16Processor(invertBits: true) { CalculatedValue = ~0x4455 };
+                checksumProcessor.Serialize<ushort>(s, name: "SaveSlotChecksum");
 
-            // All remaining data is part of the checksum calculation
+                s.SerializePadding(2); // Always 0x100, but seems unused? Not part of the checksum calculation.
+            }
+
+            // All remaining data is part of the checksum calculation on GBA
             s.DoProcessed(checksumProcessor, () =>
             {
                 Lums = s.SerializeArray<byte>(Lums, 125, name: nameof(Lums));
