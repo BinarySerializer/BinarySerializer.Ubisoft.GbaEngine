@@ -110,6 +110,10 @@
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuMultiplayerTypeAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 104)]
+        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        MenuMultiplayerMapAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuSteamAnimations,
