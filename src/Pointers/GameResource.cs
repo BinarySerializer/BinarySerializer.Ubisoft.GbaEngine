@@ -29,6 +29,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 81)]
         BlueLumBarAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 86)]
+        NGageMultiplayerBannerAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 80)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
         TimerAnimations,
