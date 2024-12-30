@@ -32,6 +32,14 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 86)]
         NGageMultiplayerBannerAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 78)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 89)]
+        ScorePlayerIconAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 79)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 90)]
+        ScorePlayerRankAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 80)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
         TimerAnimations,
