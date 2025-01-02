@@ -29,16 +29,39 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 81)]
         BlueLumBarAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 73)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 82)]
+        MultiplayerCountdownAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 74)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 83)]
+        MultiplayerTimerAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 75)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 84)]
+        MultiplayerIconAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 76)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 85)]
+        MultiplayerItemAnimations,
+        
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 86)]
-        NGageMultiplayerBannerAnimations,
+        NGageMultiplayerPauseSignAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 77)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 87)]
+        MultiplayerGameOverSignAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 88)]
+        NGageMultiplayerSuddenDeathSignAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 78)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 89)]
-        ScorePlayerIconAnimations,
+        MultiplayerPlayerIconAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 79)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 90)]
-        ScorePlayerRankAnimations,
+        MultiplayerRankAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 80)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
