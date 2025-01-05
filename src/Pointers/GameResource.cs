@@ -105,6 +105,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 106)]
         MenuStartEraseAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 107)]
+        NGageMenuHelpArrowAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 94)]
         //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuMultiplayerTypeFrameAnimations,
