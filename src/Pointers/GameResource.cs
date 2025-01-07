@@ -105,11 +105,8 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 106)]
         MenuStartEraseAnimations,
 
-        [GameResourceDefine(Game.Rayman3, Platform.NGage, 107)]
-        NGageMenuHelpArrowAnimations,
-
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 94)]
-        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 107)]
         MenuMultiplayerTypeFrameAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 95)]
@@ -136,19 +133,21 @@
         MenuSlotEmptyAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 101)]
-        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
         MenuMultiplayerModeAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 114)]
+        MenuMultiplayerConnectionAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 102)]
-        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 115)]
         MenuMultiplayerPlayersAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 103)]
-        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 116)]
         MenuMultiplayerTypeAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 104)]
-        //[GameResourceDefine(Game.Rayman3, Platform.NGage, )]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 117)]
         MenuMultiplayerMapAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
@@ -158,6 +157,7 @@
         GameCubeMenuLevelCheckAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 108)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 121)]
         MenuMultiplayerTypeIconAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 109)]
