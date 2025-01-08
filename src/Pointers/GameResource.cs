@@ -160,6 +160,9 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 121)]
         MenuMultiplayerTypeIconAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 122)]
+        MenuMultiplayerCaptureTheFlagAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 109)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 123)]
         GameOverRaymanAnimations,
