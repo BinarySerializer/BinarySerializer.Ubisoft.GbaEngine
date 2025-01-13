@@ -49,7 +49,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             {
                 byte[] romBuffer;
 
-                using (Stream romStream = Context.FileManager.GetFileReadStream(fileName))
+                using (Stream romStream = Context.FileManager.GetFileReadStream(Context.GetAbsoluteFilePath(fileName)))
                 {
                     romBuffer = new byte[romStream.Length];
                     int read = romStream.Read(romBuffer, 0, romBuffer.Length);
