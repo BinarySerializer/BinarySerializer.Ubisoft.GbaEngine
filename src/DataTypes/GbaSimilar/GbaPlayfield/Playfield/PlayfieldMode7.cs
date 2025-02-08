@@ -12,7 +12,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public ushort TextLayerTileMapLength { get; set; }
         public bool IsTextLayerTileMapCompressed { get; set; }
         public byte Byte_0F { get; set; } // Unused in Rayman 3
-        public ushort[] TextLayerTileMap { get; set; }
+        public MapTile[] TextLayerTileMap { get; set; }
 
         // Dependencies
         public TileKit TileKit { get; set; }
@@ -31,7 +31,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             Byte_0F = s.Serialize<byte>(Byte_0F, name: nameof(Byte_0F));
 
             IStreamEncoder encoder = IsTextLayerTileMapCompressed ? new LZSSEncoder() : null;
-            s.DoEncoded(encoder, () => TextLayerTileMap = s.SerializeArray<ushort>(TextLayerTileMap, TextLayerTileMapLength / 2, name: nameof(TextLayerTileMap)));
+            s.DoEncoded(encoder, () => TextLayerTileMap = s.SerializeIntoArray<MapTile>(TextLayerTileMap, TextLayerTileMapLength / 2, MapTile.SerializeInto_Regular, name: nameof(TextLayerTileMap)));
         }
 
         public void SerializeDependencies(SerializerObject s, Resource playfieldResource)
