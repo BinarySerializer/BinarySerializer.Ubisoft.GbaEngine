@@ -31,7 +31,7 @@
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 73)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 82)]
-        MultiplayerCountdownAnimations,
+        CountdownAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 74)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 83)]
@@ -65,7 +65,7 @@
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 80)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 91)]
-        TimerAnimations,
+        LapAndTimerAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 81)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 92)]
