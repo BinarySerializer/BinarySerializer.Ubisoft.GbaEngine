@@ -9,7 +9,7 @@
         public FixedPointInt32 RotationFactor { get; set; }
         public Vector2 Vector2_10 { get; set; } // Unused in Rayman 3
         public Vector2 MapDimensions { get; set; }
-        public Vector2 BasePosition { get; set; } // X value is unused in Rayman 3
+        public Vector2 MapPosition { get; set; } // X value is unused in Rayman 3
         public byte MapBlock { get; set; }
         public byte Priority { get; set; }
         public byte Byte_1E { get; set; } // Unused in Rayman 3 - always the same value as LayerId
@@ -24,7 +24,7 @@
             RotationFactor = s.SerializeObject<FixedPointInt32>(RotationFactor, x => x.Pre_PointPosition = 16, name: nameof(RotationFactor));
             Vector2_10 = s.SerializeObject<Vector2>(Vector2_10, name: nameof(Vector2_10));
             MapDimensions = s.SerializeObject<Vector2>(MapDimensions, name: nameof(MapDimensions));
-            BasePosition = s.SerializeObject<Vector2>(BasePosition, name: nameof(BasePosition));
+            MapPosition = s.SerializeObject<Vector2>(MapPosition, name: nameof(MapPosition));
             MapBlock = s.Serialize<byte>(MapBlock, name: nameof(MapBlock));
             Priority = s.Serialize<byte>(Priority, name: nameof(Priority));
             Byte_1E = s.Serialize<byte>(Byte_1E, name: nameof(Byte_1E));
