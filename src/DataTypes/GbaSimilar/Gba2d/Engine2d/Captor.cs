@@ -4,8 +4,8 @@
     {
         public byte EventsCount { get; set; }
         public bool TriggerOnMainActorDetection { get; set; }
-        public bool IsTriggering { get; set; }
-        public bool CaptorFlag_2 { get; set; }
+        public bool IsDetected { get; set; }
+        public bool CaptorFlag_2 { get; set; } // Unused
         public byte Idx_Events { get; set; }
         public byte Byte_07 { get; set; } // Unused
         public short BoxMinY { get; set; }
@@ -24,7 +24,7 @@
             {
                 EventsCount = b.SerializeBits<byte>(EventsCount, 5, name: nameof(EventsCount));
                 TriggerOnMainActorDetection = b.SerializeBits<bool>(TriggerOnMainActorDetection, 1, name: nameof(TriggerOnMainActorDetection));
-                IsTriggering = b.SerializeBits<bool>(IsTriggering, 1, name: nameof(IsTriggering));
+                IsDetected = b.SerializeBits<bool>(IsDetected, 1, name: nameof(IsDetected));
                 CaptorFlag_2 = b.SerializeBits<bool>(CaptorFlag_2, 1, name: nameof(CaptorFlag_2));
             });
             Idx_Events = s.Serialize<byte>(Idx_Events, name: nameof(Idx_Events));
