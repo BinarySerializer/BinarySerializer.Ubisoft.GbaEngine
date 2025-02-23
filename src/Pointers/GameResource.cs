@@ -207,6 +207,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 132)]
         IntroAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 120)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 134)]
+        WaterskiSparkleAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 121)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 135)]
         RaymanWorldMapAnimations,
