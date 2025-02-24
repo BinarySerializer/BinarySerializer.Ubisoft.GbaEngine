@@ -32,6 +32,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             IStreamEncoder encoder = IsTextLayerTileMapCompressed ? new LZSSEncoder() : null;
             s.DoEncoded(encoder, () => TextLayerTileMap = s.SerializeIntoArray<MapTile>(TextLayerTileMap, TextLayerTileMapLength / 2, MapTile.SerializeInto_Regular, name: nameof(TextLayerTileMap)));
+            s.Align();
         }
 
         public void SerializeDependencies(SerializerObject s, Resource playfieldResource)
