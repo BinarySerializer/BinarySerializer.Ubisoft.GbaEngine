@@ -4,7 +4,7 @@
     {
         public byte LayerId { get; set; }
         public bool HasAlphaBlending { get; set; }
-        public byte AlphaCoeff { get; set; }
+        public FixedPointInt8 AlphaCoeff { get; set; } // For some reason 15 (0,9375) seems to be the max value here, but it should be 16 (1,00)
         public byte BackgroundSize { get; set; }
         public FixedPointInt32 RotationFactor { get; set; }
         public Vector2 Vector2_10 { get; set; } // Unused in Rayman 3
@@ -19,7 +19,7 @@
         {
             LayerId = s.Serialize<byte>(LayerId, name: nameof(LayerId));
             HasAlphaBlending = s.Serialize<bool>(HasAlphaBlending, name: nameof(HasAlphaBlending));
-            AlphaCoeff = s.Serialize<byte>(AlphaCoeff, name: nameof(AlphaCoeff));
+            AlphaCoeff = s.SerializeObject<FixedPointInt8>(AlphaCoeff, x => x.Pre_PointPosition = 4, name: nameof(AlphaCoeff));
             BackgroundSize = s.Serialize<byte>(BackgroundSize, name: nameof(BackgroundSize));
             RotationFactor = s.SerializeObject<FixedPointInt32>(RotationFactor, x => x.Pre_PointPosition = 16, name: nameof(RotationFactor));
             Vector2_10 = s.SerializeObject<Vector2>(Vector2_10, name: nameof(Vector2_10));
