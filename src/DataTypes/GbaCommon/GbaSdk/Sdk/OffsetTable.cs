@@ -17,13 +17,13 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             return rootTable.Offset + Offsets[index] * 4;
         }
 
-        public T ReadResource<T>(Context context, int index, string name = null)
+        public T ReadResource<T>(Context context, int index, Action<SerializerObject, T> onPreSerialize = null, string name = null)
             where T : Resource, new()
         {
-            return FileFactory.Read<T>(context, GetPointer(context, index), name: name);
+            return FileFactory.Read<T>(context, GetPointer(context, index), onPreSerialize: onPreSerialize, name: name);
         }
 
-        public T ReadResource<T>(Context context, GameResource gameResource, string name = null)
+        public T ReadResource<T>(Context context, GameResource gameResource, Action<SerializerObject, T> onPreSerialize = null, string name = null)
             where T : Resource, new()
         {
             GbaEngineSettings settings = context.GetRequiredSettings<GbaEngineSettings>();
@@ -35,7 +35,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             if (define == null)
                 throw new ArgumentException("Enum value has no game resource define for the current game settings", nameof(gameResource));
 
-            return FileFactory.Read<T>(context, GetPointer(context, define.ResourceId), name: name);
+            return FileFactory.Read<T>(context, GetPointer(context, define.ResourceId), onPreSerialize: onPreSerialize, name: name);
         }
 
         public override void SerializeImpl(SerializerObject s)

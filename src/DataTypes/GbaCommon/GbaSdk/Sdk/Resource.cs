@@ -9,6 +9,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         private bool[] _serializedDependencies;
 
         public bool Pre_IsGameCubeResource { get; set; }
+        public bool Pre_SerializeDependencies { get; set; } = true;
 
         public uint Size { get; set; }
         public OffsetTable OffsetTable { get; set; }
@@ -32,8 +33,11 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 SerializeGameCubeOffsetTable(s);
 
             // Serialize dependencies
-            SerializeDependencies(s);
-            CheckDependencies(s);
+            if (Pre_SerializeDependencies)
+            {
+                SerializeDependencies(s);
+                CheckDependencies(s);
+            }
         }
 
         private void SerializeHeader(SerializerObject s)
