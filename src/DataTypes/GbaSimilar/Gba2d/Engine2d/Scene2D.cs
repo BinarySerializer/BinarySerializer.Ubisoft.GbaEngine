@@ -16,6 +16,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public byte KnotsCount { get; set; }
         public Actor[] AlwaysActors { get; set; }
         public Actor[] Actors { get; set; }
+        public Actor[] ProjectileActors { get; set; }
         public Captor[] Captors { get; set; }
         public Knot[] Knots { get; set; }
 
@@ -57,6 +58,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             AlwaysActors = s.SerializeObjectArray<Actor>(AlwaysActors, AlwaysActorsCount, name: nameof(AlwaysActors));
             Actors = s.SerializeObjectArray<Actor>(Actors, ActorsCount, name: nameof(Actors));
+            ProjectileActors = s.SerializeObjectArray<Actor>(ProjectileActors, ProjectileActorsCount, name: nameof(ProjectileActors));
             Captors = s.SerializeObjectArray<Captor>(Captors, CaptorsCount, name: nameof(Captors));
             Knots = s.SerializeObjectArray<Knot>(Knots, KnotsCount, name: nameof(Knots));
         }
