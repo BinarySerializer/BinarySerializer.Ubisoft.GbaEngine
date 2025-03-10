@@ -114,6 +114,7 @@
         MenuMultiplayerTypeFrameAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 95)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 108)]
         GameCubeMenuAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 96)]
@@ -155,9 +156,11 @@
         MenuMultiplayerMapAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 105)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 118)]
         MenuSteamAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 106)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 119)]
         GameCubeMenuLevelCheckAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 108)]
@@ -224,6 +227,7 @@
         FogAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 124)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 138)]
         WorldCurtainAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 125)]
