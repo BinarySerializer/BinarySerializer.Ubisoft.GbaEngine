@@ -163,6 +163,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 119)]
         GameCubeMenuLevelCheckAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 107)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 120)]
+        CreditsAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 108)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 121)]
         MenuMultiplayerTypeIconAnimations,
