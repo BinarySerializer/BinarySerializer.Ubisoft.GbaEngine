@@ -2,7 +2,7 @@
 {
     public class Animation3D : Resource
     {
-        public int Pre_BonesCount { get; set; }
+        public int Pre_TransformsCount { get; set; }
 
         public byte FramesCount { get; set; }
         public byte FrameRate { get; set; }
@@ -16,7 +16,7 @@
             FrameRate = s.Serialize<byte>(FrameRate, name: nameof(FrameRate));
             FrameSize = s.Serialize<ushort>(FrameSize, name: nameof(FrameSize));
             Duration = s.SerializeObject<FixedPointInt32>(Duration, x => x.Pre_PointPosition = 16, name: nameof(Duration));
-            Frames = s.SerializeObjectArray<AnimationFrame>(Frames, FramesCount * Pre_BonesCount, name: nameof(Frames));
+            Frames = s.SerializeObjectArray<AnimationFrame>(Frames, FramesCount * Pre_TransformsCount, name: nameof(Frames));
         }
     }
 }
