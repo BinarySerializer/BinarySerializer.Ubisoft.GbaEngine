@@ -238,6 +238,18 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 139)]
         StoryNextTextAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 126)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 140)]
+        CreditsWheelAnimActor,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 127)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 141)]
+        CreditsWheelTextureTable,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 128)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 142)]
+        CreditsWheelPaletteTable,
+
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 143)]
         GameOverBitmap,
 
