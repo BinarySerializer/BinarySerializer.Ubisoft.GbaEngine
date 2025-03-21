@@ -61,7 +61,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 if (address != null)
                     Context.AddFile(new MemoryMappedStreamFile(Context, fileName, address.Value, new MemoryStream(romBuffer), mode: VirtualFileMode.Maintain));
                 else    
-                    Context.AddFile(new StreamFile(Context, fileName, new MemoryStream(romBuffer), mode: VirtualFileMode.Maintain));
+                    Context.AddFile(new StreamFile(Context, fileName, new MemoryStream(romBuffer), allowLocalPointers: true, mode: VirtualFileMode.Maintain));
             }
             else
             {
