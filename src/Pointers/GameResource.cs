@@ -87,9 +87,21 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 97)]
         PauseCanvasAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 87)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 98)]
+        BossFinalBarAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 88)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 99)]
         BossMachineBarAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 89)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 100)]
+        BossRockAndLavaBarAnimations,
+
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 90)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 101)]
+        BossScalemanBarAnimations,
 
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 102)]
         CaptureTheFlagArrowAnimations,
