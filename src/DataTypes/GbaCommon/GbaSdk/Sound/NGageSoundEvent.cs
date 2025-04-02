@@ -23,7 +23,7 @@
 
                 b.Position = 0;
 
-                SoundResourceId = b.SerializeBits<int>(SoundResourceId, 10, name: nameof(SoundResourceId));
+                SoundResourceId = b.SerializeBits<int>(SoundResourceId, 10, sign: SignedNumberRepresentation.TwosComplement, name: nameof(SoundResourceId));
                 InstrumentsResourceId = b.SerializeBits<int>(InstrumentsResourceId, 10, name: nameof(InstrumentsResourceId));
                 b.SerializePadding(2, logIfNotNull: true);
                 Volume = b.SerializeBits<int>(Volume, 3, name: nameof(Volume));
