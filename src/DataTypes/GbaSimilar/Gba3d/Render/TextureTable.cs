@@ -14,6 +14,8 @@
             Textures.ResolveObject(s);
 
             // NOTE: For some reason for Rayman 3 the textures are all duplicated in the file, but the offsets only point to the first instances of them
+
+            s.Goto(Offset + Size);
         }
     }
 }

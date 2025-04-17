@@ -12,6 +12,8 @@
 
             GeometryObjects = s.SerializePointerArray<GeometryObject>(GeometryObjects, GeometryObjectCount, size: PointerSize.Pointer16, anchor: Offset, name: nameof(GeometryObjects));
             GeometryObjects.ResolveObject(s);
+
+            s.Goto(Offset + Size);
         }
     }
 }

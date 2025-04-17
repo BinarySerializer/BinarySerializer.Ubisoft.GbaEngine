@@ -14,6 +14,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             Palettes = s.SerializePointerArray<Palette>(Palettes, PalettesCount, size: PointerSize.Pointer16, anchor: Offset, name: nameof(Palettes));
             Palettes.ResolveObject(s, (x, _) => x.Pre_Is8Bit = true);
+
+            s.Goto(Offset + Size);
         }
     }
 }

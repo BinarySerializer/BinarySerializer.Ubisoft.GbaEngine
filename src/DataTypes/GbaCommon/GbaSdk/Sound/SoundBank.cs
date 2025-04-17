@@ -26,6 +26,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             s.DoAt(ResourcesPointer, () => Resources = s.SerializePointerArray(Resources, ResourcesCount, anchor: Offset, nullValue: UInt32.MaxValue, name: nameof(Resources)));
             Resources?.ResolveObject(s, (x, _) => x.Pre_SoundBank = this);
+
+            s.Goto(Offset + Size);
         }
     }
 }
