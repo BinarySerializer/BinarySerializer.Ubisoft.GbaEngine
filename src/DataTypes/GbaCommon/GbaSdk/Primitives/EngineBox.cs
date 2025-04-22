@@ -2,17 +2,17 @@
 {
     public class EngineBox : BinarySerializable
     {
-        public sbyte MinY { get; set; }
-        public sbyte MinX { get; set; }
-        public sbyte MaxY { get; set; }
-        public sbyte MaxX { get; set; }
+        public sbyte Top { get; set; }
+        public sbyte Left { get; set; }
+        public sbyte Bottom { get; set; }
+        public sbyte Right { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
-            MinY = s.Serialize<sbyte>(MinY, name: nameof(MinY));
-            MinX = s.Serialize<sbyte>(MinX, name: nameof(MinX));
-            MaxY = s.Serialize<sbyte>(MaxY, name: nameof(MaxY));
-            MaxX = s.Serialize<sbyte>(MaxX, name: nameof(MaxX));
+            Top = s.Serialize<sbyte>(Top, name: nameof(Top));
+            Left = s.Serialize<sbyte>(Left, name: nameof(Left));
+            Bottom = s.Serialize<sbyte>(Bottom, name: nameof(Bottom));
+            Right = s.Serialize<sbyte>(Right, name: nameof(Right));
         }
     }
 }
