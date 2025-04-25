@@ -75,6 +75,10 @@
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 93)]
         WaterskiBirdAnimations,
 
+        [GameResourceDefine(Game.Rayman3, Platform.GBA, 83)]
+        [GameResourceDefine(Game.Rayman3, Platform.NGage, 94)]
+        MissileMapAnimations,
+
         [GameResourceDefine(Game.Rayman3, Platform.GBA, 84)]
         [GameResourceDefine(Game.Rayman3, Platform.NGage, 95)]
         SwitchBarAnimations,
