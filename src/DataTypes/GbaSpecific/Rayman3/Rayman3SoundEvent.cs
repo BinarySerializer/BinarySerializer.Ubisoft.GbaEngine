@@ -393,6 +393,11 @@
         Stop__MachAtk1_Mix01 = 509,
         Stop__MachAtk2_Mix02 = 510,
         Stop__BossHurt_Mix02 = 511,
+
+        // N-Gage exclusive
+        Play_NGage_Unnamed2 = 512,
+        Play_NGage_Unnamed1 = 513,
+        Play_NGage_Unnamed3 = 514,
     }
 
     /*
