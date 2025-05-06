@@ -82,13 +82,13 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
                 Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
 
-                SoundBank = GameOffsetTable.ReadResource<SoundBank>(Context, GameResource.SoundBank, name: nameof(SoundBank));
+                SoundBank = GameOffsetTable.ReadResource<SoundBank>(Context, Rayman3DefinedResource.SoundBank, name: nameof(SoundBank));
             }
             else if (settings.Platform == Platform.NGage)
             {
-                Font8 = GameOffsetTable.ReadResource<Resource<Font>>(Context, GameResource.Font8, name: nameof(Font8)).Value;
-                Font16 = GameOffsetTable.ReadResource<Resource<Font>>(Context, GameResource.Font16, name: nameof(Font16)).Value;
-                Font32 = GameOffsetTable.ReadResource<Resource<Font>>(Context, GameResource.Font32, name: nameof(Font32)).Value;
+                Font8 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font8, name: nameof(Font8)).Value;
+                Font16 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font16, name: nameof(Font16)).Value;
+                Font32 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font32, name: nameof(Font32)).Value;
 
                 NGage_SoundEvents = FileFactory.Read<ObjectArray<NGageSoundEvent>>(
                     Context, 
@@ -164,11 +164,11 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 {
                     Rayman3_GameOverBitmap = GameOffsetTable.ReadResource<Resource<Bitmap>>(
                         context: Context, 
-                        gameResource: GameResource.GameOverBitmap, 
+                        definedResource: Rayman3DefinedResource.GameOverBitmap, 
                         name: nameof(Rayman3_GameOverBitmap)).Value;
                     Rayman3_GameOverPalette = GameOffsetTable.ReadResource<Resource<Palette256>>(
-                        context: Context, 
-                        gameResource: GameResource.GameOverPalette, 
+                        context: Context,
+                        definedResource: Rayman3DefinedResource.GameOverPalette, 
                         name: nameof(Rayman3_GameOverPalette)).Value;
                 }
 

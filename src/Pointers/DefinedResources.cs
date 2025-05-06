@@ -1,0 +1,165 @@
+﻿using System.Collections.Generic;
+using BinarySerializer.Nintendo.GBA;
+using BinarySerializer.Ubisoft.GbaEngine.Rayman3;
+
+namespace BinarySerializer.Ubisoft.GbaEngine
+{
+    public static class DefinedResources
+    {
+        public static Dictionary<int, DefinedResourceInfo<Rayman3DefinedResource>> Rayman3_GBA => new()
+        {
+            // 0-64 are the scenes
+            [65] = new(typeof(SoundBank), Rayman3DefinedResource.SoundBank),
+            [66] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player1RaymanPalette), // Unused
+            [67] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player4RaymanPalette),
+            [68] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player2RaymanPalette),
+            [69] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player3RaymanPalette),
+            [70] = new(typeof(AnimatedObject), Rayman3DefinedResource.HudAnimations),
+            [71] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldDashboardAnimations),
+            [72] = new(typeof(AnimatedObject), Rayman3DefinedResource.BlueLumBarAnimations),
+            [73] = new(typeof(AnimatedObject), Rayman3DefinedResource.CountdownAnimations),
+            [74] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerTimerAnimations),
+            [75] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerIconAnimations),
+            [76] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerItemAnimations),
+            [77] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerGameOverSignAnimations),
+            [78] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerPlayerIconAnimations),
+            [79] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerRankAnimations),
+            [80] = new(typeof(AnimatedObject), Rayman3DefinedResource.LapAndTimerAnimations),
+            [81] = new(typeof(AnimatedObject), Rayman3DefinedResource.LevelDashboardAnimations),
+            [82] = new(typeof(AnimatedObject), Rayman3DefinedResource.WaterskiBirdAnimations),
+            [83] = new(typeof(AnimatedObject), Rayman3DefinedResource.MissileMapAnimations),
+            [84] = new(typeof(AnimatedObject), Rayman3DefinedResource.SwitchBarAnimations),
+            [85] = new(typeof(AnimatedObject), Rayman3DefinedResource.PauseSelectionAnimations),
+            [86] = new(typeof(AnimatedObject), Rayman3DefinedResource.PauseCanvasAnimations),
+            [87] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossFinalBarAnimations),
+            [88] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossMachineBarAnimations),
+            [89] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossRockAndLavaBarAnimations),
+            [90] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossScalemanBarAnimations),
+            [91] = new(typeof(Playfield), Rayman3DefinedResource.MenuPlayfield),
+            [92] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuPropAnimations),
+            [93] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuStartEraseAnimations),
+            [94] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeFrameAnimations),
+            [95] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameCubeMenuAnimations),
+            [96] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuGameLogoAnimations),
+            [97] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuGameModeAnimations),
+            [98] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuLanguageListAnimations),
+            [99] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuOptionsAnimations),
+            [100] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuSlotEmptyAnimations),
+            [101] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerModeAnimations),
+            [102] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerPlayersAnimations),
+            [103] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeAnimations),
+            [104] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerMapAnimations),
+            [105] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuSteamAnimations),
+            [106] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameCubeMenuLevelCheckAnimations),
+            [107] = new(typeof(AnimatedObject), Rayman3DefinedResource.CreditsAnimations),
+            [108] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeIconAnimations),
+            [109] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverRaymanAnimations),
+            [110] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverCountdownAnimations),
+            [111] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverButterflyAnimations),
+            [112] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxCanvasAnimations),
+            [113] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxRaymanIconAnimations),
+            [114] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxLyIconAnimations),
+            [115] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxMurfyIconAnimations),
+            [116] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxTeensiesIconAnimations),
+            [117] = new(typeof(Playfield), Rayman3DefinedResource.IntroPlayfield),
+            [118] = new(typeof(AnimatedObject), Rayman3DefinedResource.IntroAnimations),
+            [119] = new(typeof(AnimatedObject), Rayman3DefinedResource.CaterpillarAnimations), // Unused
+            [120] = new(typeof(AnimatedObject), Rayman3DefinedResource.WaterskiSparkleAnimations),
+            [121] = new(typeof(AnimatedObject), Rayman3DefinedResource.RaymanWorldMapAnimations),
+            [122] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldMapPathAnimations),
+            [123] = new(typeof(AnimatedObject), Rayman3DefinedResource.FogAnimations),
+            [124] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldCurtainAnimations),
+            [125] = new(typeof(AnimatedObject), Rayman3DefinedResource.StoryNextTextAnimations),
+            [126] = new(typeof(AnimActor), Rayman3DefinedResource.CreditsWheelAnimActor),
+            [127] = new(typeof(TextureTable), Rayman3DefinedResource.CreditsWheelTextureTable),
+            [128] = new(typeof(PaletteTable), Rayman3DefinedResource.CreditsWheelPaletteTable),
+        };
+
+        public static Dictionary<int, DefinedResourceInfo<Rayman3DefinedResource>> Rayman3_NGage => new()
+        {
+            // 0-68 are the scenes
+            // TODO: 69
+            // TODO: 70
+            [71] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player4RaymanPalette),
+            [72] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player2RaymanPalette),
+            [73] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player3RaymanPalette),
+            // TODO: 74
+            // TODO: 75
+            // TODO: 76
+            // TODO: 77
+            // TODO: 78
+            [79] = new(typeof(AnimatedObject), Rayman3DefinedResource.HudAnimations),
+            [80] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldDashboardAnimations),
+            [81] = new(typeof(AnimatedObject), Rayman3DefinedResource.BlueLumBarAnimations),
+            [82] = new(typeof(AnimatedObject), Rayman3DefinedResource.CountdownAnimations),
+            [83] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerTimerAnimations),
+            [84] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerIconAnimations),
+            [85] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerItemAnimations),
+            [86] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageMultiplayerPauseSignAnimations),
+            [87] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerGameOverSignAnimations),
+            [88] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageMultiplayerSuddenDeathSignAnimations),
+            [89] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerPlayerIconAnimations),
+            [90] = new(typeof(AnimatedObject), Rayman3DefinedResource.MultiplayerRankAnimations),
+            [91] = new(typeof(AnimatedObject), Rayman3DefinedResource.LapAndTimerAnimations),
+            [92] = new(typeof(AnimatedObject), Rayman3DefinedResource.LevelDashboardAnimations),
+            [93] = new(typeof(AnimatedObject), Rayman3DefinedResource.WaterskiBirdAnimations),
+            [94] = new(typeof(AnimatedObject), Rayman3DefinedResource.MissileMapAnimations),
+            [95] = new(typeof(AnimatedObject), Rayman3DefinedResource.SwitchBarAnimations),
+            [96] = new(typeof(AnimatedObject), Rayman3DefinedResource.PauseSelectionAnimations),
+            [97] = new(typeof(AnimatedObject), Rayman3DefinedResource.PauseCanvasAnimations),
+            [98] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossFinalBarAnimations),
+            [99] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossMachineBarAnimations),
+            [100] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossRockAndLavaBarAnimations),
+            [101] = new(typeof(AnimatedObject), Rayman3DefinedResource.BossScalemanBarAnimations),
+            [102] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageCaptureTheFlagArrowAnimations),
+            [103] = new(typeof(Playfield), Rayman3DefinedResource.MenuPlayfield),
+            [104] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageButtonSymbolAnimations),
+            [105] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuPropAnimations),
+            [106] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuStartEraseAnimations),
+            [107] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeFrameAnimations),
+            [108] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameCubeMenuAnimations),
+            [109] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuGameLogoAnimations),
+            [110] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuGameModeAnimations),
+            [111] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuLanguageListAnimations),
+            [112] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuOptionsAnimations),
+            [113] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuSlotEmptyAnimations),
+            [114] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageMenuMultiplayerConnectionAnimations),
+            [115] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerPlayersAnimations),
+            [116] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeAnimations),
+            [117] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerMapAnimations),
+            [118] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuSteamAnimations),
+            [119] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameCubeMenuLevelCheckAnimations),
+            [120] = new(typeof(AnimatedObject), Rayman3DefinedResource.CreditsAnimations),
+            [121] = new(typeof(AnimatedObject), Rayman3DefinedResource.MenuMultiplayerTypeIconAnimations),
+            [122] = new(typeof(AnimatedObject), Rayman3DefinedResource.NGageMenuMultiplayerCaptureTheFlagAnimations),
+            [123] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverRaymanAnimations),
+            [124] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverCountdownAnimations),
+            [125] = new(typeof(AnimatedObject), Rayman3DefinedResource.GameOverButterflyAnimations),
+            [126] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxCanvasAnimations),
+            [127] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxRaymanIconAnimations),
+            [128] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxLyIconAnimations),
+            [129] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxMurfyIconAnimations),
+            [130] = new(typeof(AnimatedObject), Rayman3DefinedResource.TextBoxTeensiesIconAnimations),
+            [131] = new(typeof(Playfield), Rayman3DefinedResource.IntroPlayfield),
+            [132] = new(typeof(AnimatedObject), Rayman3DefinedResource.IntroAnimations),
+            [133] = new(typeof(AnimatedObject), Rayman3DefinedResource.CaterpillarAnimations), // Unused
+            [134] = new(typeof(AnimatedObject), Rayman3DefinedResource.WaterskiSparkleAnimations),
+            [135] = new(typeof(AnimatedObject), Rayman3DefinedResource.RaymanWorldMapAnimations),
+            [136] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldMapPathAnimations),
+            [137] = new(typeof(AnimatedObject), Rayman3DefinedResource.FogAnimations),
+            [138] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldCurtainAnimations),
+            [139] = new(typeof(AnimatedObject), Rayman3DefinedResource.StoryNextTextAnimations),
+            [140] = new(typeof(AnimActor), Rayman3DefinedResource.CreditsWheelAnimActor),
+            [141] = new(typeof(TextureTable), Rayman3DefinedResource.CreditsWheelTextureTable),
+            [142] = new(typeof(PaletteTable), Rayman3DefinedResource.CreditsWheelPaletteTable),
+            [143] = new(typeof(Resource<Bitmap>), Rayman3DefinedResource.GameOverBitmap),
+            // TODO: 144-164
+            [165] = new(typeof(Resource<Palette256>), Rayman3DefinedResource.GameOverPalette),
+            // TODO: 166-186
+            [187] = new(typeof(Font), Rayman3DefinedResource.Font8),
+            [188] = new(typeof(Font), Rayman3DefinedResource.Font16),
+            [189] = new(typeof(Font), Rayman3DefinedResource.Font32),
+            // TODO: 190-464
+        };
+    }
+}

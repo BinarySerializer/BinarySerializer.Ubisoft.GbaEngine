@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace BinarySerializer.Ubisoft.GbaEngine
 {
@@ -23,19 +22,13 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             return FileFactory.Read<T>(context, GetPointer(context, index), onPreSerialize: onPreSerialize, name: name);
         }
 
-        public T ReadResource<T>(Context context, GameResource gameResource, Action<SerializerObject, T> onPreSerialize = null, string name = null)
+        public T ReadResource<T>(Context context, Enum definedResource, Action<SerializerObject, T> onPreSerialize = null, string name = null)
             where T : Resource, new()
         {
             GbaEngineSettings settings = context.GetRequiredSettings<GbaEngineSettings>();
+            int resourceId = settings.GetDefinedResourceId(definedResource);
 
-            GameResourceDefineAttribute define = gameResource.
-                GetAttributes<GameResourceDefineAttribute>().
-                FirstOrDefault(x => x.Game == settings.Game && x.Platform == settings.Platform);
-
-            if (define == null)
-                throw new ArgumentException("Enum value has no game resource define for the current game settings", nameof(gameResource));
-
-            return FileFactory.Read<T>(context, GetPointer(context, define.ResourceId), onPreSerialize: onPreSerialize, name: name);
+            return FileFactory.Read<T>(context, GetPointer(context, resourceId), onPreSerialize: onPreSerialize, name: name);
         }
 
         public override void SerializeImpl(SerializerObject s)
