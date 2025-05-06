@@ -78,16 +78,12 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public static Dictionary<int, DefinedResourceInfo<Rayman3DefinedResource>> Rayman3_NGage => new()
         {
             // 0-68 are the scenes
-            // TODO: 69
-            // TODO: 70
+            [69] = new(typeof(SoundBank), Rayman3DefinedResource.SoundBank),
+            [70] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player1RaymanPalette), // Unused
             [71] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player4RaymanPalette),
             [72] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player2RaymanPalette),
             [73] = new(typeof(Resource<Palette16>), Rayman3DefinedResource.Player3RaymanPalette),
-            // TODO: 74
-            // TODO: 75
-            // TODO: 76
-            // TODO: 77
-            // TODO: 78
+            // 74-78 are unused 16-color palettes
             [79] = new(typeof(AnimatedObject), Rayman3DefinedResource.HudAnimations),
             [80] = new(typeof(AnimatedObject), Rayman3DefinedResource.WorldDashboardAnimations),
             [81] = new(typeof(AnimatedObject), Rayman3DefinedResource.BlueLumBarAnimations),
@@ -153,13 +149,13 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [141] = new(typeof(TextureTable), Rayman3DefinedResource.CreditsWheelTextureTable),
             [142] = new(typeof(PaletteTable), Rayman3DefinedResource.CreditsWheelPaletteTable),
             [143] = new(typeof(Resource<Bitmap>), Rayman3DefinedResource.GameOverBitmap),
-            // TODO: 144-164
+            // 144-164 are story bitmaps
             [165] = new(typeof(Resource<Palette256>), Rayman3DefinedResource.GameOverPalette),
-            // TODO: 166-186
+            // 166-186 are story bitmap palettes
             [187] = new(typeof(Font), Rayman3DefinedResource.Font8),
             [188] = new(typeof(Font), Rayman3DefinedResource.Font16),
             [189] = new(typeof(Font), Rayman3DefinedResource.Font32),
-            // TODO: 190-464
+            // 190-464 are sounds
         };
     }
 }
