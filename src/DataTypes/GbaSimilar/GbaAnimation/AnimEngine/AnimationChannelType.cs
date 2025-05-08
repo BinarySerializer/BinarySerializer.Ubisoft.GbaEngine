@@ -8,5 +8,6 @@
         DisplacementVector = 3,
         AttackBox = 4,
         VulnerabilityBox = 5,
+        VulnerabilityBox_Prototypes = 8,
     }
 }

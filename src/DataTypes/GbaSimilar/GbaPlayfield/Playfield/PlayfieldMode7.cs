@@ -37,7 +37,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public void SerializeDependencies(SerializerObject s, Resource playfieldResource)
         {
-            TileKit = playfieldResource.SerializeDependency<TileKit>(s, TileKit, Idx_TileKit, name: nameof(TileKit));
+            TileKit = playfieldResource.SerializeDependency<TileKit>(s, TileKit, Idx_TileKit, onPreSerialize: x => x.Pre_IsMode7 = true, name: nameof(TileKit));
             TileMappingTable = playfieldResource.SerializeDependency<TileMappingTable>(s, TileMappingTable, Idx_TileMappingTable, name: nameof(TileMappingTable));
             Layers = playfieldResource.SerializeDependencyArray<GameLayer>(s, Layers, Idx_Layers, LayersCount, name: nameof(Layers));
         }

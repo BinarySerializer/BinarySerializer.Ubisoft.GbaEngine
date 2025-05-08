@@ -12,8 +12,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public FixedPointInt8 AlphaCoeff { get; set; } // For some reason 15 (0,9375) seems to be the max value here, but it should be 16 (1,00)
         public bool IsDynamic { get; set; }
         public bool Is8Bit { get; set; }
-        public byte TileKitIndex { get; set; } // ? - unused in Rayman 3
-        public byte Byte_0F { get; set; }
+        public byte[] UnusedBytes { get; set; }
         public MapTile[] TileMap { get; set; }
 
         private static readonly SerializeInto<MapTile> SerializeIntoMapTile_Dynamic4bpp = (s, x) =>
@@ -45,14 +44,24 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public override void SerializeImpl(SerializerObject s)
         {
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
+
             LayerId = s.Serialize<byte>(LayerId, name: nameof(LayerId));
             ClusterIndex = s.Serialize<byte>(ClusterIndex, name: nameof(ClusterIndex));
             HasAlphaBlending = s.Serialize<bool>(HasAlphaBlending, name: nameof(HasAlphaBlending));
             AlphaCoeff = s.SerializeObject<FixedPointInt8>(AlphaCoeff, x => x.Pre_PointPosition = 4, name: nameof(AlphaCoeff));
             IsDynamic = s.Serialize<bool>(IsDynamic, name: nameof(IsDynamic));
-            Is8Bit = s.Serialize<bool>(Is8Bit, name: nameof(Is8Bit));
-            TileKitIndex = s.Serialize<byte>(TileKitIndex, name: nameof(TileKitIndex));
-            Byte_0F = s.Serialize<byte>(Byte_0F, name: nameof(Byte_0F));
+
+            if (settings.Game == Game.Rayman3_20020118_DemoRLE)
+            {
+                Is8Bit = true;
+                UnusedBytes = s.SerializeArray<byte>(UnusedBytes, 3, name: nameof(UnusedBytes));
+            }
+            else
+            {
+                Is8Bit = s.Serialize<bool>(Is8Bit, name: nameof(Is8Bit));
+                UnusedBytes = s.SerializeArray<byte>(UnusedBytes, 2, name: nameof(UnusedBytes));
+            }
 
             IStreamEncoder encoder = Pre_GameLayer.IsCompressed ? new LZSSEncoder() : null;
             SerializeInto<MapTile> serializeInto;

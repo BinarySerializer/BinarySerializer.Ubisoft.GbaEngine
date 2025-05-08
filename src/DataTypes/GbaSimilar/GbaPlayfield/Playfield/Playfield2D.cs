@@ -18,13 +18,19 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
+
             Idx_TileKit = s.Serialize<byte>(Idx_TileKit, name: nameof(Idx_TileKit));
             Idx_TileMappingTable = s.Serialize<byte>(Idx_TileMappingTable, name: nameof(Idx_TileMappingTable));
             DefaultPalette = s.Serialize<byte>(DefaultPalette, name: nameof(DefaultPalette));
             ClustersCount = s.Serialize<byte>(ClustersCount, name: nameof(ClustersCount));
             LayersCount = s.Serialize<byte>(LayersCount, name: nameof(LayersCount));
             Idx_Clusters = s.SerializeArray<byte>(Idx_Clusters, 4, name: nameof(Idx_Clusters));
-            Idx_Layers = s.SerializeArray<byte>(Idx_Layers, 6, name: nameof(Idx_Layers));
+
+            if (settings.Game is Game.Rayman3_20020118_DemoRLE or Game.Rayman3_20020301_PreAlpha)
+                Idx_Layers = s.SerializeArray<byte>(Idx_Layers, 5, name: nameof(Idx_Layers));
+            else
+                Idx_Layers = s.SerializeArray<byte>(Idx_Layers, 6, name: nameof(Idx_Layers));
         }
 
         public void SerializeDependencies(SerializerObject s, Resource playfieldResource)

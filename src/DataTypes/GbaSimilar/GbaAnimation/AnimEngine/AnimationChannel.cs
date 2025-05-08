@@ -12,6 +12,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public byte SpriteShape { get; set; }
         public byte SpriteSize { get; set; }
         public OBJ_ATTR_ObjectMode ObjectMode { get; set; }
+        public byte UnusedValue { get; set; }
         public ushort TileIndex { get; set; }
         public byte PalIndex { get; set; }
         public bool ReusesTiles { get; set; } // Same tiles as previous channel
@@ -30,10 +31,29 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public override void SerializeImpl(SerializerObject s)
         {
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
+
+            SignedNumberRepresentation signedNumberRepresentation = settings.Game is 
+                Game.Rayman3_20020118_DemoRLE or 
+                Game.Rayman3_20020301_PreAlpha or 
+                Game.Rayman3_20020418_NintendoE3Approval
+                ? SignedNumberRepresentation.SignMagnitude
+                : SignedNumberRepresentation.TwosComplement;
+
             s.DoBits<ushort>(b =>
             {
-                YPosition = b.SerializeBits<short>(YPosition, 8, sign: SignedNumberRepresentation.TwosComplement, name: nameof(YPosition));
-                ObjectMode = b.SerializeBits<OBJ_ATTR_ObjectMode>(ObjectMode, 2, name: nameof(ObjectMode));
+                YPosition = b.SerializeBits<short>(YPosition, 8, sign: signedNumberRepresentation, name: nameof(YPosition));
+
+                if (settings.Game == Game.Rayman3_20020118_DemoRLE)
+                {
+                    ObjectMode = OBJ_ATTR_ObjectMode.REG;
+                    UnusedValue = b.SerializeBits<byte>(UnusedValue, 2, name: nameof(UnusedValue));
+                }
+                else
+                {
+                    ObjectMode = b.SerializeBits<OBJ_ATTR_ObjectMode>(ObjectMode, 2, name: nameof(ObjectMode));
+                }
+
                 ChannelType = b.SerializeBits<AnimationChannelType>(ChannelType, 4, name: nameof(ChannelType));
                 SpriteShape = b.SerializeBits<byte>(SpriteShape, 2, name: nameof(SpriteShape));
             });
@@ -50,7 +70,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
                     s.DoBits<ushort>(b =>
                     {
-                        XPosition = b.SerializeBits<short>(XPosition, 9, sign: SignedNumberRepresentation.TwosComplement, name: nameof(XPosition));
+                        XPosition = b.SerializeBits<short>(XPosition, 9, sign: signedNumberRepresentation, name: nameof(XPosition));
 
                         if (ObjectMode == OBJ_ATTR_ObjectMode.REG)
                         {
@@ -82,7 +102,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                     DisplacementVector = s.SerializeObject<Vector2>(DisplacementVector, name: nameof(DisplacementVector));
                     break;
 
-                case AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox:
+                case AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox or AnimationChannelType.VulnerabilityBox_Prototypes:
                     Box = s.SerializeObject<ChannelBox>(Box, name: nameof(Box));
                     break;
 

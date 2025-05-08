@@ -67,7 +67,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         {
             Playfield = SerializeDependency<Playfield>(s, Playfield, Idx_PlayField, name: nameof(Playfield));
 
-            foreach (Actor actor in AlwaysActors.Concat(Actors))
+            foreach (Actor actor in AlwaysActors.Concat(Actors).Concat(ProjectileActors))
                 actor.Model = SerializeDependency<ActorModel>(s, actor.Model, actor.Idx_ActorModel, name: nameof(actor.Model));
 
             foreach (Captor captor in Captors)
