@@ -1,4 +1,6 @@
-﻿namespace BinarySerializer.Ubisoft.GbaEngine
+﻿using System;
+
+namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class TileKit : Resource
     {
@@ -33,6 +35,7 @@
                 Idx_Palettes = s.SerializeArray<byte>(Idx_Palettes, 1, name: nameof(Idx_Palettes));
                 Idx_AnimatedTileKit = s.Serialize<byte>(Idx_AnimatedTileKit, name: nameof(Idx_AnimatedTileKit));
 
+                Tiles4bpp = Array.Empty<byte>();
                 Tiles8bpp = s.SerializeArray<byte>(Tiles8bpp, TilesCount8bpp * 0x40, name: nameof(Tiles8bpp));
             }
             else if (settings.Game == Game.Rayman3_20020301_PreAlpha || (settings.Game == Game.Rayman3_20020418_NintendoE3Approval && Pre_IsMode7))
