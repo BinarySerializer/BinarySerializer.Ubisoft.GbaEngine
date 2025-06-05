@@ -22,7 +22,6 @@
         Rayman3_Act4,
         Rayman3_Act5,
         Rayman3_Act6,
-        Rayman3_SinglePakOffsetTable,
         Rayman3_GameOverBitmap,
         Rayman3_GameOverPalette,
         Rayman3_GameCubeMenuBitmap,
@@ -33,5 +32,6 @@
         Rayman3_NewPower4Replay,
         Rayman3_NewPower5Replay,
         Rayman3_NewPower6Replay,
+        Rayman3_SinglePakOffsetTable,
     }
 }

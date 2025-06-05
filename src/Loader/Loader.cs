@@ -42,6 +42,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public JoyPadReplayData Rayman3_NewPower4Replay { get; set; }
         public JoyPadReplayData Rayman3_NewPower5Replay { get; set; }
         public JoyPadReplayData Rayman3_NewPower6Replay { get; set; }
+        public OffsetTable Rayman3_SinglePakOffsetTable { get; set; }
 
         protected void LoadFile(string fileName, long? address, bool cache)
         {
@@ -178,6 +179,11 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 Rayman3_NewPower4Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower4Replay, file), name: nameof(Rayman3_NewPower4Replay));
                 Rayman3_NewPower5Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower5Replay, file), name: nameof(Rayman3_NewPower5Replay));
                 Rayman3_NewPower6Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower6Replay, file), name: nameof(Rayman3_NewPower6Replay));
+
+                if (settings.Platform == Platform.GBA)
+                {
+                    Rayman3_SinglePakOffsetTable = FileFactory.Read<OffsetTable>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_SinglePakOffsetTable, file), name: nameof(Rayman3_SinglePakOffsetTable));
+                }
             }
         }
     }
