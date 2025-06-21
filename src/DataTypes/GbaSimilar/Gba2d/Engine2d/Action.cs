@@ -14,7 +14,7 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            Box = s.SerializeObject<EngineBox>(Box, name: nameof(Box));
+            Box = s.SerializeInto<EngineBox>(Box, EngineBox.SerializeInto, name: nameof(Box));
             AnimationIndex = s.Serialize<byte>((byte)AnimationIndex, name: nameof(AnimationIndex));
             Flags = s.Serialize<ActionFlags>(Flags, name: nameof(Flags));
             MechModelType = s.SerializeNullable<byte>(MechModelType, name: nameof(MechModelType));

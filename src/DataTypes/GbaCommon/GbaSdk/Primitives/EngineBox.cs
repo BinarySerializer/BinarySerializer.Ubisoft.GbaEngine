@@ -1,18 +1,28 @@
 ﻿namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    public class EngineBox : BinarySerializable
+    public readonly struct EngineBox
     {
-        public sbyte Top { get; set; }
-        public sbyte Left { get; set; }
-        public sbyte Bottom { get; set; }
-        public sbyte Right { get; set; }
-
-        public override void SerializeImpl(SerializerObject s)
+        public EngineBox(sbyte top, sbyte left, sbyte bottom, sbyte right)
         {
-            Top = s.Serialize<sbyte>(Top, name: nameof(Top));
-            Left = s.Serialize<sbyte>(Left, name: nameof(Left));
-            Bottom = s.Serialize<sbyte>(Bottom, name: nameof(Bottom));
-            Right = s.Serialize<sbyte>(Right, name: nameof(Right));
+            Top = top;
+            Left = left;
+            Bottom = bottom;
+            Right = right;
         }
+
+        public sbyte Top { get; }
+        public sbyte Left { get; }
+        public sbyte Bottom { get; }
+        public sbyte Right { get; }
+
+        public static SerializeInto<EngineBox> SerializeInto = (s, x) =>
+        {
+            sbyte top = s.Serialize<sbyte>(x.Top, name: nameof(Top));
+            sbyte left = s.Serialize<sbyte>(x.Left, name: nameof(Left));
+            sbyte bottom = s.Serialize<sbyte>(x.Bottom, name: nameof(Bottom));
+            sbyte right = s.Serialize<sbyte>(x.Right, name: nameof(Right));
+
+            return new EngineBox(top, left, bottom, right);
+        };
     }
 }

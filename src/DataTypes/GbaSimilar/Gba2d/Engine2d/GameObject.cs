@@ -15,7 +15,7 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            Pos = s.SerializeObject<Vector2>(Pos, name: nameof(Pos));
+            Pos = s.SerializeInto<Vector2>(Pos, Vector2.SerializeInto, name: nameof(Pos));
             s.DoBits<byte>(b =>
             {
                 IsEnabled = b.SerializeBits<bool>(IsEnabled, 1, name: nameof(IsEnabled));

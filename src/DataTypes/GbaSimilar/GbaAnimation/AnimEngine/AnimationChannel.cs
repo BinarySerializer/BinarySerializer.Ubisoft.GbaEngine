@@ -2,6 +2,7 @@
 
 namespace BinarySerializer.Ubisoft.GbaEngine
 {
+    // NOTE: Could turn into a struct, but it's pretty big (around 36 bytes) so not really worth it for performance
     public class AnimationChannel : BinarySerializable
     {
         public AnimationChannelType ChannelType { get; set; }
@@ -99,11 +100,11 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                     break;
 
                 case AnimationChannelType.DisplacementVector:
-                    DisplacementVector = s.SerializeObject<Vector2>(DisplacementVector, name: nameof(DisplacementVector));
+                    DisplacementVector = s.SerializeInto<Vector2>(DisplacementVector, Vector2.SerializeInto, name: nameof(DisplacementVector));
                     break;
 
                 case AnimationChannelType.AttackBox or AnimationChannelType.VulnerabilityBox or AnimationChannelType.VulnerabilityBox_Prototypes:
-                    Box = s.SerializeObject<ChannelBox>(Box, name: nameof(Box));
+                    Box = s.SerializeInto<ChannelBox>(Box, ChannelBox.SerializeInto, name: nameof(Box));
                     break;
 
                 default:

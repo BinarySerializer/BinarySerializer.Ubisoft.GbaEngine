@@ -22,9 +22,9 @@
             AlphaCoeff = s.SerializeObject<FixedPointInt8>(AlphaCoeff, x => x.Pre_PointPosition = 4, name: nameof(AlphaCoeff));
             BackgroundSize = s.Serialize<byte>(BackgroundSize, name: nameof(BackgroundSize));
             RotationFactor = s.SerializeObject<FixedPointInt32>(RotationFactor, x => x.Pre_PointPosition = 16, name: nameof(RotationFactor));
-            Vector2_10 = s.SerializeObject<Vector2>(Vector2_10, name: nameof(Vector2_10));
-            MapDimensions = s.SerializeObject<Vector2>(MapDimensions, name: nameof(MapDimensions));
-            MapPosition = s.SerializeObject<Vector2>(MapPosition, name: nameof(MapPosition));
+            Vector2_10 = s.SerializeInto<Vector2>(Vector2_10, Vector2.SerializeInto, name: nameof(Vector2_10));
+            MapDimensions = s.SerializeInto<Vector2>(MapDimensions, Vector2.SerializeInto, name: nameof(MapDimensions));
+            MapPosition = s.SerializeInto<Vector2>(MapPosition, Vector2.SerializeInto, name: nameof(MapPosition));
             MapBlock = s.Serialize<byte>(MapBlock, name: nameof(MapBlock));
             Priority = s.Serialize<byte>(Priority, name: nameof(Priority));
             Byte_1E = s.Serialize<byte>(Byte_1E, name: nameof(Byte_1E));

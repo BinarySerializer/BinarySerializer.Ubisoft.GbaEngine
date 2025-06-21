@@ -24,8 +24,8 @@
 
         public override void SerializeResource(SerializerObject s)
         {
-            ViewBox = s.SerializeObject<EngineBox>(ViewBox, name: nameof(ViewBox));
-            DetectionBox = s.SerializeObject<EngineBox>(DetectionBox, name: nameof(DetectionBox));
+            ViewBox = s.SerializeInto<EngineBox>(ViewBox, EngineBox.SerializeInto, name: nameof(ViewBox));
+            DetectionBox = s.SerializeInto<EngineBox>(DetectionBox, EngineBox.SerializeInto, name: nameof(DetectionBox));
 
             Idx_AnimatedObject = s.Serialize<byte>(Idx_AnimatedObject, name: nameof(Idx_AnimatedObject));
             s.DoBits<byte>(b =>
