@@ -54,7 +54,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             {
                 s.Align();
                 OffsetTable = s.SerializeObject<OffsetTable>(OffsetTable, name: nameof(OffsetTable));
-                _serializedDependencies = new bool[OffsetTable.Count];
+                _serializedDependencies = OffsetTable.Count == 0 ? Array.Empty<bool>() : new bool[OffsetTable.Count];
             });
         }
 
@@ -65,7 +65,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 s.Align();
                 int count = GetGameCubeOffsetsCount(s);
                 GameCubeOffsetTable = s.SerializeObject<GameCubeOffsetTable>(GameCubeOffsetTable, x => x.Pre_Count = count, name: nameof(GameCubeOffsetTable));
-                _serializedDependencies = new bool[count];
+                _serializedDependencies = count == 0 ? Array.Empty<bool>() : new bool[count];
             });
         }
 
