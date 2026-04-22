@@ -23,7 +23,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 bool flipX = b.SerializeBits<bool>(x.FlipX, 1, name: nameof(x.FlipX));
                 byte paletteIndex = b.SerializeBits<byte>(x.PaletteIndex, 4, name: nameof(x.PaletteIndex));
 
-                x = new MapTile(tileIndex, flipX, false, paletteIndex);
+                x = new MapTile(tileIndex, paletteIndex, flipX);
             });
 
             return x;
@@ -36,7 +36,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                 bool flipX = b.SerializeBits<bool>(x.FlipX, 1, name: nameof(x.FlipX));
                 bool flipY = b.SerializeBits<bool>(x.FlipY, 1, name: nameof(x.FlipY));
 
-                x = new MapTile(tileIndex, flipX, flipY, 0);
+                x = new MapTile(tileIndex, 0, flipX, flipY);
             });
 
             return x;
