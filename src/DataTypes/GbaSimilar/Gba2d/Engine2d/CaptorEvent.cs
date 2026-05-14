@@ -4,13 +4,13 @@
     {
         public ushort MessageId { get; set; }
         public ushort Param { get; set; }
-        public short TriggerIterationIndex { get; set; }
+        public short Delay { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
             MessageId = s.Serialize<ushort>(MessageId, name: nameof(MessageId));
             Param = s.Serialize<ushort>(Param, name: nameof(Param));
-            TriggerIterationIndex = s.Serialize<short>(TriggerIterationIndex, name: nameof(TriggerIterationIndex));
+            Delay = s.Serialize<short>(Delay, name: nameof(Delay));
         }
     }
 }
