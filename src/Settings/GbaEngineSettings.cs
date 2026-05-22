@@ -9,7 +9,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Game Game { get; set; }
         public Platform Platform { get; set; }
 
-        public OffsetTable RootTable { get; set; }
+        public OffsetTable RootResourceTable { get; set; }
         public Dictionary<Enum, int> DefinedResources { get; set; }
         public Dictionary<int, Type> DefinedResourceTypes { get; set; }
 

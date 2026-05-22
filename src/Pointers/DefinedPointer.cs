@@ -10,10 +10,10 @@
         SoundBank,
 
         // N-Gage
-        NGage_SongTable,
+        NGage_SoundEvents,
 
         // Rayman 3
-        Rayman3_LocalizedTextBanks,
+        Rayman3_TextBanks,
         Rayman3_LevelInfo,
         Rayman3_NGageSplashScreens,
         Rayman3_Act1,

@@ -21,7 +21,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             }
             else
             {
-                OffsetTable rootTable = context.GetRequiredSettings<GbaEngineSettings>().RootTable;
+                OffsetTable rootTable = context.GetRequiredSettings<GbaEngineSettings>().RootResourceTable;
                 return rootTable.Offset + Offsets[index] * 4;
             }
         }

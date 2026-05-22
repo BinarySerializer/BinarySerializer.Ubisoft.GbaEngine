@@ -41,9 +41,9 @@ namespace BinarySerializer.Ubisoft.GbaEngine.Rayman3
                 UnusedMusicSongEvent = s.Serialize<Rayman3SoundEvent>(UnusedMusicSongEvent, name: nameof(UnusedMusicSongEvent));
                 s.SerializePadding(2, logIfNotNull: true);
 
-                s.DoAt(settings.RootTable.GetPointer(s.Context, BitmapResourceId), 
+                s.DoAt(settings.RootResourceTable.GetPointer(s.Context, BitmapResourceId), 
                     () => Bitmap = s.SerializeObject<Bitmap>(Bitmap, name: nameof(Bitmap)));
-                s.DoAt(settings.RootTable.GetPointer(s.Context, PaletteResourceId), 
+                s.DoAt(settings.RootResourceTable.GetPointer(s.Context, PaletteResourceId), 
                     () => Palette = s.SerializeObject<Palette256>(Palette, name: nameof(Palette)));
             }
             else

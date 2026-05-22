@@ -1,49 +1,21 @@
 ﻿using System;
 using System.IO;
 using BinarySerializer.Nintendo.GBA;
-using BinarySerializer.Ubisoft.GbaEngine.Rayman3;
 
 namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    public abstract class Loader
+    public class Loader
     {
-        protected Loader(Context context)
+        public Loader(Context context)
         {
             Context = context;
         }
 
         public Context Context { get; }
+        public BinaryFile RomFile { get; set; }
+        public ROMHeader RomHeader { get; set; }
 
-        // Global
-        public OffsetTable GameOffsetTable { get; protected set; }
-        public Font Font8 { get; set; }
-        public Font Font16 { get; set; }
-        public Font Font32 { get; set; }
-        public SoundBank SoundBank { get; set; }
-        public NGageSoundEvent[] NGage_SoundEvents { get; set; }
-
-        // Rayman 3
-        public LocalizedTextBanks Rayman3_LocalizedTextBanks { get; protected set; }
-        public LevelInfo[] Rayman3_LevelInfo { get; protected set; }
-        public Act Rayman3_NGageSplashScreens { get; protected set; }
-        public Act Rayman3_Act1 { get; protected set; }
-        public Act Rayman3_Act2 { get; protected set; }
-        public Act Rayman3_Act3 { get; protected set; }
-        public Act Rayman3_Act4 { get; protected set; }
-        public Act Rayman3_Act5 { get; protected set; }
-        public Act Rayman3_Act6 { get; protected set; }
-        public Bitmap Rayman3_GameOverBitmap { get; set; }
-        public Palette256 Rayman3_GameOverPalette { get; set; }
-        public Bitmap Rayman3_GameCubeMenuBitmap { get; set; }
-        public Palette256 Rayman3_GameCubeMenuPalette { get; set; }
-        public JoyPadReplayData Rayman3_NewPower1Replay { get; set; }
-        public JoyPadReplayData Rayman3_NewPower2Replay { get; set; }
-        public JoyPadReplayData Rayman3_NewPower3Replay { get; set; }
-        public JoyPadReplayData Rayman3_NewPower4Replay { get; set; }
-        public JoyPadReplayData Rayman3_NewPower5Replay { get; set; }
-        public JoyPadReplayData Rayman3_NewPower6Replay { get; set; }
-
-        protected void LoadFile(string fileName, long? address, bool cache)
+        protected BinaryFile LoadFile(string fileName, long? address, bool cache)
         {
             if (cache)
             {
@@ -58,127 +30,130 @@ namespace BinarySerializer.Ubisoft.GbaEngine
                         throw new EndOfStreamException();
                 }
 
+                MemoryStream memoryStream = new(romBuffer);
+
                 if (address != null)
-                    Context.AddFile(new MemoryMappedStreamFile(Context, fileName, address.Value, new MemoryStream(romBuffer), mode: VirtualFileMode.Maintain));
-                else    
-                    Context.AddFile(new StreamFile(Context, fileName, new MemoryStream(romBuffer), allowLocalPointers: true, mode: VirtualFileMode.Maintain));
+                    return Context.AddFile(new MemoryMappedStreamFile(Context, fileName, address.Value, memoryStream, mode: VirtualFileMode.Maintain));
+                else
+                    return Context.AddFile(new StreamFile(Context, fileName, memoryStream, allowLocalPointers: true, mode: VirtualFileMode.Maintain));
             }
             else
             {
                 if (address != null)
-                    Context.AddFile(new MemoryMappedFile(Context, fileName, address.Value));
+                    return Context.AddFile(new MemoryMappedFile(Context, fileName, address.Value));
                 else
-                    Context.AddFile(new LinearFile(Context, fileName));
+                    return Context.AddFile(new LinearFile(Context, fileName));
             }
         }
 
-        protected void LoadExeData(BinaryFile file)
+        public GbaEngineSettings GetSettings() => Context.GetRequiredSettings<GbaEngineSettings>();
+
+        public void LoadRom(string romFileName, bool cache)
         {
-            GbaEngineSettings settings = Context.GetRequiredSettings<GbaEngineSettings>();
+            // Load the ROM file
+            RomFile = LoadFile(romFileName, Constants.Address_ROM, cache);
 
-            if (settings.Platform == Platform.GBA)
+            // Read the ROM header
+            RomHeader = FileFactory.Read<ROMHeader>(Context, romFileName);
+        }
+
+        public void DefinePointers()
+        {
+            GbaEngineSettings settings = GetSettings();
+            Context.AddPreDefinedPointers(DefinedPointers.GetPointers(RomHeader, settings.Platform, settings.Game, true));
+        }
+
+        public void DefineResources()
+        {
+            GbaEngineSettings settings = GetSettings();
+            settings.SetDefinedResources(settings.Game switch
             {
-                Font8 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font8, file), name: nameof(Font8));
-                Font16 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font16, file), name: nameof(Font16));
-                Font32 = FileFactory.Read<Font>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Font32, file), name: nameof(Font32));
+                Game.Rayman3 when settings.Platform == Platform.GBA => DefinedResources.Rayman3_GBA,
+                Game.Rayman3 when settings.Platform == Platform.NGage => DefinedResources.Rayman3_NGage,
+                _ => throw new InvalidOperationException($"Invalid platform {settings.Platform}")
+            });
+        }
 
-                SoundBank = GameOffsetTable.ReadResource<SoundBank>(Context, Rayman3DefinedResource.SoundBank, name: nameof(SoundBank));
-            }
-            else if (settings.Platform == Platform.NGage)
+        public virtual void LoadResourceTable()
+        {
+            GbaEngineSettings settings = GetSettings();
+            settings.RootResourceTable = ReadFromExe<OffsetTable>(DefinedPointer.GameOffsetTable, name: "ResourceTable");
+        }
+
+        public T ReadFromExe<T>(DefinedPointer definedPointer, Action<T> onPreSerialize = null, string name = null)
+            where T : BinarySerializable, new()
+        {
+            return FileFactory.Read<T>(
+                context: Context,
+                offset: Context.GetRequiredPreDefinedPointer(definedPointer, RomFile),
+                onPreSerialize: onPreSerialize == null ? null : (_, obj) => onPreSerialize(obj),
+                name: name ?? definedPointer.ToString());
+        }
+        
+        public T ReadResource<T>(int id, string name = null)
+            where T : Resource, new()
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.RootResourceTable.ReadResource<T>(Context, id, name: name ?? $"Resource{id}");
+        }
+        public T ReadResource<T>(Rayman3DefinedResource definedResource, string name = null)
+            where T : Resource, new()
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.RootResourceTable.ReadResource<T>(Context, definedResource, name: name ?? definedResource.ToString());
+        }
+
+        public Stream ReadResourceStream(int id, string name = null)
+        {
+            RawResource res = ReadResource<RawResource>(id, name);
+            return new MemoryStream(res.RawData);
+        }
+        public Stream LoadResourceStream(Rayman3DefinedResource definedResource, string name = null)
+        {
+            RawResource res = ReadResource<RawResource>(definedResource, name);
+            return new MemoryStream(res.RawData);
+        }
+
+        public Scene2D ReadScene(int id)
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.RootResourceTable.ReadResource<Scene2D>(Context, id, name: $"Scene{id}");
+        }
+
+        public SoundBank ReadSoundBank()
+        {
+            return ReadResource<SoundBank>(Rayman3DefinedResource.SoundBank, name: nameof(SoundBank));
+        }
+
+        public Font ReadFont8()
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.Platform switch
             {
-                Font8 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font8, name: nameof(Font8)).Value;
-                Font16 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font16, name: nameof(Font16)).Value;
-                Font32 = GameOffsetTable.ReadResource<Resource<Font>>(Context, Rayman3DefinedResource.Font32, name: nameof(Font32)).Value;
-
-                NGage_SoundEvents = FileFactory.Read<ObjectArray<NGageSoundEvent>>(
-                    Context, 
-                    Context.GetRequiredPreDefinedPointer(DefinedPointer.NGage_SongTable, file), 
-                    onPreSerialize: (_, x) => x.Pre_Length = 515, 
-                    name: nameof(NGage_SoundEvents));
-            }
-
-            if (settings.Game == Game.Rayman3)
+                Platform.GBA => ReadFromExe<Font>(DefinedPointer.Font8, name: "Font8"),
+                Platform.NGage => ReadResource<Resource<Font>>(Rayman3DefinedResource.Font8, name: "Font8").Value,
+                _ => throw new InvalidOperationException($"Invalid platform {settings.Platform}")
+            };
+        }
+        public Font ReadFont16()
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.Platform switch
             {
-                Rayman3_LocalizedTextBanks = FileFactory.Read<LocalizedTextBanks>(
-                    Context,
-                    Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_LocalizedTextBanks, file),
-                    (_, obj) =>
-                    {
-                        obj.Pre_LanguagesCount = settings.Platform switch
-                        {
-                            Platform.GBA => 10,
-                            Platform.NGage => 6,
-                            _ => 0,
-                        };
-                        obj.Pre_TextBanksCounts = settings.Platform switch
-                        {
-                            Platform.GBA =>   new[] { 17, 6, 9, 2, 2, 3, 2, 7, 35, 13, 1, 18 },
-                            Platform.NGage => new[] { 17, 6, 9, 2, 2, 3, 2, 7, 35, 13, 1, 40 },
-                            _ => Array.Empty<int>(),
-                        };
-                    },
-                    name: nameof(Rayman3_LocalizedTextBanks));
-
-                Rayman3_LevelInfo = FileFactory.Read<ObjectArray<LevelInfo>>(
-                    Context,
-                    Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_LevelInfo, file),
-                    (_, obj) => obj.Pre_Length = settings.Platform switch
-                    {
-                        Platform.GBA => 65,
-                        Platform.NGage => 71,
-                        _ => 0,
-                    },
-                    name: nameof(Rayman3_LevelInfo));
-
-                if (settings.Platform == Platform.NGage)
-                    Rayman3_NGageSplashScreens = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NGageSplashScreens, file), name: nameof(Rayman3_NGageSplashScreens));
-
-                Rayman3_Act1 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act1, file), name: nameof(Rayman3_Act1));
-                Rayman3_Act2 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act2, file), name: nameof(Rayman3_Act2));
-                Rayman3_Act3 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act3, file), name: nameof(Rayman3_Act3));
-                Rayman3_Act4 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act4, file), name: nameof(Rayman3_Act4));
-                Rayman3_Act5 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act5, file), name: nameof(Rayman3_Act5));
-                Rayman3_Act6 = FileFactory.Read<Act>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_Act6, file), name: nameof(Rayman3_Act6));
-
-                if (settings.Platform == Platform.GBA)
-                {
-                    Rayman3_GameOverBitmap = FileFactory.Read<Bitmap>(
-                        context: Context, 
-                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameOverBitmap, file), 
-                        name: nameof(Rayman3_GameOverBitmap));
-                    Rayman3_GameOverPalette = FileFactory.Read<Palette256>(
-                        context: Context, 
-                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameOverPalette, file),
-                        name: nameof(Rayman3_GameOverPalette));
-
-                    Rayman3_GameCubeMenuBitmap = FileFactory.Read<Bitmap>(
-                        context: Context,
-                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameCubeMenuBitmap, file),
-                        name: nameof(Rayman3_GameCubeMenuBitmap));
-                    Rayman3_GameCubeMenuPalette = FileFactory.Read<Palette256>(
-                        context: Context,
-                        offset: Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_GameCubeMenuPalette, file),
-                        name: nameof(Rayman3_GameCubeMenuPalette));
-                }
-                else if (settings.Platform == Platform.NGage)
-                {
-                    Rayman3_GameOverBitmap = GameOffsetTable.ReadResource<Resource<Bitmap>>(
-                        context: Context, 
-                        definedResource: Rayman3DefinedResource.GameOverBitmap, 
-                        name: nameof(Rayman3_GameOverBitmap)).Value;
-                    Rayman3_GameOverPalette = GameOffsetTable.ReadResource<Resource<Palette256>>(
-                        context: Context,
-                        definedResource: Rayman3DefinedResource.GameOverPalette, 
-                        name: nameof(Rayman3_GameOverPalette)).Value;
-                }
-
-                Rayman3_NewPower1Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower1Replay, file), name: nameof(Rayman3_NewPower1Replay));
-                Rayman3_NewPower2Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower2Replay, file), name: nameof(Rayman3_NewPower2Replay));
-                Rayman3_NewPower3Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower3Replay, file), name: nameof(Rayman3_NewPower3Replay));
-                Rayman3_NewPower4Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower4Replay, file), name: nameof(Rayman3_NewPower4Replay));
-                Rayman3_NewPower5Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower5Replay, file), name: nameof(Rayman3_NewPower5Replay));
-                Rayman3_NewPower6Replay = FileFactory.Read<JoyPadReplayData>(Context, Context.GetRequiredPreDefinedPointer(DefinedPointer.Rayman3_NewPower6Replay, file), name: nameof(Rayman3_NewPower6Replay));
-            }
+                Platform.GBA => ReadFromExe<Font>(DefinedPointer.Font16, name: "Font16"),
+                Platform.NGage => ReadResource<Resource<Font>>(Rayman3DefinedResource.Font16, name: "Font16").Value,
+                _ => throw new InvalidOperationException($"Invalid platform {settings.Platform}")
+            };
+        }
+        public Font ReadFont32()
+        {
+            GbaEngineSettings settings = GetSettings();
+            return settings.Platform switch
+            {
+                Platform.GBA => ReadFromExe<Font>(DefinedPointer.Font32, name: "Font32"),
+                Platform.NGage => ReadResource<Resource<Font>>(Rayman3DefinedResource.Font32, name: "Font32").Value,
+                _ => throw new InvalidOperationException($"Invalid platform {settings.Platform}")
+            };
         }
     }
 }

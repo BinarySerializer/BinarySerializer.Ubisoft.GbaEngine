@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using BinarySerializer.Nintendo.GBA;
 
 namespace BinarySerializer.Ubisoft.GbaEngine
 {
@@ -11,7 +13,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Font16] = 0x080ea4c8,
             [DefinedPointer.Font32] = 0x080eb3c4,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x080d4058,
+            [DefinedPointer.Rayman3_TextBanks] = 0x080d4058,
             [DefinedPointer.Rayman3_LevelInfo] = 0x080d4080,
             [DefinedPointer.Rayman3_Act1] = 0x080d6e0c,
             [DefinedPointer.Rayman3_Act2] = 0x080d6e48,
@@ -39,7 +41,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Font16] = 0x080ea468,
             [DefinedPointer.Font32] = 0x080eb364,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x080d40b4,
+            [DefinedPointer.Rayman3_TextBanks] = 0x080d40b4,
             [DefinedPointer.Rayman3_LevelInfo] = 0x080d40dc,
             [DefinedPointer.Rayman3_Act1] = 0x080d6dac,
             [DefinedPointer.Rayman3_Act2] = 0x080d6de8,
@@ -67,7 +69,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Font16] = 0x081420ec,
             [DefinedPointer.Font32] = 0x08142fe8,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x0812bc40,
+            [DefinedPointer.Rayman3_TextBanks] = 0x0812bc40,
             [DefinedPointer.Rayman3_LevelInfo] = 0x0812bc68,
             [DefinedPointer.Rayman3_Act1] = 0x0812ea0c,
             [DefinedPointer.Rayman3_Act2] = 0x0812ea48,
@@ -95,7 +97,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Font16] = 0x0814207c,
             [DefinedPointer.Font32] = 0x08142f78,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x0812bca4,
+            [DefinedPointer.Rayman3_TextBanks] = 0x0812bca4,
             [DefinedPointer.Rayman3_LevelInfo] = 0x0812bccc,
             [DefinedPointer.Rayman3_Act1] = 0x0812e99c,
             [DefinedPointer.Rayman3_Act2] = 0x0812e9d8,
@@ -123,7 +125,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Font16] = 0x088ea7d4,
             [DefinedPointer.Font32] = 0x088eb6d0,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x088d4364,
+            [DefinedPointer.Rayman3_TextBanks] = 0x088d4364,
             [DefinedPointer.Rayman3_LevelInfo] = 0x088d438c,
             [DefinedPointer.Rayman3_Act1] = 0x088d7118,
             [DefinedPointer.Rayman3_Act2] = 0x088d7154,
@@ -146,9 +148,9 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public static Dictionary<DefinedPointer, long> Rayman3_NGage => new()
         {
-            [DefinedPointer.NGage_SongTable] = 0x100f1c3c,
+            [DefinedPointer.NGage_SoundEvents] = 0x100f1c3c,
 
-            [DefinedPointer.Rayman3_LocalizedTextBanks] = 0x100d1cec,
+            [DefinedPointer.Rayman3_TextBanks] = 0x100d1cec,
             [DefinedPointer.Rayman3_LevelInfo] = 0x100ede28,
             [DefinedPointer.Rayman3_NGageSplashScreens] = 0x100f2e78,
             [DefinedPointer.Rayman3_Act1] = 0x100f2c98,
@@ -164,5 +166,35 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             [DefinedPointer.Rayman3_NewPower5Replay] = 0x100d0e48,
             [DefinedPointer.Rayman3_NewPower6Replay] = 0x100d0acc,
         };
+
+        public static Dictionary<DefinedPointer, long> GetPointers(ROMHeader header, Platform platform, Game game, bool throwIfNotFound)
+        {
+            if (platform == Platform.GBA)
+            {
+                string gameCode = header.GameCode;
+                return game switch
+                {
+                    Game.Rayman3 when gameCode is "AYZP" => Rayman3_GBA_EU, // Rayman 3 (Europe)
+                    Game.Rayman3 when gameCode is "AYZE" => Rayman3_GBA_US, // Rayman 3 (USA)
+                    Game.Rayman3 when gameCode is "BX5P" => Rayman3_GBA_10thAnniversary_EU, // Rayman 10th Anniversary (Europe)
+                    Game.Rayman3 when gameCode is "BX5E" => Rayman3_GBA_10thAnniversary_US, // Rayman 10th Anniversary (USA)
+                    Game.Rayman3 when gameCode is "BWZP" => Rayman3_GBA_WinnieThePoohPack_EU, // Winnie the Pooh's Rumbly Tumbly Adventure & Rayman 3 (Europe)
+                    Game.Rayman3 when gameCode is "BWZP" => Rayman3_GBA_WinnieThePoohPack_EU, // Winnie the Pooh's Rumbly Tumbly Adventure & Rayman 3 (Europe)
+                    _ => throwIfNotFound ? throw new InvalidOperationException($"Unsupported GBA game {game} and/or code {gameCode}") : null
+                };
+            }
+            else if (platform == Platform.NGage)
+            {
+                return game switch
+                {
+                    Game.Rayman3 => Rayman3_NGage,
+                    _ => throwIfNotFound ? throw new InvalidOperationException($"Unsupported N-Gage game {game}") : null
+                };
+            }
+            else
+            {
+                throw new InvalidOperationException($"Invalid platform {platform}");
+            }
+        }
     }
 }
