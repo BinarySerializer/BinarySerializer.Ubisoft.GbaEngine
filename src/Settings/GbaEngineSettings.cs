@@ -15,9 +15,6 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public Dictionary<Enum, int> DefinedResources { get; set; }
         public Dictionary<int, Type> DefinedResourceTypes { get; set; }
 
-        // Flags
-        public bool HighPerformanceMode { get; set; } = true;
-
         public void SetDefinedResources<T>(Dictionary<int, DefinedResourceInfo<T>> definedResources)
             where T : Enum
         {
