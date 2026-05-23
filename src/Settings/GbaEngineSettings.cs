@@ -6,12 +6,17 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 {
     public class GbaEngineSettings
     {
+        // Game
         public Game Game { get; set; }
         public Platform Platform { get; set; }
 
+        // Resources
         public OffsetTable RootResourceTable { get; set; }
         public Dictionary<Enum, int> DefinedResources { get; set; }
         public Dictionary<int, Type> DefinedResourceTypes { get; set; }
+
+        // Flags
+        public bool HighPerformanceMode { get; set; } = true;
 
         public void SetDefinedResources<T>(Dictionary<int, DefinedResourceInfo<T>> definedResources)
             where T : Enum

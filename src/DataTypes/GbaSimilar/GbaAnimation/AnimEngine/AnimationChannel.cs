@@ -2,7 +2,6 @@
 
 namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    // NOTE: Could turn into a struct, but it's pretty big (around 36 bytes) so not really worth it for performance
     public class AnimationChannel : BinarySerializable
     {
         public AnimationChannelType ChannelType { get; set; }

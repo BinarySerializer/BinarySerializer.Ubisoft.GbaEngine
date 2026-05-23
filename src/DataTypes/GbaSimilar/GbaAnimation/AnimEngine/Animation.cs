@@ -13,6 +13,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public byte[] ChannelsPerFrame { get; set; }
         public AnimationChannel[] Channels { get; set; }
+        public RawAnimationChannel[] RawChannels { get; set; } // For high performance mode
 
         // Dependencies (from AnimatedObject)
         public AffineMatrices AffineMatrices { get; set; }
@@ -20,6 +21,8 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         public override void SerializeResource(SerializerObject s)
         {
+            GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
+
             s.DoBits<byte>(b =>
             {
                 Speed = b.SerializeBits<byte>(Speed, 7, name: nameof(Speed));
@@ -35,8 +38,16 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
             ChannelsPerFrame = s.SerializeArray<byte>(ChannelsPerFrame, FramesCount, name: nameof(ChannelsPerFrame));
             s.SerializePadding(FramesCountAlignment, logIfNotNull: true);
-        
-            Channels = s.SerializeObjectArray<AnimationChannel>(Channels, ChannelsPerFrame.Sum(x => x), name: nameof(Channels));
+
+            int channelsCount = ChannelsPerFrame.Sum(x => x);
+            if (!settings.HighPerformanceMode)
+            {
+                Channels = s.SerializeObjectArray<AnimationChannel>(Channels, channelsCount, name: nameof(Channels));
+            }
+            else
+            {
+                RawChannels = s.SerializeIntoArray<RawAnimationChannel>(RawChannels, channelsCount, RawAnimationChannel.SerializeInto, name: nameof(RawChannels));
+            }
         }
     }
 }
