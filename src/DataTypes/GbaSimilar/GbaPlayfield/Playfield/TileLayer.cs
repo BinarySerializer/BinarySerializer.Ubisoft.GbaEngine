@@ -9,7 +9,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
         public byte LayerId { get; set; }
         public byte ClusterIndex { get; set; }
         public bool HasAlphaBlending { get; set; }
-        public FixedPointInt8 AlphaCoeff { get; set; } // For some reason 15 (0,9375) seems to be the max value here, but it should be 16 (1,00)
+        public UQ4_4 AlphaCoeff { get; set; } // For some reason 15 (0,9375) seems to be the max value here, but it should be 16 (1,00)
         public bool IsDynamic { get; set; }
         public bool Is8Bit { get; set; }
         public byte[] UnusedBytes { get; set; }
@@ -49,7 +49,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
             LayerId = s.Serialize<byte>(LayerId, name: nameof(LayerId));
             ClusterIndex = s.Serialize<byte>(ClusterIndex, name: nameof(ClusterIndex));
             HasAlphaBlending = s.Serialize<bool>(HasAlphaBlending, name: nameof(HasAlphaBlending));
-            AlphaCoeff = s.SerializeObject<FixedPointInt8>(AlphaCoeff, x => x.Pre_PointPosition = 4, name: nameof(AlphaCoeff));
+            AlphaCoeff = s.SerializeInto<UQ4_4>(AlphaCoeff, UQ4_4.SerializeInto, name: nameof(AlphaCoeff));
             IsDynamic = s.Serialize<bool>(IsDynamic, name: nameof(IsDynamic));
 
             if (settings.Game == Game.Rayman3_20020118_DemoRLE)

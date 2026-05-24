@@ -2,17 +2,17 @@
 {
     public class AffineMatrix : BinarySerializable, ISerializerShortLog
     {
-        public FixedPointInt16 Pa { get; set; }
-        public FixedPointInt16 Pb { get; set; }
-        public FixedPointInt16 Pc { get; set; }
-        public FixedPointInt16 Pd { get; set; }
+        public Q8_8 Pa { get; set; }
+        public Q8_8 Pb { get; set; }
+        public Q8_8 Pc { get; set; }
+        public Q8_8 Pd { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
-            Pa = s.SerializeObject<FixedPointInt16>(Pa, x => x.Pre_PointPosition = 8, name: nameof(Pa));
-            Pb = s.SerializeObject<FixedPointInt16>(Pb, x => x.Pre_PointPosition = 8, name: nameof(Pb));
-            Pc = s.SerializeObject<FixedPointInt16>(Pc, x => x.Pre_PointPosition = 8, name: nameof(Pc));
-            Pd = s.SerializeObject<FixedPointInt16>(Pd, x => x.Pre_PointPosition = 8, name: nameof(Pd));
+            Pa = s.SerializeInto<Q8_8>(Pa, Q8_8.SerializeInto, name: nameof(Pa));
+            Pb = s.SerializeInto<Q8_8>(Pb, Q8_8.SerializeInto, name: nameof(Pb));
+            Pc = s.SerializeInto<Q8_8>(Pc, Q8_8.SerializeInto, name: nameof(Pc));
+            Pd = s.SerializeInto<Q8_8>(Pd, Q8_8.SerializeInto, name: nameof(Pd));
         }
 
         public string ShortLog => ToString();

@@ -2,13 +2,13 @@
 {
     public class FixedPointVector2 : BinarySerializable
     {
-        public FixedPointInt32 X { get; set; }
-        public FixedPointInt32 Y { get; set; }
+        public Q16_16 X { get; set; }
+        public Q16_16 Y { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
-            X = s.SerializeObject<FixedPointInt32>(X, x => x.Pre_PointPosition = 16, name: nameof(X));
-            Y = s.SerializeObject<FixedPointInt32>(Y, x => x.Pre_PointPosition = 16, name: nameof(Y));
+            X = s.SerializeInto<Q16_16>(X, Q16_16.SerializeInto, name: nameof(X));
+            Y = s.SerializeInto<Q16_16>(Y, Q16_16.SerializeInto, name: nameof(Y));
         }
     }
 }
