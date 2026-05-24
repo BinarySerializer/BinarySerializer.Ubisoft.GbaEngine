@@ -7,7 +7,7 @@
 
         public override void SerializeResource(SerializerObject s)
         {
-            Events = s.SerializeObjectArray<CaptorEvent>(Events, Pre_Length, name: nameof(Events));
+            Events = s.SerializeIntoArray<CaptorEvent>(Events, Pre_Length, CaptorEvent.SerializeInto, name: nameof(Events));
         }
     }
 }

@@ -1,16 +1,25 @@
 ﻿namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    public class CaptorEvent : BinarySerializable
+    public readonly struct CaptorEvent
     {
-        public ushort MessageId { get; set; }
-        public ushort Param { get; set; }
-        public short Delay { get; set; }
-
-        public override void SerializeImpl(SerializerObject s)
+        public CaptorEvent(ushort messageId, ushort param, short delay)
         {
-            MessageId = s.Serialize<ushort>(MessageId, name: nameof(MessageId));
-            Param = s.Serialize<ushort>(Param, name: nameof(Param));
-            Delay = s.Serialize<short>(Delay, name: nameof(Delay));
+            MessageId = messageId;
+            Param = param;
+            Delay = delay;
         }
+
+        public ushort MessageId { get;}
+        public ushort Param { get; }
+        public short Delay { get; }
+
+        public static SerializeInto<CaptorEvent> SerializeInto = (s, x) =>
+        {
+            ushort messageId = s.Serialize<ushort>(x.MessageId, name: nameof(MessageId));
+            ushort param = s.Serialize<ushort>(x.Param, name: nameof(Param));
+            short delay = s.Serialize<short>(x.Delay, name: nameof(Delay));
+
+            return new CaptorEvent(messageId, param, delay);
+        };
     }
 }
