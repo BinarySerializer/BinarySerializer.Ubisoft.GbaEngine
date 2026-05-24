@@ -1,19 +1,29 @@
 ﻿namespace BinarySerializer.Ubisoft.GbaEngine
 {
-    public class AffineMatrix : BinarySerializable, ISerializerShortLog
+    public readonly struct AffineMatrix : ISerializerShortLog
     {
-        public Q8_8 Pa { get; set; }
-        public Q8_8 Pb { get; set; }
-        public Q8_8 Pc { get; set; }
-        public Q8_8 Pd { get; set; }
-
-        public override void SerializeImpl(SerializerObject s)
+        public AffineMatrix(Q8_8 pa, Q8_8 pb, Q8_8 pc, Q8_8 pd)
         {
-            Pa = s.SerializeInto<Q8_8>(Pa, Q8_8.SerializeInto, name: nameof(Pa));
-            Pb = s.SerializeInto<Q8_8>(Pb, Q8_8.SerializeInto, name: nameof(Pb));
-            Pc = s.SerializeInto<Q8_8>(Pc, Q8_8.SerializeInto, name: nameof(Pc));
-            Pd = s.SerializeInto<Q8_8>(Pd, Q8_8.SerializeInto, name: nameof(Pd));
+            Pa = pa;
+            Pb = pb;
+            Pc = pc;
+            Pd = pd;
         }
+
+        public Q8_8 Pa { get; }
+        public Q8_8 Pb { get; }
+        public Q8_8 Pc { get; }
+        public Q8_8 Pd { get; }
+
+        public static SerializeInto<AffineMatrix> SerializeInto = (s, x) =>
+        {
+            Q8_8 pa = s.SerializeInto<Q8_8>(x.Pa, Q8_8.SerializeInto, name: nameof(Pa));
+            Q8_8 pb = s.SerializeInto<Q8_8>(x.Pb, Q8_8.SerializeInto, name: nameof(Pb));
+            Q8_8 pc = s.SerializeInto<Q8_8>(x.Pc, Q8_8.SerializeInto, name: nameof(Pc));
+            Q8_8 pd = s.SerializeInto<Q8_8>(x.Pd, Q8_8.SerializeInto, name: nameof(Pd));
+
+            return new AffineMatrix(pa, pb, pc, pd);
+        };
 
         public string ShortLog => ToString();
         public override string ToString() => $"AffineMatrix({Pa}, {Pb}, {Pc}, {Pd})";

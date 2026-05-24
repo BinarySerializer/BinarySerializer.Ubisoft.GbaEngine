@@ -6,7 +6,7 @@
 
         public override void SerializeResource(SerializerObject s)
         {
-            Matrices = s.SerializeObjectArray<AffineMatrix>(Matrices, Size / 8, name: nameof(Matrices));
+            Matrices = s.SerializeIntoArray<AffineMatrix>(Matrices, Size / 8, AffineMatrix.SerializeInto, name: nameof(Matrices));
         }
     }
 }
