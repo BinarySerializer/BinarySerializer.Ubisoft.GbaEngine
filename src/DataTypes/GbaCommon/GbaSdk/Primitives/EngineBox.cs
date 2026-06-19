@@ -15,7 +15,7 @@
         public sbyte Bottom { get; }
         public sbyte Right { get; }
 
-        public static SerializeInto<EngineBox> SerializeInto = (s, x) =>
+        public static readonly SerializeInto<EngineBox> SerializeInto = (s, x) =>
         {
             sbyte top = s.Serialize<sbyte>(x.Top, name: nameof(Top));
             sbyte left = s.Serialize<sbyte>(x.Left, name: nameof(Left));

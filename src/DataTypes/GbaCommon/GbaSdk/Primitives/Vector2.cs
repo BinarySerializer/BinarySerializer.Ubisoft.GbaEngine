@@ -11,7 +11,7 @@
         public short X { get; }
         public short Y { get; }
 
-        public static SerializeInto<Vector2> SerializeInto = (s, x) =>
+        public static readonly SerializeInto<Vector2> SerializeInto = (s, x) =>
         {
             short xx = s.Serialize<short>(x.X, name: nameof(X));
             short yy = s.Serialize<short>(x.Y, name: nameof(Y));

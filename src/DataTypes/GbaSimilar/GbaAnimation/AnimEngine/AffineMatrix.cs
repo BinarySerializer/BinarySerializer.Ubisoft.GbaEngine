@@ -15,7 +15,7 @@
         public Q8_8 Pc { get; }
         public Q8_8 Pd { get; }
 
-        public static SerializeInto<AffineMatrix> SerializeInto = (s, x) =>
+        public static readonly SerializeInto<AffineMatrix> SerializeInto = (s, x) =>
         {
             Q8_8 pa = s.SerializeInto<Q8_8>(x.Pa, Q8_8.SerializeInto, name: nameof(Pa));
             Q8_8 pb = s.SerializeInto<Q8_8>(x.Pb, Q8_8.SerializeInto, name: nameof(Pb));

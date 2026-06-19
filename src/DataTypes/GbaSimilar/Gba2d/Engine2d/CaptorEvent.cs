@@ -13,7 +13,7 @@
         public ushort Param { get; }
         public short Delay { get; }
 
-        public static SerializeInto<CaptorEvent> SerializeInto = (s, x) =>
+        public static readonly SerializeInto<CaptorEvent> SerializeInto = (s, x) =>
         {
             ushort messageId = s.Serialize<ushort>(x.MessageId, name: nameof(MessageId));
             ushort param = s.Serialize<ushort>(x.Param, name: nameof(Param));

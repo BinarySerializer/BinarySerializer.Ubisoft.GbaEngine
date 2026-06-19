@@ -203,7 +203,7 @@ namespace BinarySerializer.Ubisoft.GbaEngine
 
         #region Serialization
 
-        public static SerializeInto<AnimationChannel> SerializeInto = (s, x) =>
+        public static readonly SerializeInto<AnimationChannel> SerializeInto = (s, x) =>
         {
             GbaEngineSettings settings = s.GetRequiredSettings<GbaEngineSettings>();
 
